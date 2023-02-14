@@ -1,11 +1,13 @@
 import createRandomMovie from "./createRandomMovie"
 import createRandomUser from "./createRandomUser"
-import fse from 'fs-extra'
+// import fs from 'fs/promises'
 
-const createMockData = async (mockDataType: string) => {
+import { Movie } from "../types/types";
+
+const createMockData = (mockDataType: string): Movie[] => {
   const moviesData = [];
 
-  const dataCreator = mockDataType === 'mockMoviesData' ? createRandomMovie : createRandomUser;
+  const dataCreator = mockDataType === 'moviesMockData' ? createRandomMovie : createRandomUser;
 
   for (let i = 0; i < 25; i++) {
     moviesData.push(dataCreator())
@@ -13,8 +15,10 @@ const createMockData = async (mockDataType: string) => {
   
   console.log('moviesData ', moviesData)
 
-  await fse.writeFile(`./src/mockData/${mockDataType}.json`,
-  JSON.stringify(moviesData, null, '\t'))
+  return moviesData;
+
+  // await fs.writeFile(`./src/mockData/${mockDataType}.json`,
+  // JSON.stringify(moviesData, null, '\t'))
 }
 
 export default createMockData;

@@ -1,4 +1,4 @@
-const createRandomUser = () => {
+const createRandomUser = (): any => {
   return <></>
 }
 
