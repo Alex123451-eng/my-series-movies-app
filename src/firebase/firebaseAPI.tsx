@@ -1,5 +1,5 @@
 import {
-  getFirestore,
+  // getFirestore,
   doc,
   setDoc,
   collection,
@@ -33,6 +33,4 @@ export const initMoviesWithFirebaseData = async () => {
     initialMovieArray.push(doc.data());
   });
   return initialMovieArray;
-  // setTodoArray(initialTodoArray);
-  // setIsLoading(false);
 };

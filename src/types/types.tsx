@@ -6,3 +6,7 @@ export interface Movie {
   releaseYear: number;
   rating: number;
 }
+
+export interface MovieStyles {
+  backgroundImage: string;
+}

@@ -1,3 +1,4 @@
+// todo заменить any
 const createRandomUser = (): any => {
   return <></>
 }
