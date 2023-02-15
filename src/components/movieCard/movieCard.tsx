@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import { MovieStyles } from "../../types/types";
-
 // todo вынести это в дженерик или интерфейс?
 // todo понять правильно ли по синтаксису, что типы пропсов перечисляются через ";"?
 const MovieCard = ({
@@ -18,17 +16,51 @@ const MovieCard = ({
   rating: number;
 }) => {
   return (
-    <>
-      <Movie backgroundImage={img}>{title}</Movie>
-    </>
+    <MovieCardWrapper>
+      <InfoPreview>
+        <div>Рейтинг</div>
+        {rating}
+      </InfoPreview>
+      <img src={img} alt="movie poster" />
+      <MovieTitle>{title}</MovieTitle>
+    </MovieCardWrapper>
   );
 };
 
 export default MovieCard;
 
-const Movie = styled.div<MovieStyles>`
+const MovieCardWrapper = styled.div`
   position: relative;
   width: 153px;
-  height: 260px;
-  background-image: url(${(props) => props.backgroundImage});
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.3s;
+  text-align: center;
+
+  &: hover {
+    transform: scale(1.05);
+  }
+`;
+
+const InfoPreview = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 88%;
+  opacity: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  background-color: rgba(7, 5, 14, 0.6);
+  transition: 0.3s;
+
+  ${MovieCardWrapper}: hover & {
+    opacity: 1;
+  }
+`;
+
+const MovieTitle = styled.div`
+  padding-top: 5px;
 `;

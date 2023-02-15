@@ -56,8 +56,6 @@ const MainPage = () => {
 export default MainPage;
 
 const ContentWrapper = styled.div`
-  margin: 0 auto;
-  width: 80%;
   display: grid;
   grid-template-columns: repeat(auto-fit, 153px);
   grid-gap: 20px;

@@ -7,6 +7,7 @@ export interface Movie {
   rating: number;
 }
 
-export interface MovieStyles {
-  backgroundImage: string;
+// todo починить any
+export interface ICustomLink {
+  match: any;
 }
