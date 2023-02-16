@@ -24,6 +24,7 @@ export { Layout };
 const BaseWrapper = styled.div`
   width: 70%;
   margin: 100px auto 0;
+  font-family: "nunito-regular", sans-serif;
 `;
 // border: 1px solid red;
 

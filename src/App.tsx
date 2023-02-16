@@ -6,10 +6,12 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 
-import MainPage from "./pages/mainPage/mainPage";
-import PrivatePage from "./pages/privatePage/privatePage";
-import CinemaHistoryPage from "./pages/cinemaHistoryPage/cinemaHistoryPage";
+import MainPage from "./pages/mainPage";
+import PrivatePage from "./pages/privatePage";
+import CinemaHistoryPage from "./pages/cinemaHistoryPage";
 import { Layout } from "./components/layout/layout";
+
+import "./App.css";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

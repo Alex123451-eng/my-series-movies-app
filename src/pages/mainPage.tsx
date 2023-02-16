@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import MovieCard from "../../components/movieCard/movieCard";
+import MovieCard from "../components/movieCard/movieCard";
 
-import { initMoviesWithFirebaseData } from "../../firebase/firebaseAPI";
+import { initMoviesWithFirebaseData } from "../firebase/firebaseAPI";
 
-import { Movie } from "../../types/types";
+import { Movie } from "../types/types";
 
-// import createMockData from "../../utils/createMockData";
-// import { addDataToFirebase } from "../../firebase/firebaseAPI";
+// import createMockData from "../utils/createMockData";
+// import { addDataToFirebase } from "../firebase/firebaseAPI";
 // const mockData = createMockData("moviesMockData");
 // for (let i = 0; i < mockData.length; i++) {
 //   addDataToFirebase(mockData[i]);

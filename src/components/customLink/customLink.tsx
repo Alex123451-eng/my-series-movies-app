@@ -33,6 +33,8 @@ export { CustomLink };
 const StyledLink = styled(Link)<ICustomLink>`
   color: ${({ match }) => (match ? "#ffffff" : "rgba(255, 255, 255, 0.48)")};
   padding-right: 15px;
+  text-decoration: none;
+  font-size: 20px;
 
   &:last-child {
     padding-right: 0;

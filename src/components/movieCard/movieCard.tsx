@@ -21,7 +21,7 @@ const MovieCard = ({
         <div>Рейтинг</div>
         {rating}
       </InfoPreview>
-      <img src={img} alt="movie poster" />
+      <MovieImg src={img} alt="movie poster" />
       <MovieTitle>{title}</MovieTitle>
     </MovieCardWrapper>
   );
@@ -38,6 +38,7 @@ const MovieCardWrapper = styled.div`
   cursor: pointer;
   transition: 0.3s;
   text-align: center;
+  border-radius: 15px;
 
   &: hover {
     transform: scale(1.05);
@@ -59,6 +60,10 @@ const InfoPreview = styled.div`
   ${MovieCardWrapper}: hover & {
     opacity: 1;
   }
+`;
+
+const MovieImg = styled.img`
+  border-radius: 10px;
 `;
 
 const MovieTitle = styled.div`
