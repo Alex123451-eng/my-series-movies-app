@@ -11,9 +11,9 @@ import { db } from "./firebaseInit";
 
 import { firebaseCollection } from "../constants/constants";
 
-import { Movie } from "../types/types";
+import { IMovie } from "../types/types";
 
-export const addDataToFirebase = async (movieData: Movie) => {
+export const addDataToFirebase = async (movieData: IMovie) => {
   try {
     await setDoc(doc(db, firebaseCollection, movieData.id), movieData);
   } catch (e) {

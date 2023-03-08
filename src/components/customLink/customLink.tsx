@@ -3,12 +3,14 @@ import styled from "styled-components";
 
 import { ICustomLink } from "../../types/types";
 
+import { colors, fontSizes, spacing } from "../../constants/constants";
+
 const CustomLink = ({
   children,
   to,
   ...props
 }: {
-  children: string;
+  children: any;
   to: string;
 }) => {
   const match = useMatch({
@@ -29,14 +31,16 @@ const CustomLink = ({
 
 export { CustomLink };
 
-// todo понять, нормально ли использовать одновременно цвета в разных форматах?
 const StyledLink = styled(Link)<ICustomLink>`
-  color: ${({ match }) => (match ? "#ffffff" : "rgba(255, 255, 255, 0.48)")};
-  padding-right: 15px;
+  color: ${({ match }) =>
+    match ? `${colors.white}` : `${colors.whiteTransparent}`};
+  padding-right: ${spacing.md};
   text-decoration: none;
-  font-size: 20px;
+  font-size: ${fontSizes.lg};
 
-  &:last-child {
+  span > &:last-child {
+    color: ${colors.grayTransparent};
+    pointer-events: none;
     padding-right: 0;
   }
 `;

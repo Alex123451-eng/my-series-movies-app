@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { colors, spacing } from "../../constants/constants";
+
 // todo вынести это в дженерик или интерфейс?
 // todo понять правильно ли по синтаксису, что типы пропсов перечисляются через ";"?
 const MovieCard = ({
@@ -18,8 +20,10 @@ const MovieCard = ({
   return (
     <MovieCardWrapper>
       <InfoPreview>
-        <div>Рейтинг</div>
+        <div>Rating</div>
         {rating}
+        <div>Release year</div>
+        {releaseYear}
       </InfoPreview>
       <MovieImg src={img} alt="movie poster" />
       <MovieTitle>{title}</MovieTitle>
@@ -34,11 +38,10 @@ const MovieCardWrapper = styled.div`
   width: 153px;
   display: flex;
   flex-direction: column;
-  color: #ffffff;
+  color: ${colors.white};
   cursor: pointer;
   transition: 0.3s;
   text-align: center;
-  border-radius: 15px;
 
   &: hover {
     transform: scale(1.05);
@@ -48,13 +51,14 @@ const MovieCardWrapper = styled.div`
 const InfoPreview = styled.div`
   position: absolute;
   width: 100%;
-  height: 88%;
+  height: 90%;
   opacity: 0;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
+  text-align: left;
+  padding: ${spacing.xxxxl} 0 0 ${spacing.md};
   justify-content: center;
-  padding-top: 10px;
-  background-color: rgba(7, 5, 14, 0.6);
+  background-color: ${colors.blackTransparent};
   transition: 0.3s;
 
   ${MovieCardWrapper}: hover & {
@@ -63,9 +67,9 @@ const InfoPreview = styled.div`
 `;
 
 const MovieImg = styled.img`
-  border-radius: 10px;
+  border-radius: ${spacing.sm};
 `;
 
 const MovieTitle = styled.div`
-  padding-top: 5px;
+  padding-top: ${spacing.sm};
 `;

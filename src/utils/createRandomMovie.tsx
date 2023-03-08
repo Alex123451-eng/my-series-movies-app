@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
-import { Movie } from "../types/types";
+import { IMovie } from "../types/types";
 
-const createRandomMovie = (): Movie => {
+const createRandomMovie = (): IMovie => {
   const fakeWord = faker.random.word();
 
   return {

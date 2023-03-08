@@ -1,11 +1,18 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+
 import MovieCard from "../components/movieCard/movieCard";
+import { MovieLink } from "../components/movieLink/movieLink";
 
 import { initMoviesWithFirebaseData } from "../firebase/firebaseAPI";
+import { setMovies } from "../features/movies/moviesSlice";
 
-import { Movie } from "../types/types";
+import { selectMovies } from "../features/movies/moviesSlice";
+
+import { spacing } from "../constants/constants";
 
 // import createMockData from "../utils/createMockData";
 // import { addDataToFirebase } from "../firebase/firebaseAPI";
@@ -15,14 +22,23 @@ import { Movie } from "../types/types";
 // }
 
 const MainPage = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const movies = useAppSelector(selectMovies);
+  const [isLoading, setIsLoading] = useState<boolean>(
+    movies.movies.length ? false : true
+  );
+  const dispatch = useAppDispatch();
 
+  const getMovies = async () => {
+    const movies = await initMoviesWithFirebaseData();
+    dispatch(setMovies(movies));
+    setIsLoading(false);
+  };
+
+  // todo понять почему он у меня подчеркивает массив зависимостей
   useEffect(() => {
-    initMoviesWithFirebaseData().then((movies) => {
-      setMovies(movies);
-      setIsLoading(false);
-    });
+    if (!movies.movies.length) {
+      getMovies();
+    }
   }, []);
 
   return (
@@ -32,19 +48,20 @@ const MainPage = () => {
         <div style={{ color: "white" }}>The data is still loading...</div>
       ) : (
         <ContentWrapper>
-          {movies &&
-            movies.map((movieData) => {
+          {movies.movies &&
+            movies.movies.map((movieData: any) => {
               const { id, title, description, img, releaseYear, rating } =
                 movieData;
               return (
-                <MovieCard
-                  key={id}
-                  title={title}
-                  description={description}
-                  img={img}
-                  releaseYear={releaseYear}
-                  rating={rating}
-                />
+                <MovieLink key={id} id={id}>
+                  <MovieCard
+                    title={title}
+                    description={description}
+                    img={img}
+                    releaseYear={releaseYear}
+                    rating={rating}
+                  />
+                </MovieLink>
               );
             })}
         </ContentWrapper>
@@ -58,6 +75,10 @@ export default MainPage;
 const ContentWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, 153px);
-  grid-gap: 20px;
-  justify-content: center;
+  grid-gap: ${spacing.lg};
+  justify-content: space-between;
 `;
+
+// const MovieLink = styled(Link)`
+// text-decoration: none;
+// `;

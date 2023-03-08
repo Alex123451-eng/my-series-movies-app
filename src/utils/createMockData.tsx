@@ -1,9 +1,9 @@
 import createRandomMovie from "./createRandomMovie";
 import createRandomUser from "./createRandomUser";
 
-import { Movie } from "../types/types";
+import { IMovie } from "../types/types";
 
-const createMockData = (mockDataType: string): Movie[] => {
+const createMockData = (mockDataType: string): IMovie[] => {
   const moviesData = [];
 
   const dataCreator =

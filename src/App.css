@@ -3,3 +3,9 @@
   font-weight: 400;
   src: url("./fonts/nunito-regular.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: "nunito-extra-bold";
+  font-weight: 800;
+  src: url("./fonts/nunito-extra-bold.ttf") format("truetype");
+}
