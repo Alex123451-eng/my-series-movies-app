@@ -2,6 +2,7 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { combineReducers } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
 import moviesReducer from '../features/movies/moviesSlice'
+import userReducer from '../features/movies/userSlice'
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 
@@ -14,6 +15,7 @@ const persistConfig = {
 const reducer = combineReducers({
   counter: counterReducer,
   movies: moviesReducer,
+  user: userReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer);

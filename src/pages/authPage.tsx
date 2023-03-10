@@ -1,24 +1,63 @@
 import { useState } from "react";
-import styled from "styled-components";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import styled, { css } from "styled-components";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+
+import { setUser } from "../features/movies/userSlice";
+
+import { useAppDispatch } from "../app/hooks";
 
 import { colors, fontSizes, spacing } from "../constants/constants";
+import { firebaseAuth } from "../firebase/firebaseAuth";
 
 import loginSiteLogo from "./login-site-logo.png";
 
-const LoginPage = () => {
-  const [login, setLogin] = useState("");
+const AuthPage = () => {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // todo починить any
-  const onChangeInput = (e: any) => {
+  const navigate = useNavigate();
+
+  const dispatch = useAppDispatch();
+
+  // todo понять правильно ли я заюзал тип?
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = e;
-    target.name === "login"
-      ? setLogin(target.value)
+    target.name === "email"
+      ? setEmail(target.value)
       : setPassword(target.value);
   };
 
-  const onSighUpBtnClick = () => {};
+  // todo починить any
+  const handleAuth = async (e: any) => {
+    const { name } = e.target;
+
+    try {
+      const userCredential =
+        name === "Sign up"
+          ? await createUserWithEmailAndPassword(firebaseAuth, email, password)
+          : await signInWithEmailAndPassword(firebaseAuth, email, password);
+
+      const { user } = userCredential;
+
+      console.log("user ", user);
+
+      dispatch(
+        setUser({
+          id: user.uid,
+          email,
+          password,
+        })
+      );
+
+      navigate("/");
+    } catch (err) {
+      alert(err);
+    }
+  };
 
   return (
     <Wrapper>
@@ -29,20 +68,20 @@ const LoginPage = () => {
         </Title>
 
         <InputBlock>
-          <label htmlFor="login">Enter your login please</label>
-          <LoginInput
-            type="text"
-            id="login"
-            placeholder="Login"
-            name="login"
-            value={login}
+          <label htmlFor="email">Enter your email please</label>
+          <EmailInput
+            type="email"
+            id="email"
+            placeholder="Email"
+            name="email"
+            value={email}
             onChange={onChangeInput}
           />
         </InputBlock>
         <InputBlock>
           <label htmlFor="password">Enter your password please</label>
-          <LoginInput
-            type="text"
+          <PasswordInput
+            type="password"
             id="password"
             placeholder="Password"
             name="password"
@@ -52,8 +91,12 @@ const LoginPage = () => {
         </InputBlock>
 
         <ButtonsBlock>
-          <Button>Login</Button>
-          <Button onClick={onSighUpBtnClick}>Sign up</Button>
+          <Button onClick={handleAuth} name="Login">
+            Login
+          </Button>
+          <Button onClick={handleAuth} name="Sign up">
+            Sign up
+          </Button>
         </ButtonsBlock>
         <ImgWrapper>
           <img src={loginSiteLogo} alt="big site logo" />
@@ -63,7 +106,7 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default AuthPage;
 
 const ImgWrapper = styled.div`
   display: flex;
@@ -98,7 +141,7 @@ const InputBlock = styled.div`
   align-items: center;
 `;
 
-const LoginInput = styled.input`
+const inputStyles = css`
   padding-left: ${spacing.md};
   margin-left: ${spacing.md};
   font-size: ${fontSizes.md};
@@ -111,12 +154,20 @@ const LoginInput = styled.input`
   }
 `;
 
+const EmailInput = styled.input`
+  ${inputStyles}
+`;
+const PasswordInput = styled.input`
+  ${inputStyles}
+`;
+
 const ButtonsBlock = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
 const Button = styled.button`
+  font-family: "nunito-regular", sans-serif;
   cursor: pointer;
   border: 1px solid ${colors.gray};
   border-radius: ${spacing.sm};

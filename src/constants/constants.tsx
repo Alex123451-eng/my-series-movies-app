@@ -17,6 +17,7 @@ export const colors = {
   grayTransparent: "rgba(120, 120, 120, 0.5)",
   black: "rgba(7, 5, 14, 1)",
   blackBackground: "rgba(7, 5, 14, 0.9)",
+  blackThickTransparent: "rgba(7, 5, 14, 0.7)",
   blackTransparent: "rgba(7, 5, 14, 0.5)",
 };
 

@@ -1,22 +1,57 @@
 import styled from "styled-components";
 
-import { colors, spacing } from "../../constants/constants";
+import { selectUser } from "../../features/movies/userSlice";
+
+import {
+  addWatchedMovie,
+  removeWatchedMovie,
+} from "../../features/movies/userSlice";
+
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+
+import { colors, fontSizes, spacing } from "../../constants/constants";
 
 // todo вынести это в дженерик или интерфейс?
 // todo понять правильно ли по синтаксису, что типы пропсов перечисляются через ";"?
 const MovieCard = ({
+  id,
   title,
   description,
   img,
   releaseYear,
   rating,
 }: {
+  id: string;
   title: string;
   description: string;
   img: string;
   releaseYear: number;
   rating: number;
 }) => {
+  const user = useAppSelector(selectUser);
+  const dispatch = useAppDispatch();
+
+  const isMovieWatched = user.watchedMovies.find((movie) => movie.id === id);
+
+  const onCheckClick = (e: any) => {
+    e.preventDefault();
+
+    if (isMovieWatched) {
+      dispatch(removeWatchedMovie(id));
+    } else {
+      dispatch(
+        addWatchedMovie({
+          id,
+          title,
+          description,
+          img,
+          releaseYear,
+          rating,
+        })
+      );
+    }
+  };
+
   return (
     <MovieCardWrapper>
       <InfoPreview>
@@ -25,6 +60,11 @@ const MovieCard = ({
         <div>Release year</div>
         {releaseYear}
       </InfoPreview>
+      {user.id && (
+        <CheckWrapper onClick={onCheckClick}>
+          {isMovieWatched && <Check>&#10003;</Check>}
+        </CheckWrapper>
+      )}
       <MovieImg src={img} alt="movie poster" />
       <MovieTitle>{title}</MovieTitle>
     </MovieCardWrapper>
@@ -46,6 +86,24 @@ const MovieCardWrapper = styled.div`
   &: hover {
     transform: scale(1.05);
   }
+`;
+
+const CheckWrapper = styled.div`
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: 0;
+  border-radius: 0 ${spacing.sm} 0 0;
+  background: ${colors.blackThickTransparent};
+`;
+
+const Check = styled.div`
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: ${fontSizes.lg};
+  pointer-events: none;
 `;
 
 const InfoPreview = styled.div`

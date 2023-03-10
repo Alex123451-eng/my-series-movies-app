@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { useAppDispatch, useAppSelector } from "../app/hooks";
@@ -7,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import MovieCard from "../components/movieCard/movieCard";
 import { MovieLink } from "../components/movieLink/movieLink";
 
-import { initMoviesWithFirebaseData } from "../firebase/firebaseAPI";
+import { initMoviesWithFirebaseData } from "../firebase/firebaseFirestore";
 import { setMovies } from "../features/movies/moviesSlice";
 
 import { selectMovies } from "../features/movies/moviesSlice";
@@ -55,6 +54,7 @@ const MainPage = () => {
               return (
                 <MovieLink key={id} id={id}>
                   <MovieCard
+                    id={id}
                     title={title}
                     description={description}
                     img={img}
@@ -78,7 +78,3 @@ const ContentWrapper = styled.div`
   grid-gap: ${spacing.lg};
   justify-content: space-between;
 `;
-
-// const MovieLink = styled(Link)`
-// text-decoration: none;
-// `;

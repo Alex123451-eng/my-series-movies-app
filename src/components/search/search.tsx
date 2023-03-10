@@ -12,11 +12,7 @@ import MovieLine from "../movieLine/movieLine";
 import { colors, fontSizes, spacing } from "../../constants/constants";
 
 // todo починить any
-const SearchComponent = ({
-  setIsSearchBlockShown,
-}: {
-  setIsSearchBlockShown: any;
-}) => {
+const Search = ({ setIsSearchShown }: { setIsSearchShown: any }) => {
   const movies = useAppSelector(selectMovies);
   const [titleInputValue, setTitleInputValue] = useState("");
   // const [searchParams, setSearchParams] = useSearchParams();
@@ -34,7 +30,7 @@ const SearchComponent = ({
   const closeSearchComponent = () => {
     // searchParams.delete("movies");
     // setSearchParams(searchParams);
-    setIsSearchBlockShown(false);
+    setIsSearchShown(false);
   };
 
   // todo понять почему он мне подчеркивает пустой массив зависимостей
@@ -155,4 +151,4 @@ const NoMatch = styled.div`
   color: ${colors.black};
 `;
 
-export default SearchComponent;
+export default Search;
