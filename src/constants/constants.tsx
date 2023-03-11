@@ -1,4 +1,5 @@
-export const firebaseCollection = "movie-series-app";
+export const firebaseMoviesCollection = "movie-series-app";
+export const firebaseUsersCollection = "users";
 
 export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,

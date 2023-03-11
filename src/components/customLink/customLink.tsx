@@ -1,7 +1,11 @@
 import { Link, useMatch } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { ICustomLink } from "../../types/types";
+
+import { selectUser } from "../../features/movies/userSlice";
+
+import { useAppSelector } from "../../app/hooks";
 
 import { colors, fontSizes, spacing } from "../../constants/constants";
 
@@ -17,6 +21,7 @@ const CustomLink = ({
     path: to,
     end: to.length === 1,
   });
+  // const user = useAppSelector(selectUser);
 
   return (
     <StyledLink
@@ -39,8 +44,13 @@ const StyledLink = styled(Link)<ICustomLink>`
   font-size: ${fontSizes.lg};
 
   span > &:last-child {
-    color: ${colors.grayTransparent};
-    pointer-events: none;
     padding-right: 0;
   }
 `;
+// ${({ isAuth }) => {
+// if (isAuth) {
+// return css`
+// color: ${colors.grayTransparent};
+// pointer-events: none;`
+// }
+// }}

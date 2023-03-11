@@ -2,14 +2,22 @@ import styled from "styled-components";
 
 import { selectUser } from "../../features/movies/userSlice";
 
-import {
-  addWatchedMovie,
-  removeWatchedMovie,
-} from "../../features/movies/userSlice";
+import { setUser } from "../../features/movies/userSlice";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
-import { colors, fontSizes, spacing } from "../../constants/constants";
+import {
+  addDataToFirebase,
+  initUserWithFirebaseData,
+} from "../../firebase/firebaseFirestore";
+
+import {
+  colors,
+  fontSizes,
+  spacing,
+  firebaseUsersCollection,
+} from "../../constants/constants";
+import { IUser } from "../../types/types";
 
 // todo вынести это в дженерик или интерфейс?
 // todo понять правильно ли по синтаксису, что типы пропсов перечисляются через ";"?
@@ -33,23 +41,38 @@ const MovieCard = ({
 
   const isMovieWatched = user.watchedMovies.find((movie) => movie.id === id);
 
-  const onCheckClick = (e: any) => {
+  const getUser = async (updatedUser: IUser) => {
+    const userFromFirebase = await initUserWithFirebaseData(updatedUser.id);
+
+    dispatch(setUser(userFromFirebase));
+  };
+
+  const onCheckClick = async (e: any) => {
     e.preventDefault();
 
+    let updatedUser;
+
     if (isMovieWatched) {
-      dispatch(removeWatchedMovie(id));
-    } else {
-      dispatch(
-        addWatchedMovie({
-          id,
-          title,
-          description,
-          img,
-          releaseYear,
-          rating,
-        })
+      const watchedMovies = user.watchedMovies.filter(
+        (movie) => movie.id !== id
       );
+
+      updatedUser = {
+        ...user,
+        watchedMovies,
+      };
+    } else {
+      updatedUser = {
+        ...user,
+        watchedMovies: [
+          ...user.watchedMovies,
+          { id, title, description, img, releaseYear, rating },
+        ],
+      };
     }
+
+    await addDataToFirebase(updatedUser, firebaseUsersCollection);
+    await getUser(updatedUser); // todo понять, нужен ли мне тут await?
   };
 
   return (

@@ -10,8 +10,16 @@ import { setUser } from "../features/movies/userSlice";
 
 import { useAppDispatch } from "../app/hooks";
 
-import { colors, fontSizes, spacing } from "../constants/constants";
+import {
+  colors,
+  fontSizes,
+  spacing,
+  firebaseUsersCollection,
+} from "../constants/constants";
+
 import { firebaseAuth } from "../firebase/firebaseAuth";
+import { addDataToFirebase } from "../firebase/firebaseFirestore";
+import { initUserWithFirebaseData } from "../firebase/firebaseFirestore";
 
 import loginSiteLogo from "./login-site-logo.png";
 
@@ -20,8 +28,13 @@ const AuthPage = () => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-
   const dispatch = useAppDispatch();
+
+  const getUser = async (id: string) => {
+    const userFromFirebase = await initUserWithFirebaseData(id);
+
+    dispatch(setUser(userFromFirebase));
+  };
 
   // todo понять правильно ли я заюзал тип?
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,25 +48,35 @@ const AuthPage = () => {
   const handleAuth = async (e: any) => {
     const { name } = e.target;
 
+    let id;
+
     try {
-      const userCredential =
-        name === "Sign up"
-          ? await createUserWithEmailAndPassword(firebaseAuth, email, password)
-          : await signInWithEmailAndPassword(firebaseAuth, email, password);
-
-      const { user } = userCredential;
-
-      console.log("user ", user);
-
-      dispatch(
-        setUser({
-          id: user.uid,
+      if (name === "Sign up") {
+        const userCredential = await createUserWithEmailAndPassword(
+          firebaseAuth,
+          email,
+          password
+        );
+        id = userCredential.user.uid;
+        const newUser = {
+          id,
           email,
           password,
-        })
-      );
+          watchedMovies: [],
+        };
 
-      navigate("/");
+        await addDataToFirebase(newUser, firebaseUsersCollection);
+      } else {
+        const userCredential = await signInWithEmailAndPassword(
+          firebaseAuth,
+          email,
+          password
+        );
+        id = userCredential.user.uid;
+      }
+
+      getUser(id);
+      navigate("/private");
     } catch (err) {
       alert(err);
     }

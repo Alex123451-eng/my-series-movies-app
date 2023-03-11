@@ -44,6 +44,7 @@ const Layout = () => {
         id: null,
         email: null,
         password: null,
+        watchedMovies: [],
       })
     );
   };
@@ -95,13 +96,12 @@ const BaseWrapper = styled.div`
   margin: ${spacing.xxxl} auto 0;
   font-family: "nunito-regular", sans-serif;
 `;
-// border: 1px solid red;
 
 const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: ${spacing.xxl};
+  margin-bottom: ${spacing.xxxl};
 `;
 
 const HeaderNavBlock = styled.span`
@@ -119,7 +119,6 @@ const HeaderSearchBlock = styled.div`
   align-items: center;
   font-size: ${fontSizes.lg};
 `;
-// border: 1px solid red;
 
 const EnterLogoWrapper = styled.div`
   margin-bottom: -${spacing.sm};

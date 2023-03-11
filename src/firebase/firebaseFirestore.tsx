@@ -8,28 +8,49 @@ import {
 
 import { db } from "./firebaseInit";
 
-import { firebaseCollection } from "../constants/constants";
+import {
+  firebaseMoviesCollection,
+  firebaseUsersCollection,
+} from "../constants/constants";
 
-import { IMovie } from "../types/types";
+import { IMovie, IUser } from "../types/types";
 
-export const addDataToFirebase = async (movieData: IMovie) => {
+export const addDataToFirebase = async (
+  data: IMovie | IUser,
+  firebaseCollection: string
+) => {
   try {
-    await setDoc(doc(db, firebaseCollection, movieData.id), movieData);
+    if (data.id) {
+      await setDoc(doc(db, firebaseCollection, data.id), data);
+    }
   } catch (e) {
     console.error("Error adding document: ", e);
   }
 };
 
-export const deleteFirebaseData = async (docId: string) => {
+export const deleteFirebaseData = async (
+  docId: string,
+  firebaseCollection: string
+) => {
   await deleteDoc(doc(db, firebaseCollection, docId));
 };
 
 export const initMoviesWithFirebaseData = async () => {
   // todo переделать any
   const initialMovieArray: any[] = [];
-  const querySnapshot = await getDocs(collection(db, firebaseCollection));
+  const querySnapshot = await getDocs(collection(db, firebaseMoviesCollection));
   querySnapshot.forEach((doc) => {
     initialMovieArray.push(doc.data());
   });
   return initialMovieArray;
+};
+
+export const initUserWithFirebaseData = async (id: string | null) => {
+  // todo переделать any
+  const initialUsersArray: any[] = [];
+  const querySnapshot = await getDocs(collection(db, firebaseUsersCollection));
+  querySnapshot.forEach((doc) => {
+    initialUsersArray.push(doc.data());
+  });
+  return initialUsersArray.find((user) => user.id === id);
 };

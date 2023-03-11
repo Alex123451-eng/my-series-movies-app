@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 
+import { IMovie } from "../types/types";
+
 import MovieCard from "../components/movieCard/movieCard";
 import { MovieLink } from "../components/movieLink/movieLink";
 
@@ -48,9 +50,9 @@ const MainPage = () => {
       ) : (
         <ContentWrapper>
           {movies.movies &&
-            movies.movies.map((movieData: any) => {
+            movies.movies.map((movie: IMovie) => {
               const { id, title, description, img, releaseYear, rating } =
-                movieData;
+                movie;
               return (
                 <MovieLink key={id} id={id}>
                   <MovieCard
