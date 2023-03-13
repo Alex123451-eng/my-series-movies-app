@@ -14,8 +14,9 @@ import { ReactComponent as Cross } from "./close-btn.svg";
 
 // todo починить any
 const Search = ({ setIsSearchShown }: { setIsSearchShown: any }) => {
-  const movies = useAppSelector(selectMovies);
   const [titleInputValue, setTitleInputValue] = useState("");
+
+  const movies = useAppSelector(selectMovies);
   // const [searchParams, setSearchParams] = useSearchParams();
 
   // console.log("searchParams ", searchParams);

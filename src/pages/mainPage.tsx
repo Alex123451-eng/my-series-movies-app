@@ -23,10 +23,11 @@ import { IMovie } from "../types/types";
 
 const MainPage = () => {
   const movies = useAppSelector(selectMovies);
+  const dispatch = useAppDispatch();
+
   const [isLoading, setIsLoading] = useState<boolean>(
     movies.movies.length ? false : true
   );
-  const dispatch = useAppDispatch();
 
   const getMovies = async () => {
     const movies = await initMoviesWithFirebaseData();

@@ -22,7 +22,6 @@ const Layout = () => {
   const [isLogOutShown, setIsLogOutShown] = useState(false);
 
   const dispatch = useAppDispatch();
-
   const user = useAppSelector(selectUser);
 
   const onSearchClick = () => {

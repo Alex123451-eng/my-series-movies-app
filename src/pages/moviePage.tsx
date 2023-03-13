@@ -10,8 +10,8 @@ import { colors, fontSizes, spacing } from "../constants/constants";
 const MoviePage = () => {
   const movies = useAppSelector(selectMovies);
   const dispatch = useAppDispatch();
-
   const { id } = useParams();
+
   const movie = movies.movies.find((movie) => movie.id === id);
   console.log("movie ", movie);
 
