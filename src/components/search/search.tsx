@@ -2,12 +2,12 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import { MovieLine } from "../movieLine/movieLine";
+import { ReactComponent as Cross } from "./img/close-btn.svg";
 
 import { useMovies } from "../../features/movies/useMovies";
 
 import { colors, fontSizes, spacing } from "../../constants/constants";
 
-import { ReactComponent as Cross } from "./close-btn.svg";
 import { IMovie } from "../../types/types";
 
 // todo починить any

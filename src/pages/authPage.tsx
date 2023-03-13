@@ -19,8 +19,6 @@ import {
   firebaseUsersCollection,
 } from "../constants/constants";
 
-import loginSiteLogo from "./login-site-logo.png";
-
 export const AuthPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -118,7 +116,10 @@ export const AuthPage = () => {
           </Button>
         </ButtonsBlock>
         <ImgWrapper>
-          <img src={loginSiteLogo} alt="big site logo" />
+          <img
+            src="./img/pages/authPage/login-site-logo.png"
+            alt="big site logo"
+          />
         </ImgWrapper>
       </InnerWrapper>
     </Wrapper>

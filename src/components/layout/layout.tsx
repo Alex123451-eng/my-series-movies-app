@@ -5,13 +5,12 @@ import { signOut } from "firebase/auth";
 
 import { CustomLink } from "../customLink/customLink";
 import { Search } from "../search/search";
+import { ReactComponent as EnterLogo } from "./img/enter-logo.svg";
 
 import { useUser } from "../../features/user/useUser";
 
 import { colors, fontSizes, spacing } from "../../constants/constants";
 import { firebaseAuth } from "../../firebase/firebaseAuth";
-
-import { ReactComponent as EnterLogo } from "./enter-logo.svg";
 
 export const Layout = () => {
   const [isSearchShown, setIsSearchShown] = useState(false);
@@ -44,7 +43,7 @@ export const Layout = () => {
     <BaseWrapper>
       <Header>
         <HeaderNavBlock>
-          <Img src="img/site-logo.png" alt="site-logo" />
+          <Img src="./img/components/layout/site-logo.png" alt="site-logo" />
           <CustomLink to="/">Main</CustomLink>
           <CustomLink to="/history">Movie history</CustomLink>
           <CustomLink to="/private">Your page</CustomLink>
