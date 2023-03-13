@@ -6,20 +6,19 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
-import { setUser } from "../features/movies/userSlice";
-
 import { useAppDispatch } from "../app/hooks";
 
+import { setUser } from "../features/movies/userSlice";
+import { addDataToFirebase } from "../firebase/firebaseFirestore";
+import { initUserWithFirebaseData } from "../firebase/firebaseFirestore";
+
+import { firebaseAuth } from "../firebase/firebaseAuth";
 import {
   colors,
   fontSizes,
   spacing,
   firebaseUsersCollection,
 } from "../constants/constants";
-
-import { firebaseAuth } from "../firebase/firebaseAuth";
-import { addDataToFirebase } from "../firebase/firebaseFirestore";
-import { initUserWithFirebaseData } from "../firebase/firebaseFirestore";
 
 import loginSiteLogo from "./login-site-logo.png";
 

@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import { RootState } from "../../app/store";
-
 import { IMovie } from "../../types/types";
-
 
 export interface MovieState {
   movies: IMovie[];

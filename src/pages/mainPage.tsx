@@ -1,19 +1,18 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-
-import { IMovie } from "../types/types";
-
 import MovieCard from "../components/movieCard/movieCard";
 import { MovieLink } from "../components/movieLink/movieLink";
 
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+
 import { initMoviesWithFirebaseData } from "../firebase/firebaseFirestore";
 import { setMovies } from "../features/movies/moviesSlice";
-
 import { selectMovies } from "../features/movies/moviesSlice";
 
 import { spacing } from "../constants/constants";
+
+import { IMovie } from "../types/types";
 
 // import createMockData from "../utils/createMockData";
 // import { addDataToFirebase } from "../firebase/firebaseAPI";

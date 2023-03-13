@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../../app/store";
 
+import { RootState } from "../../app/store";
 import { IUser } from "../../types/types";
 
 const initialState : IUser = {

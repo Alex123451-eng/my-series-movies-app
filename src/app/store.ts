@@ -1,10 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { combineReducers } from '@reduxjs/toolkit';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
 import counterReducer from '../features/counter/counterSlice';
 import moviesReducer from '../features/movies/moviesSlice'
 import userReducer from '../features/movies/userSlice'
-import storage from 'redux-persist/lib/storage';
-import { persistReducer } from 'redux-persist';
 
 const persistConfig = {
   key: 'root',

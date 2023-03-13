@@ -2,14 +2,15 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 // import { useSearchParams } from "react-router-dom";
 
-import { useAppSelector } from "../../app/hooks";
-import { selectMovies } from "../../features/movies/moviesSlice";
-
-import { ReactComponent as Cross } from "./close-btn.svg";
-
 import MovieLine from "../movieLine/movieLine";
 
+import { useAppSelector } from "../../app/hooks";
+
+import { selectMovies } from "../../features/movies/moviesSlice";
+
 import { colors, fontSizes, spacing } from "../../constants/constants";
+
+import { ReactComponent as Cross } from "./close-btn.svg";
 
 // todo починить any
 const Search = ({ setIsSearchShown }: { setIsSearchShown: any }) => {

@@ -1,11 +1,9 @@
 import styled from "styled-components";
 
-import { selectUser } from "../../features/movies/userSlice";
-
-import { setUser } from "../../features/movies/userSlice";
-
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
+import { selectUser } from "../../features/movies/userSlice";
+import { setUser } from "../../features/movies/userSlice";
 import {
   addDataToFirebase,
   initUserWithFirebaseData,
@@ -17,6 +15,7 @@ import {
   spacing,
   firebaseUsersCollection,
 } from "../../constants/constants";
+
 import { IUser } from "../../types/types";
 
 // todo вынести это в дженерик или интерфейс?

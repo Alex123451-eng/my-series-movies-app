@@ -1,13 +1,13 @@
 import { Link, useMatch } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-import { ICustomLink } from "../../types/types";
+import { useAppSelector } from "../../app/hooks";
 
 import { selectUser } from "../../features/movies/userSlice";
 
-import { useAppSelector } from "../../app/hooks";
-
 import { colors, fontSizes, spacing } from "../../constants/constants";
+
+import { ICustomLink } from "../../types/types";
 
 const CustomLink = ({
   children,

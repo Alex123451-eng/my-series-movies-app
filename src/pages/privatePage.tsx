@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
-import { IMovie } from "../types/types";
-
 import MovieCard from "../components/movieCard/movieCard";
 import { MovieLink } from "../components/movieLink/movieLink";
 
 import { useAppSelector } from "../app/hooks";
+
 import { selectUser } from "../features/movies/userSlice";
 
 import { fontSizes, spacing, colors } from "../constants/constants";
+
+import { IMovie } from "../types/types";
 
 const PrivatePage = () => {
   const { watchedMovies } = useAppSelector(selectUser);

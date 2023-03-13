@@ -1,10 +1,9 @@
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
 
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 
 import { selectMovies } from "../features/movies/moviesSlice";
-
-import styled from "styled-components";
 
 import { colors, fontSizes, spacing } from "../constants/constants";
 

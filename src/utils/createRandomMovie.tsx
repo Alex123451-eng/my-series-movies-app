@@ -1,4 +1,5 @@
 import { faker } from "@faker-js/faker";
+
 import { IMovie } from "../types/types";
 
 const createRandomMovie = (): IMovie => {

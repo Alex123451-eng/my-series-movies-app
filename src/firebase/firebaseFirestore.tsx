@@ -7,7 +7,6 @@ import {
 } from "firebase/firestore";
 
 import { db } from "./firebaseInit";
-
 import {
   firebaseMoviesCollection,
   firebaseUsersCollection,
