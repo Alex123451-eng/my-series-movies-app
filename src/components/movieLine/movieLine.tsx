@@ -4,7 +4,7 @@ import { MovieLink } from "../movieLink/movieLink";
 
 import { colors, fontSizes, spacing } from "../../constants/constants";
 
-const MovieLine = ({
+export const MovieLine = ({
   id,
   title,
   img,
@@ -34,8 +34,6 @@ const MovieLine = ({
     </MovieLink>
   );
 };
-
-export default MovieLine;
 
 const Wrapper = styled.div`
   display: flex;

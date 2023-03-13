@@ -20,7 +20,7 @@ import { IUser } from "../../types/types";
 
 // todo вынести это в дженерик или интерфейс?
 // todo понять правильно ли по синтаксису, что типы пропсов перечисляются через ";"?
-const MovieCard = ({
+export const MovieCard = ({
   id,
   title,
   description,
@@ -92,8 +92,6 @@ const MovieCard = ({
     </MovieCardWrapper>
   );
 };
-
-export default MovieCard;
 
 const MovieCardWrapper = styled.div`
   position: relative;

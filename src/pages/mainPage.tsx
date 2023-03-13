@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import MovieCard from "../components/movieCard/movieCard";
+import { MovieCard } from "../components/movieCard/movieCard";
 import { MovieLink } from "../components/movieLink/movieLink";
 
 import { useAppDispatch, useAppSelector } from "../app/hooks";
@@ -21,7 +21,7 @@ import { IMovie } from "../types/types";
 //   addDataToFirebase(mockData[i]);
 // }
 
-const MainPage = () => {
+export const MainPage = () => {
   const movies = useAppSelector(selectMovies);
   const dispatch = useAppDispatch();
 
@@ -71,8 +71,6 @@ const MainPage = () => {
     </>
   );
 };
-
-export default MainPage;
 
 const ContentWrapper = styled.div`
   display: grid;

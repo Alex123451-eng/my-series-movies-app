@@ -6,11 +6,11 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 
-import MainPage from "./pages/mainPage";
-import PrivatePage from "./pages/privatePage";
-import MoviePage from "./pages/moviePage";
-import CinemaHistoryPage from "./pages/cinemaHistoryPage";
-import AuthPage from "./pages/authPage";
+import { MainPage } from "./pages/mainPage";
+import { PrivatePage } from "./pages/privatePage";
+import { MoviePage } from "./pages/moviePage";
+import { CinemaHistoryPage } from "./pages/cinemaHistoryPage";
+import { AuthPage } from "./pages/authPage";
 import { Layout } from "./components/layout/layout";
 
 import "./App.css";
@@ -27,12 +27,10 @@ const router = createBrowserRouter(
   )
 );
 
-function App() {
+export const App = () => {
   return (
     <>
       <RouterProvider router={router} />
     </>
   );
-}
-
-export default App;
+};

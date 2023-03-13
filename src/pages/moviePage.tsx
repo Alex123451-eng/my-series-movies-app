@@ -7,7 +7,7 @@ import { selectMovies } from "../features/movies/moviesSlice";
 
 import { colors, fontSizes, spacing } from "../constants/constants";
 
-const MoviePage = () => {
+export const MoviePage = () => {
   const movies = useAppSelector(selectMovies);
   const dispatch = useAppDispatch();
   const { id } = useParams();
@@ -34,8 +34,6 @@ const MoviePage = () => {
     </Wrapper>
   );
 };
-
-export default MoviePage;
 
 const Wrapper = styled.div`
   color: ${colors.white};

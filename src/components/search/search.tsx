@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 // import { useSearchParams } from "react-router-dom";
 
-import MovieLine from "../movieLine/movieLine";
+import { MovieLine } from "../movieLine/movieLine";
 
 import { useAppSelector } from "../../app/hooks";
 
@@ -13,7 +13,7 @@ import { colors, fontSizes, spacing } from "../../constants/constants";
 import { ReactComponent as Cross } from "./close-btn.svg";
 
 // todo починить any
-const Search = ({ setIsSearchShown }: { setIsSearchShown: any }) => {
+export const Search = ({ setIsSearchShown }: { setIsSearchShown: any }) => {
   const [titleInputValue, setTitleInputValue] = useState("");
 
   const movies = useAppSelector(selectMovies);
@@ -152,5 +152,3 @@ const NoMatch = styled.div`
   font-size: ${fontSizes.md};
   color: ${colors.black};
 `;
-
-export default Search;

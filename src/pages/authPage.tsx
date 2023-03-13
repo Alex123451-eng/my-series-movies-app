@@ -22,7 +22,7 @@ import {
 
 import loginSiteLogo from "./login-site-logo.png";
 
-const AuthPage = () => {
+export const AuthPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -127,8 +127,6 @@ const AuthPage = () => {
     </Wrapper>
   );
 };
-
-export default AuthPage;
 
 const ImgWrapper = styled.div`
   display: flex;

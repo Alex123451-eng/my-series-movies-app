@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { signOut } from "firebase/auth";
 
 import { CustomLink } from "../customLink/customLink";
-import Search from "../search/search";
+import { Search } from "../search/search";
 
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 
@@ -17,7 +17,7 @@ import { firebaseAuth } from "../../firebase/firebaseAuth";
 import { ReactComponent as EnterLogo } from "./enter-logo.svg";
 import siteLogo from "./site-logo.png";
 
-const Layout = () => {
+export const Layout = () => {
   const [isSearchShown, setIsSearchShown] = useState(false);
   const [isLogOutShown, setIsLogOutShown] = useState(false);
 
@@ -86,8 +86,6 @@ const Layout = () => {
     </BaseWrapper>
   );
 };
-
-export { Layout };
 
 const BaseWrapper = styled.div`
   width: 70%;

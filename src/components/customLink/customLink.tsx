@@ -9,7 +9,7 @@ import { colors, fontSizes, spacing } from "../../constants/constants";
 
 import { ICustomLink } from "../../types/types";
 
-const CustomLink = ({
+export const CustomLink = ({
   children,
   to,
   ...props
@@ -33,8 +33,6 @@ const CustomLink = ({
     </StyledLink>
   );
 };
-
-export { CustomLink };
 
 const StyledLink = styled(Link)<ICustomLink>`
   color: ${({ match }) =>

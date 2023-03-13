@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import MovieCard from "../components/movieCard/movieCard";
+import { MovieCard } from "../components/movieCard/movieCard";
 import { MovieLink } from "../components/movieLink/movieLink";
 
 import { useAppSelector } from "../app/hooks";
@@ -11,7 +11,7 @@ import { fontSizes, spacing, colors } from "../constants/constants";
 
 import { IMovie } from "../types/types";
 
-const PrivatePage = () => {
+export const PrivatePage = () => {
   const { watchedMovies } = useAppSelector(selectUser);
 
   return (
@@ -37,8 +37,6 @@ const PrivatePage = () => {
     </Wrapper>
   );
 };
-
-export default PrivatePage;
 
 const Wrapper = styled.div`
   height: 500px;
