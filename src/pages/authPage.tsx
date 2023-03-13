@@ -6,9 +6,8 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
-import { useAppDispatch } from "../app/hooks";
+import { useUser } from "../features/user/useUser";
 
-import { setUser } from "../features/movies/userSlice";
 import { addDataToFirebase } from "../firebase/firebaseFirestore";
 import { initUserWithFirebaseData } from "../firebase/firebaseFirestore";
 
@@ -27,15 +26,8 @@ export const AuthPage = () => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  const { saveUser } = useUser();
 
-  const getUser = async (id: string) => {
-    const userFromFirebase = await initUserWithFirebaseData(id);
-
-    dispatch(setUser(userFromFirebase));
-  };
-
-  // todo понять правильно ли я заюзал тип?
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = e;
     target.name === "email"
@@ -56,7 +48,9 @@ export const AuthPage = () => {
           email,
           password
         );
+
         id = userCredential.user.uid;
+
         const newUser = {
           id,
           email,
@@ -71,10 +65,13 @@ export const AuthPage = () => {
           email,
           password
         );
+
         id = userCredential.user.uid;
       }
 
-      getUser(id);
+      const userFromFirebase = await initUserWithFirebaseData(id);
+      saveUser(userFromFirebase);
+
       navigate("/private");
     } catch (err) {
       alert(err);

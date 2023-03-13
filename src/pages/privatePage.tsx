@@ -3,16 +3,14 @@ import styled from "styled-components";
 import { MovieCard } from "../components/movieCard/movieCard";
 import { MovieLink } from "../components/movieLink/movieLink";
 
-import { useAppSelector } from "../app/hooks";
-
-import { selectUser } from "../features/movies/userSlice";
+import { useUser } from "../features/user/useUser";
 
 import { fontSizes, spacing, colors } from "../constants/constants";
 
 import { IMovie } from "../types/types";
 
 export const PrivatePage = () => {
-  const { watchedMovies } = useAppSelector(selectUser);
+  const { watchedMovies } = useUser().user;
 
   return (
     <Wrapper>

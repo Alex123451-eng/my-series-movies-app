@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useUser } from "../../features/user/useUser";
 
-import { selectUser } from "../../features/movies/userSlice";
-import { setUser } from "../../features/movies/userSlice";
 import {
   addDataToFirebase,
   initUserWithFirebaseData,
@@ -35,15 +33,14 @@ export const MovieCard = ({
   releaseYear: number;
   rating: number;
 }) => {
-  const user = useAppSelector(selectUser);
-  const dispatch = useAppDispatch();
+  const { saveUser, user } = useUser();
 
   const isMovieWatched = user.watchedMovies.find((movie) => movie.id === id);
 
   const getUser = async (updatedUser: IUser) => {
     const userFromFirebase = await initUserWithFirebaseData(updatedUser.id);
 
-    dispatch(setUser(userFromFirebase));
+    saveUser(userFromFirebase);
   };
 
   const onCheckClick = async (e: any) => {

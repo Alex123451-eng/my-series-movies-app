@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 
 import { useAppSelector } from "../../app/hooks";
 
-import { selectUser } from "../../features/movies/userSlice";
+import { selectUser } from "../../features/user/userSlice";
 
 import { colors, fontSizes, spacing } from "../../constants/constants";
 

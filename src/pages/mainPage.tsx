@@ -4,11 +4,9 @@ import styled from "styled-components";
 import { MovieCard } from "../components/movieCard/movieCard";
 import { MovieLink } from "../components/movieLink/movieLink";
 
-import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { useMovies } from "../features/movies/useMovies";
 
 import { initMoviesWithFirebaseData } from "../firebase/firebaseFirestore";
-import { setMovies } from "../features/movies/moviesSlice";
-import { selectMovies } from "../features/movies/moviesSlice";
 
 import { spacing } from "../constants/constants";
 
@@ -22,8 +20,7 @@ import { IMovie } from "../types/types";
 // }
 
 export const MainPage = () => {
-  const movies = useAppSelector(selectMovies);
-  const dispatch = useAppDispatch();
+  const { saveMovies, movies } = useMovies();
 
   const [isLoading, setIsLoading] = useState<boolean>(
     movies.movies.length ? false : true
@@ -31,7 +28,7 @@ export const MainPage = () => {
 
   const getMovies = async () => {
     const movies = await initMoviesWithFirebaseData();
-    dispatch(setMovies(movies));
+    saveMovies(movies);
     setIsLoading(false);
   };
 

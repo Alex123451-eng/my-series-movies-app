@@ -6,23 +6,18 @@ import { signOut } from "firebase/auth";
 import { CustomLink } from "../customLink/customLink";
 import { Search } from "../search/search";
 
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
-
-import { selectUser } from "../../features/movies/userSlice";
-import { setUser } from "../../features/movies/userSlice";
+import { useUser } from "../../features/user/useUser";
 
 import { colors, fontSizes, spacing } from "../../constants/constants";
 import { firebaseAuth } from "../../firebase/firebaseAuth";
 
 import { ReactComponent as EnterLogo } from "./enter-logo.svg";
-import siteLogo from "./site-logo.png";
 
 export const Layout = () => {
   const [isSearchShown, setIsSearchShown] = useState(false);
   const [isLogOutShown, setIsLogOutShown] = useState(false);
 
-  const dispatch = useAppDispatch();
-  const user = useAppSelector(selectUser);
+  const { saveUser, user } = useUser();
 
   const onSearchClick = () => {
     setIsSearchShown(true);
@@ -37,21 +32,19 @@ export const Layout = () => {
 
     setIsLogOutShown(false);
 
-    dispatch(
-      setUser({
-        id: null,
-        email: null,
-        password: null,
-        watchedMovies: [],
-      })
-    );
+    saveUser({
+      id: null,
+      email: null,
+      password: null,
+      watchedMovies: [],
+    });
   };
 
   return (
     <BaseWrapper>
       <Header>
         <HeaderNavBlock>
-          <Img src={siteLogo} alt="site-logo" />
+          <Img src="img/site-logo.png" alt="site-logo" />
           <CustomLink to="/">Main</CustomLink>
           <CustomLink to="/history">Movie history</CustomLink>
           <CustomLink to="/private">Your page</CustomLink>

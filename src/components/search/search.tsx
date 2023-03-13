@@ -1,25 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
-// import { useSearchParams } from "react-router-dom";
 
 import { MovieLine } from "../movieLine/movieLine";
 
-import { useAppSelector } from "../../app/hooks";
-
-import { selectMovies } from "../../features/movies/moviesSlice";
+import { useMovies } from "../../features/movies/useMovies";
 
 import { colors, fontSizes, spacing } from "../../constants/constants";
 
 import { ReactComponent as Cross } from "./close-btn.svg";
+import { IMovie } from "../../types/types";
 
 // todo починить any
 export const Search = ({ setIsSearchShown }: { setIsSearchShown: any }) => {
   const [titleInputValue, setTitleInputValue] = useState("");
 
-  const movies = useAppSelector(selectMovies);
-  // const [searchParams, setSearchParams] = useSearchParams();
-
-  // console.log("searchParams ", searchParams);
+  const { movies } = useMovies();
 
   // todo починить any
   const onChangeTitleInput = (e: any) => {
@@ -30,15 +25,8 @@ export const Search = ({ setIsSearchShown }: { setIsSearchShown: any }) => {
   // todo понять, ничего, что я в другом стиле немного назвал метод, обычно я называю
   // штуки с префикса on...
   const closeSearchComponent = () => {
-    // searchParams.delete("movies");
-    // setSearchParams(searchParams);
     setIsSearchShown(false);
   };
-
-  // todo понять почему он мне подчеркивает пустой массив зависимостей
-  // useEffect(() => {
-  // setSearchParams({ movies: "search" });
-  // }, []);
 
   const filteredMovies =
     movies.movies &&
@@ -61,10 +49,9 @@ export const Search = ({ setIsSearchShown }: { setIsSearchShown: any }) => {
         />
         <MoviesList>
           {filteredMovies.length ? (
-            // todo починить any
             // todo починить этот onClick, он уходит до самого низа, не знаю
             // как вызывать его сразу тут
-            filteredMovies.map((movie: any) => {
+            filteredMovies.map((movie: IMovie) => {
               const { id, title, img, releaseYear, rating } = movie;
               return (
                 <MovieLine

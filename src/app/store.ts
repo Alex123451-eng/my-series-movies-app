@@ -5,7 +5,7 @@ import storage from 'redux-persist/lib/storage';
 
 import counterReducer from '../features/counter/counterSlice';
 import moviesReducer from '../features/movies/moviesSlice'
-import userReducer from '../features/movies/userSlice'
+import userReducer from '../features/user/userSlice'
 
 const persistConfig = {
   key: 'root',

@@ -1,19 +1,15 @@
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-
-import { selectMovies } from "../features/movies/moviesSlice";
+import { useMovies } from "../features/movies/useMovies";
 
 import { colors, fontSizes, spacing } from "../constants/constants";
 
 export const MoviePage = () => {
-  const movies = useAppSelector(selectMovies);
-  const dispatch = useAppDispatch();
+  const { movies } = useMovies();
   const { id } = useParams();
 
   const movie = movies.movies.find((movie) => movie.id === id);
-  console.log("movie ", movie);
 
   // todo понять как сделать так, чтобы данные всегда точно были,
   // чтобы убрать знаки вопроса

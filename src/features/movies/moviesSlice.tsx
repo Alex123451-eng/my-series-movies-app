@@ -12,14 +12,14 @@ const initialState: MovieState = {
 };
 
 const moviesSlice = createSlice({
-  name: 'movies',
+  name: "movies",
   initialState,
   reducers: {
     setMovies(state, action) {
       state.movies = [...action.payload];
-    }
-  }
-})
+    },
+  },
+});
 
 export const { setMovies } = moviesSlice.actions;
 
