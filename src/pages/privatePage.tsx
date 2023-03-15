@@ -17,7 +17,15 @@ export const PrivatePage = () => {
       <Title>Watched movies</Title>
       <MoviesWrapper>
         {watchedMovies.map((movie: IMovie) => {
-          const { id, title, description, img, releaseYear, rating } = movie;
+          const {
+            id,
+            title,
+            description,
+            img,
+            releaseYear,
+            rating,
+            currUserRating,
+          } = movie;
           return (
             <MovieLink key={id} id={id}>
               <MovieCard
@@ -27,6 +35,7 @@ export const PrivatePage = () => {
                 img={img}
                 releaseYear={releaseYear}
                 rating={rating}
+                currUserRating={currUserRating}
               />
             </MovieLink>
           );

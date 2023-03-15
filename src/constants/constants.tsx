@@ -1,4 +1,4 @@
-export const firebaseMoviesCollection = "movie-series-app";
+export const firebaseMoviesCollection = "movies";
 export const firebaseUsersCollection = "users";
 
 export const firebaseConfig = {
@@ -11,6 +11,7 @@ export const firebaseConfig = {
 };
 
 export const colors = {
+  transparent: "transparent",
   white: "rgba(255, 255, 255, 1)",
   whiteActive: "rgba(235, 235, 235, 1)",
   whiteTransparent: "rgba(255, 255, 255, 0.5)",

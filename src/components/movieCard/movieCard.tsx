@@ -25,6 +25,7 @@ export const MovieCard = ({
   img,
   releaseYear,
   rating,
+  currUserRating,
 }: {
   id: string;
   title: string;
@@ -32,6 +33,7 @@ export const MovieCard = ({
   img: string;
   releaseYear: number;
   rating: number;
+  currUserRating: number;
 }) => {
   const { saveUser, user } = useUser();
 
@@ -62,7 +64,7 @@ export const MovieCard = ({
         ...user,
         watchedMovies: [
           ...user.watchedMovies,
-          { id, title, description, img, releaseYear, rating },
+          { id, title, description, img, releaseYear, rating, currUserRating },
         ],
       };
     }

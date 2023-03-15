@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 
 import { IMovie } from "../types/types";
 
-const createRandomMovie = (): IMovie => {
+export const createRandomMovie = (): IMovie => {
   const fakeWord = faker.random.word();
 
   return {
@@ -12,7 +12,6 @@ const createRandomMovie = (): IMovie => {
     img: faker.image.image(175, 268, true),
     releaseYear: faker.date.birthdate({ min: 1950, max: 2022 }).getFullYear(),
     rating: 0,
+    currUserRating: 0,
   };
 };
-
-export default createRandomMovie;

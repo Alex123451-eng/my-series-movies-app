@@ -12,19 +12,18 @@ import { spacing } from "../constants/constants";
 
 import { IMovie } from "../types/types";
 
-// import createMockData from "../utils/createMockData";
-// import { addDataToFirebase } from "../firebase/firebaseAPI";
-// const mockData = createMockData("moviesMockData");
-// for (let i = 0; i < mockData.length; i++) {
-//   addDataToFirebase(mockData[i]);
+// import { createMockData } from "../utils/createMockData";
+// import { firebaseMoviesCollection } from "../constants/constants";
+// import { addDataToFirebase } from "../firebase/firebaseFirestore";
+// const mockMoviesData = createMockData();
+// for (let i = 0; i < mockMoviesData.length; i++) {
+//   addDataToFirebase(mockMoviesData[i], firebaseMoviesCollection);
 // }
 
 export const MainPage = () => {
   const { saveMovies, movies } = useMovies();
 
-  const [isLoading, setIsLoading] = useState<boolean>(
-    movies.movies.length ? false : true
-  );
+  const [isLoading, setIsLoading] = useState<boolean>(!movies.movies.length);
 
   const getMovies = async () => {
     const movies = await initMoviesWithFirebaseData();
@@ -48,8 +47,15 @@ export const MainPage = () => {
         <ContentWrapper>
           {movies.movies &&
             movies.movies.map((movie: IMovie) => {
-              const { id, title, description, img, releaseYear, rating } =
-                movie;
+              const {
+                id,
+                title,
+                description,
+                img,
+                releaseYear,
+                rating,
+                currUserRating,
+              } = movie;
               return (
                 <MovieLink key={id} id={id}>
                   <MovieCard
@@ -59,6 +65,7 @@ export const MainPage = () => {
                     img={img}
                     releaseYear={releaseYear}
                     rating={rating}
+                    currUserRating={currUserRating}
                   />
                 </MovieLink>
               );

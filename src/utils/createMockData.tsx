@@ -1,8 +1,8 @@
-import createRandomMovie from "./createRandomMovie";
+import { createRandomMovie } from "./createRandomMovie";
 
 import { IMovie } from "../types/types";
 
-const createMockData = (): IMovie[] => {
+export const createMockData = (): IMovie[] => {
   const moviesData = [];
 
   for (let i = 0; i < 25; i++) {
@@ -11,5 +11,3 @@ const createMockData = (): IMovie[] => {
 
   return moviesData;
 };
-
-export default createMockData;

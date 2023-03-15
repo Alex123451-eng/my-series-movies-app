@@ -1,10 +1,6 @@
 import { Link, useMatch } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-import { useAppSelector } from "../../app/hooks";
-
-import { selectUser } from "../../features/user/userSlice";
-
 import { colors, fontSizes, spacing } from "../../constants/constants";
 
 import { ICustomLink } from "../../types/types";
@@ -21,8 +17,6 @@ export const CustomLink = ({
     path: to,
     end: to.length === 1,
   });
-  // const user = useAppSelector(selectUser);
-
   return (
     <StyledLink
       to={to}

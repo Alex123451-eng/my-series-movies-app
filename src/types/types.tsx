@@ -5,10 +5,28 @@ export interface IMovie {
   img: string;
   releaseYear: number;
   rating: number;
+  currUserRating: number;
 }
 
+export interface IUserFilmData {
+  currUserRating: number;
+  watchedMovies: IMovie[];
+}
+
+// все для текущего пользователя
+const IUserFilmData = {
+  currUserRating: {
+    id: "currUserRating",
+    // id: "currUserRating",
+    // id: "currUserRating",
+    // id: "currUserRating",
+  }, // id фильма: оценка текущего пользователя
+  watchedMovies: ["id", "id", "id"], // массив айдишних просмотренных фильмов для текущего юзера
+};
+
+// на беке сделать отдельную коллекцию под это
+
 export interface IUser {
-  // todo понять зачем мне тут нужен Id
   id: string | null;
   email: string | null;
   password: string | null;
