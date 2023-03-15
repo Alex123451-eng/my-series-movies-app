@@ -3,9 +3,9 @@ import { combineReducers } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import counterReducer from '../features/counter/counterSlice';
 import moviesReducer from '../features/movies/moviesSlice'
 import userReducer from '../features/user/userSlice'
+import userMoviesDataReducer from '../features/userMoviesData/userMoviesDataSlice'
 
 const persistConfig = {
   key: 'root',
@@ -14,9 +14,9 @@ const persistConfig = {
 };
 
 const reducer = combineReducers({
-  counter: counterReducer,
   movies: moviesReducer,
   user: userReducer,
+  userMoviesData: userMoviesDataReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer);

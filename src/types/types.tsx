@@ -8,9 +8,13 @@ export interface IMovie {
   currUserRating: number;
 }
 
-export interface IUserFilmData {
-  currUserRating: number;
-  watchedMovies: IMovie[];
+export interface ICurrUserRating {
+  [id: string]: number;
+}
+
+export interface IUserMoviesData {
+  currUserRating: ICurrUserRating;
+  watchedMovies: string[];
 }
 
 // все для текущего пользователя

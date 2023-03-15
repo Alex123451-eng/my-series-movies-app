@@ -39,12 +39,6 @@ export const MovieCard = ({
 
   const isMovieWatched = user.watchedMovies.find((movie) => movie.id === id);
 
-  const getUser = async (updatedUser: IUser) => {
-    const userFromFirebase = await initUserWithFirebaseData(updatedUser.id);
-
-    saveUser(userFromFirebase);
-  };
-
   const onCheckClick = async (e: any) => {
     e.preventDefault();
 
@@ -70,7 +64,10 @@ export const MovieCard = ({
     }
 
     await addDataToFirebase(updatedUser, firebaseUsersCollection);
-    await getUser(updatedUser); // todo понять, нужен ли мне тут await?
+
+    const userFromFirebase = await initUserWithFirebaseData(updatedUser.id);
+
+    saveUser(userFromFirebase);
   };
 
   return (
