@@ -9,7 +9,7 @@ import { ReactComponent as Star } from "./img/moviePage/star.svg";
 import { colors, fontSizes, spacing } from "../constants/constants";
 
 export const MoviePage = () => {
-  const { saveMovieRating, movies } = useMovies();
+  const { movies } = useMovies();
   const { id } = useParams();
   const movie = movies.movies.find((movie) => movie.id === id);
 
@@ -18,7 +18,7 @@ export const MoviePage = () => {
   let currUserRating = 0;
 
   if (movie) {
-    ({ currUserRating } = movie);
+    currUserRating = 1;
     if (currUserRating !== 5 && currUserRating !== 0) {
       currUserRating++;
     }
@@ -49,7 +49,7 @@ export const MoviePage = () => {
       }
 
       setStarColors(newStarsColors);
-      saveMovieRating(id, number);
+      // saveMovieRating(id);
     }
   };
 

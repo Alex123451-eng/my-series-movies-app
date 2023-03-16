@@ -7,15 +7,11 @@ import {
 } from "firebase/firestore";
 
 import { db } from "./firebaseInit";
-import {
-  firebaseMoviesCollection,
-  firebaseUsersCollection,
-} from "../constants/constants";
 
-import { IMovie, IUser } from "../types/types";
+import { IMovie, IUser, IUserMoviesData } from "../types/types";
 
 export const addDataToFirebase = async (
-  data: IMovie | IUser,
+  data: IMovie | IUser | IUserMoviesData,
   firebaseCollection: string
 ) => {
   try {
@@ -34,22 +30,19 @@ export const deleteFirebaseData = async (
   await deleteDoc(doc(db, firebaseCollection, docId));
 };
 
-export const initMoviesWithFirebaseData = async () => {
-  // todo переделать any
-  const initialMovieArray: any[] = [];
-  const querySnapshot = await getDocs(collection(db, firebaseMoviesCollection));
+export const initEntityWithFirebaseData = async (
+  firebaseCollection: string,
+  id?: string
+) => {
+  const initialArray: any[] = [];
+  const querySnapshot = await getDocs(collection(db, firebaseCollection));
   querySnapshot.forEach((doc) => {
-    initialMovieArray.push(doc.data());
+    initialArray.push(doc.data());
   });
-  return initialMovieArray;
-};
 
-export const initUserWithFirebaseData = async (id: string | null) => {
-  // todo переделать any
-  const initialUsersArray: any[] = [];
-  const querySnapshot = await getDocs(collection(db, firebaseUsersCollection));
-  querySnapshot.forEach((doc) => {
-    initialUsersArray.push(doc.data());
-  });
-  return initialUsersArray.find((user) => user.id === id);
+  if (id) {
+    return initialArray.find((entity) => entity.id === id);
+  }
+
+  return initialArray;
 };

@@ -5,15 +5,15 @@ export interface IMovie {
   img: string;
   releaseYear: number;
   rating: number;
-  currUserRating: number;
 }
 
-export interface ICurrUserRating {
+export interface IUserRating {
   [id: string]: number;
 }
 
 export interface IUserMoviesData {
-  currUserRating: ICurrUserRating;
+  id: string;
+  rating: IUserRating;
   watchedMovies: string[];
 }
 
@@ -31,10 +31,10 @@ const IUserFilmData = {
 // на беке сделать отдельную коллекцию под это
 
 export interface IUser {
-  id: string | null;
-  email: string | null;
-  password: string | null;
-  watchedMovies: IMovie[];
+  id: string;
+  email: string;
+  password: string;
+  isAuth: boolean;
 }
 
 // todo починить any

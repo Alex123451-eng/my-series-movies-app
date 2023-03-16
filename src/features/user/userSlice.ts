@@ -4,10 +4,10 @@ import { RootState } from "../../app/store";
 import { IUser } from "../../types/types";
 
 const initialState : IUser = {
-  id: null,
-  email: null,
-  password: null,
-  watchedMovies: [],
+  id: '',
+  email: '',
+  password: '',
+  isAuth: false,
 }
 
 const userSlice = createSlice({
@@ -18,7 +18,7 @@ const userSlice = createSlice({
       state.id = action.payload.id;
       state.email = action.payload.email;
       state.password = action.payload.password;
-      state.watchedMovies = action.payload.watchedMovies;
+      state.isAuth = action.payload.isAuth;
     },
   }
 })

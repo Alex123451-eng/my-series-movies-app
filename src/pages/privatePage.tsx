@@ -4,28 +4,28 @@ import { MovieCard } from "../components/movieCard/movieCard";
 import { MovieLink } from "../components/movieLink/movieLink";
 
 import { useUser } from "../features/user/useUser";
+import { useMovies } from "../features/movies/useMovies";
+import { useUserMoviesData } from "../features/userMoviesData/useUserMoviesData";
 
 import { fontSizes, spacing, colors } from "../constants/constants";
 
 import { IMovie } from "../types/types";
 
 export const PrivatePage = () => {
-  const { watchedMovies } = useUser().user;
+  // const { watchedMovies } = useUser().user;
+  const { watchedMovies } = useUserMoviesData().userMoviesData;
+  const { movies } = useMovies();
+
+  const filteredMovies = movies.movies.filter((movie) =>
+    watchedMovies.includes(movie.id)
+  );
 
   return (
     <Wrapper>
       <Title>Watched movies</Title>
       <MoviesWrapper>
-        {watchedMovies.map((movie: IMovie) => {
-          const {
-            id,
-            title,
-            description,
-            img,
-            releaseYear,
-            rating,
-            currUserRating,
-          } = movie;
+        {filteredMovies.map((movie: IMovie) => {
+          const { id, title, description, img, releaseYear, rating } = movie;
           return (
             <MovieLink key={id} id={id}>
               <MovieCard
@@ -35,7 +35,6 @@ export const PrivatePage = () => {
                 img={img}
                 releaseYear={releaseYear}
                 rating={rating}
-                currUserRating={currUserRating}
               />
             </MovieLink>
           );

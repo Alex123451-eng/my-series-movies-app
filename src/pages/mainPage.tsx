@@ -6,36 +6,36 @@ import { MovieLink } from "../components/movieLink/movieLink";
 
 import { useMovies } from "../features/movies/useMovies";
 
-import { initMoviesWithFirebaseData } from "../firebase/firebaseFirestore";
+import { initEntityWithFirebaseData } from "../firebase/firebaseFirestore";
 
-import { spacing } from "../constants/constants";
+import { spacing, firebaseMoviesCollection } from "../constants/constants";
 
 import { IMovie } from "../types/types";
 
 // import { createMockData } from "../utils/createMockData";
-// import { firebaseMoviesCollection } from "../constants/constants";
 // import { addDataToFirebase } from "../firebase/firebaseFirestore";
 // const mockMoviesData = createMockData();
+// console.log("mockMoviesData ", mockMoviesData);
 // for (let i = 0; i < mockMoviesData.length; i++) {
 //   addDataToFirebase(mockMoviesData[i], firebaseMoviesCollection);
 // }
 
 export const MainPage = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   const { saveMovies, movies } = useMovies();
 
-  const [isLoading, setIsLoading] = useState<boolean>(!movies.movies.length);
+  console.log("movies ", movies);
 
   const getMovies = async () => {
-    const movies = await initMoviesWithFirebaseData();
+    const movies = await initEntityWithFirebaseData(firebaseMoviesCollection);
     saveMovies(movies);
     setIsLoading(false);
   };
 
   // todo понять почему он у меня подчеркивает массив зависимостей
   useEffect(() => {
-    if (!movies.movies.length) {
-      getMovies();
-    }
+    getMovies();
   }, []);
 
   return (
@@ -45,17 +45,10 @@ export const MainPage = () => {
         <div style={{ color: "white" }}>The data is still loading...</div>
       ) : (
         <ContentWrapper>
-          {movies.movies &&
+          {movies.movies.length ? (
             movies.movies.map((movie: IMovie) => {
-              const {
-                id,
-                title,
-                description,
-                img,
-                releaseYear,
-                rating,
-                currUserRating,
-              } = movie;
+              const { id, title, description, img, releaseYear, rating } =
+                movie;
               return (
                 <MovieLink key={id} id={id}>
                   <MovieCard
@@ -65,11 +58,13 @@ export const MainPage = () => {
                     img={img}
                     releaseYear={releaseYear}
                     rating={rating}
-                    currUserRating={currUserRating}
                   />
                 </MovieLink>
               );
-            })}
+            })
+          ) : (
+            <div style={{ color: "white" }}>No movies...</div>
+          )}
         </ContentWrapper>
       )}
     </>

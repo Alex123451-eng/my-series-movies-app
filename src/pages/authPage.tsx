@@ -7,9 +7,10 @@ import {
 } from "firebase/auth";
 
 import { useUser } from "../features/user/useUser";
+import { useUserMoviesData } from "../features/userMoviesData/useUserMoviesData";
 
 import { addDataToFirebase } from "../firebase/firebaseFirestore";
-import { initUserWithFirebaseData } from "../firebase/firebaseFirestore";
+import { initEntityWithFirebaseData } from "../firebase/firebaseFirestore";
 
 import { firebaseAuth } from "../firebase/firebaseAuth";
 import {
@@ -17,6 +18,7 @@ import {
   fontSizes,
   spacing,
   firebaseUsersCollection,
+  firebaseUserMoviesDataCollection,
 } from "../constants/constants";
 
 export const AuthPage = () => {
@@ -25,6 +27,7 @@ export const AuthPage = () => {
 
   const navigate = useNavigate();
   const { saveUser } = useUser();
+  const { saveUserMoviesData } = useUserMoviesData();
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = e;
@@ -53,10 +56,19 @@ export const AuthPage = () => {
           id,
           email,
           password,
+          isAuth: true,
+        };
+        await addDataToFirebase(newUser, firebaseUsersCollection);
+
+        const newUserMoviesData = {
+          id,
+          rating: {},
           watchedMovies: [],
         };
-
-        await addDataToFirebase(newUser, firebaseUsersCollection);
+        await addDataToFirebase(
+          newUserMoviesData,
+          firebaseUserMoviesDataCollection
+        );
       } else {
         const userCredential = await signInWithEmailAndPassword(
           firebaseAuth,
@@ -67,8 +79,18 @@ export const AuthPage = () => {
         id = userCredential.user.uid;
       }
 
-      const userFromFirebase = await initUserWithFirebaseData(id);
+      const userFromFirebase = await initEntityWithFirebaseData(
+        firebaseUsersCollection,
+        id
+      );
       saveUser(userFromFirebase);
+
+      const userMoviesDataFromFirebase = await initEntityWithFirebaseData(
+        firebaseUserMoviesDataCollection,
+        id
+      );
+      console.log("userMoviesDataFromFirebase ", userMoviesDataFromFirebase);
+      saveUserMoviesData(userMoviesDataFromFirebase);
 
       navigate("/private");
     } catch (err) {

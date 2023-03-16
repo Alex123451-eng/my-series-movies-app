@@ -18,18 +18,18 @@ const moviesSlice = createSlice({
     setMovies(state, action) {
       state.movies = [...action.payload];
     },
-    setMovieRating(state, action) {
-      const { id, currUserRating } = action.payload;
-      console.log("id, currUserRating ", id, +currUserRating + 1);
-      const movie = state.movies.find((movie) => movie.id === id);
-      if (movie) {
-        movie.currUserRating = currUserRating;
-      }
-    },
+    // setMovieRating(state, action) {
+    //   const { id, currUserRating } = action.payload;
+    //   console.log("id, currUserRating ", id, +currUserRating + 1);
+    //   const movie = state.movies.find((movie) => movie.id === id);
+    //   if (movie) {
+    //     movie.currUserRating = currUserRating;
+    //   }
+    // },
   },
 });
 
-export const { setMovies, setMovieRating } = moviesSlice.actions;
+export const { setMovies } = moviesSlice.actions;
 
 export const selectMovies = (state: RootState) => state.movies;
 

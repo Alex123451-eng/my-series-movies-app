@@ -32,10 +32,10 @@ export const Layout = () => {
     setIsLogOutShown(false);
 
     saveUser({
-      id: null,
-      email: null,
-      password: null,
-      watchedMovies: [],
+      id: "",
+      email: "",
+      password: "",
+      isAuth: false,
     });
   };
 

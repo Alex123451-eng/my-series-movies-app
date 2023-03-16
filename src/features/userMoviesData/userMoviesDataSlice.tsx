@@ -4,7 +4,8 @@ import { RootState } from "../../app/store";
 import { IUserMoviesData } from "../../types/types";
 
 const initialState: IUserMoviesData = {
-  currUserRating: {},
+  id: "",
+  rating: {},
   watchedMovies: [],
 };
 
@@ -13,13 +14,19 @@ const userMoviesDataSlice = createSlice({
   initialState,
   reducers: {
     setUserMoviesData(state, action) {
-      state = action.payload;
+      console.log("action.payload ", action.payload);
+      // todo понять, почему не работает
+      // state = action.payload;
+      const { id, rating, watchedMovies } = action.payload;
+      state.id = id;
+      state.rating = rating;
+      state.watchedMovies = watchedMovies;
     },
   },
 });
 
 export const { setUserMoviesData } = userMoviesDataSlice.actions;
 
-export const selectUserMovieData = (state: RootState) => state.userMoviesData;
+export const selectUserMoviesData = (state: RootState) => state.userMoviesData;
 
 export default userMoviesDataSlice.reducer;

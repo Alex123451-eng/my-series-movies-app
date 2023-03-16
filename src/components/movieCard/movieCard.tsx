@@ -1,17 +1,18 @@
 import styled from "styled-components";
 
 import { useUser } from "../../features/user/useUser";
+import { useUserMoviesData } from "../../features/userMoviesData/useUserMoviesData";
 
 import {
   addDataToFirebase,
-  initUserWithFirebaseData,
+  initEntityWithFirebaseData,
 } from "../../firebase/firebaseFirestore";
 
 import {
   colors,
   fontSizes,
   spacing,
-  firebaseUsersCollection,
+  firebaseUserMoviesDataCollection,
 } from "../../constants/constants";
 
 import { IUser } from "../../types/types";
@@ -25,7 +26,6 @@ export const MovieCard = ({
   img,
   releaseYear,
   rating,
-  currUserRating,
 }: {
   id: string;
   title: string;
@@ -33,41 +33,73 @@ export const MovieCard = ({
   img: string;
   releaseYear: number;
   rating: number;
-  currUserRating: number;
 }) => {
   const { saveUser, user } = useUser();
+  const { saveUserMoviesData, userMoviesData } = useUserMoviesData();
 
-  const isMovieWatched = user.watchedMovies.find((movie) => movie.id === id);
+  const isMovieWatched = userMoviesData.watchedMovies.includes(id);
 
   const onCheckClick = async (e: any) => {
     e.preventDefault();
+    console.log("userMoviesData ", userMoviesData);
+    console.log("isMovieWatched ", isMovieWatched);
 
-    let updatedUser;
+    let updatedUserMoviesData;
 
     if (isMovieWatched) {
-      const watchedMovies = user.watchedMovies.filter(
-        (movie) => movie.id !== id
+      const watchedMovies = userMoviesData.watchedMovies.filter(
+        (localId) => localId !== id
       );
 
-      updatedUser = {
-        ...user,
+      updatedUserMoviesData = {
+        ...userMoviesData,
         watchedMovies,
       };
     } else {
-      updatedUser = {
-        ...user,
-        watchedMovies: [
-          ...user.watchedMovies,
-          { id, title, description, img, releaseYear, rating, currUserRating },
-        ],
+      updatedUserMoviesData = {
+        ...userMoviesData,
+        watchedMovies: [...userMoviesData.watchedMovies, id],
       };
     }
 
-    await addDataToFirebase(updatedUser, firebaseUsersCollection);
+    await addDataToFirebase(
+      updatedUserMoviesData,
+      firebaseUserMoviesDataCollection
+    );
 
-    const userFromFirebase = await initUserWithFirebaseData(updatedUser.id);
+    const userMoviesDataFromFirebase = await initEntityWithFirebaseData(
+      firebaseUserMoviesDataCollection,
+      updatedUserMoviesData.id
+    );
 
-    saveUser(userFromFirebase);
+    saveUserMoviesData(userMoviesDataFromFirebase);
+
+    // let updatedUser;
+
+    // if (isMovieWatched) {
+    //   const watchedMovies = user.watchedMovies.filter(
+    //     (movie) => movie.id !== id
+    //   );
+
+    //   updatedUser = {
+    //     ...user,
+    //     watchedMovies,
+    //   };
+    // } else {
+    //   updatedUser = {
+    //     ...user,
+    //     watchedMovies: [
+    //       ...user.watchedMovies,
+    //       { id, title, description, img, releaseYear, rating, currUserRating },
+    //     ],
+    //   };
+    // }
+
+    // await addDataToFirebase(updatedUser, firebaseUsersCollection);
+
+    // const userFromFirebase = await initUserWithFirebaseData(updatedUser.id);
+
+    // saveUser(userFromFirebase);
   };
 
   return (
