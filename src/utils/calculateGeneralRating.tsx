@@ -12,7 +12,7 @@ import { IMovie } from "../types/types";
 
 // todo понять, ничего что я написал тут movies (внизу тоже movies написано)
 // не будет в какой-то момент конфликта?
-export const calculateRating = async (
+export const calculateGeneralRating = async (
   id: string,
   movie: IMovie,
   saveMovies: (movies: IMovie[]) => void

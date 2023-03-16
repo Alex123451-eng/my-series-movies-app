@@ -11,7 +11,7 @@ import {
   addDataToFirebase,
   initEntityWithFirebaseData,
 } from "../firebase/firebaseFirestore";
-import { calculateRating } from "../utils/calculateRating";
+import { calculateGeneralRating } from "../utils/calculateGeneralRating";
 
 import {
   colors,
@@ -66,7 +66,7 @@ export const MoviePage = () => {
         updatedUserMoviesData.id
       );
 
-      calculateRating(id as string, movie, saveMovies);
+      calculateGeneralRating(id as string, movie, saveMovies);
 
       saveUserMoviesData(userMoviesDataFromFirebase);
     }
