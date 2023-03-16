@@ -35,7 +35,7 @@ export const FONT_SIZES = {
   xxxxl: "120px",
 };
 
-export const spacing = {
+export const SPACING = {
   sm: "8px",
   md: "16px",
   lg: "24px",

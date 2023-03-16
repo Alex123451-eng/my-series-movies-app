@@ -6,7 +6,7 @@ import { MovieLink } from "../components/movieLink/movieLink";
 import { useMovies } from "../features/movies/useMovies";
 import { useUserMoviesData } from "../features/userMoviesData/useUserMoviesData";
 
-import { FONT_SIZES, spacing, colors } from "../constants/constants";
+import { FONT_SIZES, SPACING, colors } from "../constants/constants";
 
 import { IMovie } from "../types/types";
 
@@ -48,17 +48,17 @@ const Wrapper = styled.div`
 const Title = styled.div`
   font-size: ${FONT_SIZES.lg};
   font-weight: 800;
-  margin-bottom: ${spacing.lg};
+  margin-bottom: ${SPACING.lg};
   color: ${colors.white};
 `;
 
 const MoviesWrapper = styled.div`
-  padding: ${spacing.lg};
+  padding: ${SPACING.lg};
   overflow-x: auto;
   display: flex;
 
   a:not(:last-child) {
-    margin-right: ${spacing.lg};
+    margin-right: ${SPACING.lg};
   }
 
   ::-webkit-scrollbar {
@@ -67,12 +67,12 @@ const MoviesWrapper = styled.div`
 
   ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px ${colors.gray};
-    border-radius: ${spacing.sm};
+    border-radius: ${SPACING.sm};
   }
 
   ::-webkit-scrollbar-thumb {
     background: ${colors.gray};
-    border-radius: ${spacing.sm};
+    border-radius: ${SPACING.sm};
   }
 
   ::-webkit-scrollbar-thumb:hover {

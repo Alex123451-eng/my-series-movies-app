@@ -8,7 +8,7 @@ import { useMovies } from "../features/movies/useMovies";
 
 import { initEntityWithFirebaseData } from "../firebase/firebaseFirestore";
 
-import { spacing, firebaseMoviesCollection } from "../constants/constants";
+import { SPACING, firebaseMoviesCollection } from "../constants/constants";
 
 import { IMovie } from "../types/types";
 
@@ -75,6 +75,6 @@ export const MainPage = () => {
 const ContentWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, 153px);
-  grid-gap: ${spacing.lg};
+  grid-gap: ${SPACING.lg};
   justify-content: space-between;
 `;

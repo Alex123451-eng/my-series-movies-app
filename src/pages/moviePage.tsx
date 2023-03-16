@@ -16,7 +16,7 @@ import { calculateGeneralRating } from "../utils/calculateGeneralRating";
 import {
   colors,
   FONT_SIZES,
-  spacing,
+  SPACING,
   firebaseUserMoviesDataCollection,
 } from "../constants/constants";
 
@@ -124,7 +124,7 @@ const Title = styled.div`
 
 const MoviePoster = styled.img`
   max-height: 268px;
-  border-radius: ${spacing.sm};
+  border-radius: ${SPACING.sm};
 `;
 
 const PosterRating = styled.div`
@@ -155,15 +155,15 @@ const MovieText = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: ${spacing.lg};
+  margin-left: ${SPACING.lg};
 `;
 
 const Rating = styled.div`
-  margin-bottom: ${spacing.md};
+  margin-bottom: ${SPACING.md};
 `;
 
 const ReleaseYear = styled.div`
-  margin-bottom: ${spacing.md};
+  margin-bottom: ${SPACING.md};
 `;
 
 const Description = styled.div`

@@ -9,7 +9,7 @@ import { ReactComponent as EnterLogo } from "./img/enter-logo.svg";
 
 import { useUser } from "../../features/user/useUser";
 
-import { colors, FONT_SIZES, spacing } from "../../constants/constants";
+import { colors, FONT_SIZES, SPACING } from "../../constants/constants";
 import { firebaseAuth } from "../../firebase/firebaseAuth";
 
 export const Layout = () => {
@@ -83,7 +83,7 @@ export const Layout = () => {
 
 const BaseWrapper = styled.div`
   width: 70%;
-  margin: ${spacing.xxxl} auto 0;
+  margin: ${SPACING.xxxl} auto 0;
   font-family: "nunito-regular", sans-serif;
 `;
 
@@ -91,7 +91,7 @@ const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: ${spacing.xxxl};
+  margin-bottom: ${SPACING.xxxl};
 `;
 
 const HeaderNavBlock = styled.span`
@@ -101,7 +101,7 @@ const HeaderNavBlock = styled.span`
 
 const Img = styled.img`
   width: 120px;
-  padding-right: ${spacing.md};
+  padding-right: ${SPACING.md};
 `;
 
 const HeaderSearchBlock = styled.div`
@@ -111,13 +111,13 @@ const HeaderSearchBlock = styled.div`
 `;
 
 const EnterLogoWrapper = styled.div`
-  margin-bottom: -${spacing.sm};
+  margin-bottom: -${SPACING.sm};
 `;
 
 const SearchWord = styled.div`
   cursor: pointer;
   color: ${colors.whiteTransparent};
-  padding-right: ${spacing.md};
+  padding-right: ${SPACING.md};
   text-decoration: none;
   font-size: ${FONT_SIZES.lg};
 `;
@@ -141,9 +141,9 @@ const Button = styled.button`
   font-family: "nunito-regular", sans-serif;
   cursor: pointer;
   border: 1px solid ${colors.gray};
-  border-radius: ${spacing.sm};
+  border-radius: ${SPACING.sm};
   background: ${colors.white};
-  padding: ${spacing.sm} 0;
+  padding: ${SPACING.sm} 0;
   width: 100%;
 
   &:hover {

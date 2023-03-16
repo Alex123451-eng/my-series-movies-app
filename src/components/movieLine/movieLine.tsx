@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { MovieLink } from "../movieLink/movieLink";
 
-import { colors, FONT_SIZES, spacing } from "../../constants/constants";
+import { colors, FONT_SIZES, SPACING } from "../../constants/constants";
 
 export const MovieLine = ({
   id,
@@ -37,7 +37,7 @@ export const MovieLine = ({
 
 const Wrapper = styled.div`
   display: flex;
-  padding: ${spacing.sm} ${spacing.md};
+  padding: ${SPACING.sm} ${SPACING.md};
   width: 100%;
   height: 70px;
   cursor: pointer;
@@ -51,7 +51,7 @@ const TextBlock = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: ${spacing.md};
+  margin-left: ${SPACING.md};
 `;
 
 const Title = styled.div`
@@ -68,7 +68,7 @@ const Info = styled.div`
 const Rating = styled.div`
   color: ${colors.gray};
   font-weight: 800;
-  margin-right: ${spacing.sm};
+  margin-right: ${SPACING.sm};
 `;
 
 const ReleaseYear = styled.div`

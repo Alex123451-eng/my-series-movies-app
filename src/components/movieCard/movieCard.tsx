@@ -11,7 +11,7 @@ import {
 import {
   colors,
   FONT_SIZES,
-  spacing,
+  SPACING,
   firebaseUserMoviesDataCollection,
 } from "../../constants/constants";
 
@@ -108,7 +108,7 @@ const CheckWrapper = styled.div`
   width: 30px;
   height: 30px;
   right: 0;
-  border-radius: 0 ${spacing.sm} 0 0;
+  border-radius: 0 ${SPACING.sm} 0 0;
   background: ${colors.blackThickTransparent};
 `;
 
@@ -129,7 +129,7 @@ const InfoPreview = styled.div`
   flex-direction: column;
   align-items: start;
   text-align: left;
-  padding: ${spacing.xxxxl} 0 0 ${spacing.md};
+  padding: ${SPACING.xxxxl} 0 0 ${SPACING.md};
   justify-content: center;
   background-color: ${colors.blackTransparent};
   transition: 0.3s;
@@ -140,9 +140,9 @@ const InfoPreview = styled.div`
 `;
 
 const MovieImg = styled.img`
-  border-radius: ${spacing.sm};
+  border-radius: ${SPACING.sm};
 `;
 
 const MovieTitle = styled.div`
-  padding-top: ${spacing.sm};
+  padding-top: ${SPACING.sm};
 `;

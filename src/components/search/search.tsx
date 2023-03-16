@@ -6,7 +6,7 @@ import { ReactComponent as Cross } from "./img/close-btn.svg";
 
 import { useMovies } from "../../features/movies/useMovies";
 
-import { colors, FONT_SIZES, spacing } from "../../constants/constants";
+import { colors, FONT_SIZES, SPACING } from "../../constants/constants";
 
 import { IMovie } from "../../types/types";
 
@@ -89,7 +89,7 @@ const SearchComponentWrapper = styled.div`
 
 const InnerWrapper = styled.div`
   width: 40%;
-  margin: ${spacing.xxxl} auto 0;
+  margin: ${SPACING.xxxl} auto 0;
 `;
 
 const Title = styled.div`
@@ -99,10 +99,10 @@ const Title = styled.div`
 
 const SearchInput = styled.input`
   width: 100%;
-  padding-left: ${spacing.md};
+  padding-left: ${SPACING.md};
   font-size: ${FONT_SIZES.md};
   font-family: "nunito-regular", sans-serif;
-  border-radius: ${spacing.sm};
+  border-radius: ${SPACING.sm};
   height: 40px;
 
   &:focus {
@@ -113,8 +113,8 @@ const SearchInput = styled.input`
 const BtnClose = styled.div`
   display: flex;
   position: absolute;
-  top: ${spacing.xl};
-  right: ${spacing.xl};
+  top: ${SPACING.xl};
+  right: ${SPACING.xl};
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -122,17 +122,17 @@ const BtnClose = styled.div`
 
 const MoviesList = styled.div`
   background: #ffffff;
-  padding: ${spacing.sm} 0;
-  margin-top: ${spacing.sm};
+  padding: ${SPACING.sm} 0;
+  margin-top: ${SPACING.sm};
   width: 100%;
   height: auto;
-  border-radius: ${spacing.sm};
+  border-radius: ${SPACING.sm};
   max-height: 576px;
   overflow: hidden;
 `;
 
 const NoMatch = styled.div`
-  padding-left: ${spacing.md};
+  padding-left: ${SPACING.md};
   font-family: "nunito-regular", sans-serif;
   font-size: ${FONT_SIZES.md};
   color: ${colors.black};

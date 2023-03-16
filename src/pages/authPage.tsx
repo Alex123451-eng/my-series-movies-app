@@ -16,7 +16,7 @@ import { firebaseAuth } from "../firebase/firebaseAuth";
 import {
   colors,
   FONT_SIZES,
-  spacing,
+  SPACING,
   firebaseUsersCollection,
   firebaseUserMoviesDataCollection,
 } from "../constants/constants";
@@ -150,18 +150,18 @@ export const AuthPage = () => {
 
 const ImgWrapper = styled.div`
   display: flex;
-  margin-top: ${spacing.md};
+  margin-top: ${SPACING.md};
   justify-content: center;
 `;
 
 const Wrapper = styled.div`
-  padding: ${spacing.md} 0;
+  padding: ${SPACING.md} 0;
   width: 40%;
   min-width: 540px;
   margin: 0 auto;
   height: 465px;
   background: ${colors.white};
-  border-radius: ${spacing.sm};
+  border-radius: ${SPACING.sm};
 `;
 
 const InnerWrapper = styled.div`
@@ -175,18 +175,18 @@ const Title = styled.div`
 `;
 
 const InputBlock = styled.div`
-  margin: ${spacing.md} auto;
+  margin: ${SPACING.md} auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
 const inputStyles = css`
-  padding-left: ${spacing.md};
-  margin-left: ${spacing.md};
+  padding-left: ${SPACING.md};
+  margin-left: ${SPACING.md};
   font-size: ${FONT_SIZES.md};
   border: 1px solid ${colors.gray};
-  border-radius: ${spacing.sm};
+  border-radius: ${SPACING.sm};
   height: 35px;
 
   &:focus {
@@ -210,9 +210,9 @@ const Button = styled.button`
   font-family: "nunito-regular", sans-serif;
   cursor: pointer;
   border: 1px solid ${colors.gray};
-  border-radius: ${spacing.sm};
+  border-radius: ${SPACING.sm};
   background: ${colors.white};
-  padding: ${spacing.sm} 0;
+  padding: ${SPACING.sm} 0;
   width: 217px;
 
   &:hover {
