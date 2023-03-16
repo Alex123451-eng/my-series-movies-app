@@ -1,5 +1,5 @@
 import { Link, useMatch } from "react-router-dom";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 
@@ -39,10 +39,3 @@ const StyledLink = styled(Link)<ICustomLink>`
     padding-right: 0;
   }
 `;
-// ${({ isAuth }) => {
-// if (isAuth) {
-// return css`
-// color: ${COLORS.grayTransparent};
-// pointer-events: none;`
-// }
-// }}

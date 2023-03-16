@@ -68,8 +68,6 @@ export const MoviePage = () => {
     }
   };
 
-  // todo понять как сделать так, чтобы данные всегда точно были,
-  // чтобы убрать знаки вопроса
   return (
     <Wrapper>
       <Title>{movie.title}</Title>
