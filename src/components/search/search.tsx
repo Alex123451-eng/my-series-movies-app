@@ -41,7 +41,6 @@ export const Search = ({ setIsSearchShown }: { setIsSearchShown: any }) => {
       <InnerWrapper>
         <Title>Search</Title>
         <SearchInput
-          className="todo-title-input"
           type="text"
           placeholder="Films, tv series"
           value={titleInputValue}

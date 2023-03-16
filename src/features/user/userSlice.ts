@@ -7,7 +7,6 @@ const initialState : IUser = {
   id: '',
   email: '',
   password: '',
-  isAuth: false,
 }
 
 const userSlice = createSlice({
@@ -18,7 +17,6 @@ const userSlice = createSlice({
       state.id = action.payload.id;
       state.email = action.payload.email;
       state.password = action.payload.password;
-      state.isAuth = action.payload.isAuth;
     },
   }
 })

@@ -21,6 +21,7 @@ import { IMovie } from "../types/types";
 // }
 
 export const MainPage = () => {
+  // todo понять как не подгружать фильмы каждый раз на главной странице (если они уже есть в redux)?
   const [isLoading, setIsLoading] = useState(true);
 
   const { saveMovies, movies } = useMovies();

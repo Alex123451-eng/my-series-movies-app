@@ -34,15 +34,13 @@ export const MovieCard = ({
   releaseYear: number;
   rating: number;
 }) => {
-  const { saveUser, user } = useUser();
+  const { user } = useUser();
   const { saveUserMoviesData, userMoviesData } = useUserMoviesData();
 
   const isMovieWatched = userMoviesData.watchedMovies.includes(id);
 
   const onCheckClick = async (e: any) => {
     e.preventDefault();
-    console.log("userMoviesData ", userMoviesData);
-    console.log("isMovieWatched ", isMovieWatched);
 
     let updatedUserMoviesData;
 
@@ -73,33 +71,6 @@ export const MovieCard = ({
     );
 
     saveUserMoviesData(userMoviesDataFromFirebase);
-
-    // let updatedUser;
-
-    // if (isMovieWatched) {
-    //   const watchedMovies = user.watchedMovies.filter(
-    //     (movie) => movie.id !== id
-    //   );
-
-    //   updatedUser = {
-    //     ...user,
-    //     watchedMovies,
-    //   };
-    // } else {
-    //   updatedUser = {
-    //     ...user,
-    //     watchedMovies: [
-    //       ...user.watchedMovies,
-    //       { id, title, description, img, releaseYear, rating, currUserRating },
-    //     ],
-    //   };
-    // }
-
-    // await addDataToFirebase(updatedUser, firebaseUsersCollection);
-
-    // const userFromFirebase = await initUserWithFirebaseData(updatedUser.id);
-
-    // saveUser(userFromFirebase);
   };
 
   return (

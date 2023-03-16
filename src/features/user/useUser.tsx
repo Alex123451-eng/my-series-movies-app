@@ -10,6 +10,7 @@ export const useUser = () => {
   const user = useAppSelector(selectUser);
 
   const saveUser = (user: IUser) => {
+    console.log("user! ", user);
     dispatch(setUser(user));
   };
 

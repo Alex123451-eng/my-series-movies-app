@@ -35,7 +35,6 @@ export const Layout = () => {
       id: "",
       email: "",
       password: "",
-      isAuth: false,
     });
   };
 
