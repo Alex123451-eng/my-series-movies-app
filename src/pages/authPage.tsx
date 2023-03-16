@@ -13,10 +13,8 @@ import { addDataToFirebase } from "../firebase/firebaseFirestore";
 import { initEntityWithFirebaseData } from "../firebase/firebaseFirestore";
 
 import { firebaseAuth } from "../firebase/firebaseAuth";
+import { COLORS, FONT_SIZES, SPACING } from "../constants/styles";
 import {
-  COLORS,
-  FONT_SIZES,
-  SPACING,
   FIREBASE_USERS_COLLECTION,
   FIREBASE_USER_MOVIES_DATA_COLLECTION,
 } from "../constants/constants";

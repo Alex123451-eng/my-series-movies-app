@@ -6,7 +6,7 @@ import { ReactComponent as Cross } from "./img/close-btn.svg";
 
 import { useMovies } from "../../features/movies/useMovies";
 
-import { COLORS, FONT_SIZES, SPACING } from "../../constants/constants";
+import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 
 import { IMovie } from "../../types/types";
 

@@ -6,7 +6,7 @@ import { MovieLink } from "../components/movieLink/movieLink";
 import { useMovies } from "../features/movies/useMovies";
 import { useUserMoviesData } from "../features/userMoviesData/useUserMoviesData";
 
-import { FONT_SIZES, SPACING, COLORS } from "../constants/constants";
+import { FONT_SIZES, SPACING, COLORS } from "../constants/styles";
 
 import { IMovie } from "../types/types";
 

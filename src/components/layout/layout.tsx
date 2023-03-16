@@ -9,8 +9,8 @@ import { ReactComponent as EnterLogo } from "./img/enter-logo.svg";
 
 import { useUser } from "../../features/user/useUser";
 
-import { COLORS, FONT_SIZES, SPACING } from "../../constants/constants";
 import { firebaseAuth } from "../../firebase/firebaseAuth";
+import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 
 export const Layout = () => {
   const [isSearchShown, setIsSearchShown] = useState(false);

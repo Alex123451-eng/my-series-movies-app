@@ -8,7 +8,8 @@ import { useMovies } from "../features/movies/useMovies";
 
 import { initEntityWithFirebaseData } from "../firebase/firebaseFirestore";
 
-import { SPACING, FIREBASE_MOVIES_COLLECTION } from "../constants/constants";
+import { SPACING } from "../constants/styles";
+import { FIREBASE_MOVIES_COLLECTION } from "../constants/constants";
 
 import { IMovie } from "../types/types";
 

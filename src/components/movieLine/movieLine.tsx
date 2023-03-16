@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { MovieLink } from "../movieLink/movieLink";
 
-import { COLORS, FONT_SIZES, SPACING } from "../../constants/constants";
+import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 
 export const MovieLine = ({
   id,

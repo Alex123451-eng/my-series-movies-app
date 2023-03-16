@@ -1,7 +1,7 @@
 import { Link, useMatch } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-import { COLORS, FONT_SIZES, SPACING } from "../../constants/constants";
+import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 
 import { ICustomLink } from "../../types/types";
 
