@@ -17,7 +17,7 @@ import {
   COLORS,
   FONT_SIZES,
   SPACING,
-  firebaseUserMoviesDataCollection,
+  FIREBASE_USER_MOVIES_DATA_COLLECTION,
 } from "../constants/constants";
 
 import { IMovie } from "../types/types";
@@ -58,11 +58,11 @@ export const MoviePage = () => {
 
       await addDataToFirebase(
         updatedUserMoviesData,
-        firebaseUserMoviesDataCollection
+        FIREBASE_USER_MOVIES_DATA_COLLECTION
       );
 
       const userMoviesDataFromFirebase = await initEntityWithFirebaseData(
-        firebaseUserMoviesDataCollection,
+        FIREBASE_USER_MOVIES_DATA_COLLECTION,
         updatedUserMoviesData.id
       );
 

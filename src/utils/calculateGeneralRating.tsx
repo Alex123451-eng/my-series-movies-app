@@ -4,8 +4,8 @@ import {
 } from "../firebase/firebaseFirestore";
 
 import {
-  firebaseUserMoviesDataCollection,
-  firebaseMoviesCollection,
+  FIREBASE_USER_MOVIES_DATA_COLLECTION,
+  FIREBASE_MOVIES_COLLECTION,
 } from "../constants/constants";
 
 import { IMovie } from "../types/types";
@@ -21,7 +21,7 @@ export const calculateGeneralRating = async (
   let estimateSum = 0;
 
   const allUserMoviesData = await initEntityWithFirebaseData(
-    firebaseUserMoviesDataCollection
+    FIREBASE_USER_MOVIES_DATA_COLLECTION
   );
 
   for (let userData of allUserMoviesData) {
@@ -41,8 +41,8 @@ export const calculateGeneralRating = async (
     ...movie,
     rating,
   };
-  await addDataToFirebase(updatedMovie, firebaseMoviesCollection);
+  await addDataToFirebase(updatedMovie, FIREBASE_MOVIES_COLLECTION);
 
-  const movies = await initEntityWithFirebaseData(firebaseMoviesCollection);
+  const movies = await initEntityWithFirebaseData(FIREBASE_MOVIES_COLLECTION);
   saveMovies(movies);
 };

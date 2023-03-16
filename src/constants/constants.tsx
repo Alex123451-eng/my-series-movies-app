@@ -1,7 +1,7 @@
 // todo понять, надо ли писать предопределенные константы ВОТ_ТАК
-export const firebaseMoviesCollection = "movies";
-export const firebaseUsersCollection = "users";
-export const firebaseUserMoviesDataCollection = "users-movies-data";
+export const FIREBASE_MOVIES_COLLECTION = "movies";
+export const FIREBASE_USERS_COLLECTION = "users";
+export const FIREBASE_USER_MOVIES_DATA_COLLECTION = "users-movies-data";
 
 export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,

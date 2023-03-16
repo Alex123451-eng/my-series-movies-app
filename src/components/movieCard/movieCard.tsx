@@ -12,7 +12,7 @@ import {
   COLORS,
   FONT_SIZES,
   SPACING,
-  firebaseUserMoviesDataCollection,
+  FIREBASE_USER_MOVIES_DATA_COLLECTION,
 } from "../../constants/constants";
 
 // todo вынести это в дженерик или интерфейс?
@@ -58,11 +58,11 @@ export const MovieCard = ({
 
     await addDataToFirebase(
       updatedUserMoviesData,
-      firebaseUserMoviesDataCollection
+      FIREBASE_USER_MOVIES_DATA_COLLECTION
     );
 
     const userMoviesDataFromFirebase = await initEntityWithFirebaseData(
-      firebaseUserMoviesDataCollection,
+      FIREBASE_USER_MOVIES_DATA_COLLECTION,
       updatedUserMoviesData.id
     );
 

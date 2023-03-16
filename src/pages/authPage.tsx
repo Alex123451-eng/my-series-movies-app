@@ -17,8 +17,8 @@ import {
   COLORS,
   FONT_SIZES,
   SPACING,
-  firebaseUsersCollection,
-  firebaseUserMoviesDataCollection,
+  FIREBASE_USERS_COLLECTION,
+  FIREBASE_USER_MOVIES_DATA_COLLECTION,
 } from "../constants/constants";
 
 export const AuthPage = () => {
@@ -59,7 +59,7 @@ export const AuthPage = () => {
           password,
           isAuth: true,
         };
-        await addDataToFirebase(newUser, firebaseUsersCollection);
+        await addDataToFirebase(newUser, FIREBASE_USERS_COLLECTION);
 
         const newUserMoviesData = {
           id,
@@ -68,7 +68,7 @@ export const AuthPage = () => {
         };
         await addDataToFirebase(
           newUserMoviesData,
-          firebaseUserMoviesDataCollection
+          FIREBASE_USER_MOVIES_DATA_COLLECTION
         );
       } else {
         const userCredential = await signInWithEmailAndPassword(
@@ -81,13 +81,13 @@ export const AuthPage = () => {
       }
 
       const userFromFirebase = await initEntityWithFirebaseData(
-        firebaseUsersCollection,
+        FIREBASE_USERS_COLLECTION,
         id
       );
       saveUser(userFromFirebase);
 
       const userMoviesDataFromFirebase = await initEntityWithFirebaseData(
-        firebaseUserMoviesDataCollection,
+        FIREBASE_USER_MOVIES_DATA_COLLECTION,
         id
       );
       saveUserMoviesData(userMoviesDataFromFirebase);

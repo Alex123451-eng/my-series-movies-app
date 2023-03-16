@@ -7,8 +7,8 @@ import {
 } from "../../firebase/firebaseFirestore";
 
 import {
-  firebaseMoviesCollection,
-  firebaseUserMoviesDataCollection,
+  FIREBASE_MOVIES_COLLECTION,
+  FIREBASE_USER_MOVIES_DATA_COLLECTION,
 } from "../../constants/constants";
 
 import { IMovie } from "../../types/types";
@@ -23,12 +23,12 @@ export const Rating = ({ movieId }: { movieId: string }) => {
     // const reratedMovie = movies.movies.find((movie) => movie.id === movieId);
 
     const reratedMovie = await initEntityWithFirebaseData(
-      firebaseUserMoviesDataCollection,
+      FIREBASE_USER_MOVIES_DATA_COLLECTION,
       movieId
     );
 
     const allUserMoviesData = await initEntityWithFirebaseData(
-      firebaseUserMoviesDataCollection
+      FIREBASE_USER_MOVIES_DATA_COLLECTION
     );
 
     for (let userData of allUserMoviesData) {
@@ -49,9 +49,9 @@ export const Rating = ({ movieId }: { movieId: string }) => {
       rating,
     };
 
-    await addDataToFirebase(updatedMovie, firebaseMoviesCollection);
+    await addDataToFirebase(updatedMovie, FIREBASE_MOVIES_COLLECTION);
 
-    const movies = await initEntityWithFirebaseData(firebaseMoviesCollection);
+    const movies = await initEntityWithFirebaseData(FIREBASE_MOVIES_COLLECTION);
     saveMovies(movies);
   };
 

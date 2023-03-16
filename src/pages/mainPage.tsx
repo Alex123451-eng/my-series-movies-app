@@ -8,7 +8,7 @@ import { useMovies } from "../features/movies/useMovies";
 
 import { initEntityWithFirebaseData } from "../firebase/firebaseFirestore";
 
-import { SPACING, firebaseMoviesCollection } from "../constants/constants";
+import { SPACING, FIREBASE_MOVIES_COLLECTION } from "../constants/constants";
 
 import { IMovie } from "../types/types";
 
@@ -17,7 +17,7 @@ import { IMovie } from "../types/types";
 // const mockMoviesData = createMockData();
 // console.log("mockMoviesData ", mockMoviesData);
 // for (let i = 0; i < mockMoviesData.length; i++) {
-//   addDataToFirebase(mockMoviesData[i], firebaseMoviesCollection);
+//   addDataToFirebase(mockMoviesData[i], FIREBASE_MOVIES_COLLECTION);
 // }
 
 export const MainPage = () => {
@@ -29,7 +29,7 @@ export const MainPage = () => {
 
   const getMovies = async () => {
     setIsLoading(true);
-    const movies = await initEntityWithFirebaseData(firebaseMoviesCollection);
+    const movies = await initEntityWithFirebaseData(FIREBASE_MOVIES_COLLECTION);
     saveMovies(movies);
     setIsLoading(false);
   };
