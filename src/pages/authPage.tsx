@@ -14,7 +14,7 @@ import { initEntityWithFirebaseData } from "../firebase/firebaseFirestore";
 
 import { firebaseAuth } from "../firebase/firebaseAuth";
 import {
-  colors,
+  COLORS,
   FONT_SIZES,
   SPACING,
   firebaseUsersCollection,
@@ -160,7 +160,7 @@ const Wrapper = styled.div`
   min-width: 540px;
   margin: 0 auto;
   height: 465px;
-  background: ${colors.white};
+  background: ${COLORS.white};
   border-radius: ${SPACING.sm};
 `;
 
@@ -185,7 +185,7 @@ const inputStyles = css`
   padding-left: ${SPACING.md};
   margin-left: ${SPACING.md};
   font-size: ${FONT_SIZES.md};
-  border: 1px solid ${colors.gray};
+  border: 1px solid ${COLORS.gray};
   border-radius: ${SPACING.sm};
   height: 35px;
 
@@ -209,13 +209,13 @@ const ButtonsBlock = styled.div`
 const Button = styled.button`
   font-family: "nunito-regular", sans-serif;
   cursor: pointer;
-  border: 1px solid ${colors.gray};
+  border: 1px solid ${COLORS.gray};
   border-radius: ${SPACING.sm};
-  background: ${colors.white};
+  background: ${COLORS.white};
   padding: ${SPACING.sm} 0;
   width: 217px;
 
   &:hover {
-    background: ${colors.whiteActive};
+    background: ${COLORS.whiteActive};
   }
 `;

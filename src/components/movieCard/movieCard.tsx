@@ -9,7 +9,7 @@ import {
 } from "../../firebase/firebaseFirestore";
 
 import {
-  colors,
+  COLORS,
   FONT_SIZES,
   SPACING,
   firebaseUserMoviesDataCollection,
@@ -93,7 +93,7 @@ const MovieCardWrapper = styled.div`
   width: 153px;
   display: flex;
   flex-direction: column;
-  color: ${colors.white};
+  color: ${COLORS.white};
   cursor: pointer;
   transition: 0.3s;
   text-align: center;
@@ -109,7 +109,7 @@ const CheckWrapper = styled.div`
   height: 30px;
   right: 0;
   border-radius: 0 ${SPACING.sm} 0 0;
-  background: ${colors.blackThickTransparent};
+  background: ${COLORS.blackThickTransparent};
 `;
 
 const Check = styled.div`
@@ -131,7 +131,7 @@ const InfoPreview = styled.div`
   text-align: left;
   padding: ${SPACING.xxxxl} 0 0 ${SPACING.md};
   justify-content: center;
-  background-color: ${colors.blackTransparent};
+  background-color: ${COLORS.blackTransparent};
   transition: 0.3s;
 
   ${MovieCardWrapper}: hover & {

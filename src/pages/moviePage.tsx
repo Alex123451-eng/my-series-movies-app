@@ -14,7 +14,7 @@ import {
 import { calculateGeneralRating } from "../utils/calculateGeneralRating";
 
 import {
-  colors,
+  COLORS,
   FONT_SIZES,
   SPACING,
   firebaseUserMoviesDataCollection,
@@ -35,12 +35,12 @@ export const MoviePage = () => {
   const currUserRating = movieData?.[1] || 0;
 
   const starsColors = [
-    colors.transparent,
-    colors.transparent,
-    colors.transparent,
-    colors.transparent,
-    colors.transparent,
-  ].fill(colors.white, 0, currUserRating);
+    COLORS.transparent,
+    COLORS.transparent,
+    COLORS.transparent,
+    COLORS.transparent,
+    COLORS.transparent,
+  ].fill(COLORS.white, 0, currUserRating);
 
   const movie = movies.movies.find((movie) => movie.id === id) as IMovie;
 
@@ -83,19 +83,19 @@ export const MoviePage = () => {
           {user.id && (
             <StarBlock onClick={onStarClick}>
               <div data-number="1">
-                <Star fill={starsColors[0]} stroke={colors.white} />
+                <Star fill={starsColors[0]} stroke={COLORS.white} />
               </div>
               <div data-number="2">
-                <Star fill={starsColors[1]} stroke={colors.white} />
+                <Star fill={starsColors[1]} stroke={COLORS.white} />
               </div>
               <div data-number="3">
-                <Star fill={starsColors[2]} stroke={colors.white} />
+                <Star fill={starsColors[2]} stroke={COLORS.white} />
               </div>
               <div data-number="4">
-                <Star fill={starsColors[3]} stroke={colors.white} />
+                <Star fill={starsColors[3]} stroke={COLORS.white} />
               </div>
               <div data-number="5">
-                <Star fill={starsColors[4]} stroke={colors.white} />
+                <Star fill={starsColors[4]} stroke={COLORS.white} />
               </div>
             </StarBlock>
           )}
@@ -114,7 +114,7 @@ export const MoviePage = () => {
 };
 
 const Wrapper = styled.div`
-  color: ${colors.white};
+  color: ${COLORS.white};
 `;
 
 const Title = styled.div`

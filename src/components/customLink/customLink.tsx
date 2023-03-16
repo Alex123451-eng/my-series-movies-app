@@ -1,7 +1,7 @@
 import { Link, useMatch } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-import { colors, FONT_SIZES, SPACING } from "../../constants/constants";
+import { COLORS, FONT_SIZES, SPACING } from "../../constants/constants";
 
 import { ICustomLink } from "../../types/types";
 
@@ -30,7 +30,7 @@ export const CustomLink = ({
 
 const StyledLink = styled(Link)<ICustomLink>`
   color: ${({ match }) =>
-    match ? `${colors.white}` : `${colors.whiteTransparent}`};
+    match ? `${COLORS.white}` : `${COLORS.whiteTransparent}`};
   padding-right: ${SPACING.md};
   text-decoration: none;
   font-size: ${FONT_SIZES.lg};
@@ -42,7 +42,7 @@ const StyledLink = styled(Link)<ICustomLink>`
 // ${({ isAuth }) => {
 // if (isAuth) {
 // return css`
-// color: ${colors.grayTransparent};
+// color: ${COLORS.grayTransparent};
 // pointer-events: none;`
 // }
 // }}

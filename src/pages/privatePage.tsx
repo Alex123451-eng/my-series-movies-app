@@ -6,7 +6,7 @@ import { MovieLink } from "../components/movieLink/movieLink";
 import { useMovies } from "../features/movies/useMovies";
 import { useUserMoviesData } from "../features/userMoviesData/useUserMoviesData";
 
-import { FONT_SIZES, SPACING, colors } from "../constants/constants";
+import { FONT_SIZES, SPACING, COLORS } from "../constants/constants";
 
 import { IMovie } from "../types/types";
 
@@ -49,7 +49,7 @@ const Title = styled.div`
   font-size: ${FONT_SIZES.lg};
   font-weight: 800;
   margin-bottom: ${SPACING.lg};
-  color: ${colors.white};
+  color: ${COLORS.white};
 `;
 
 const MoviesWrapper = styled.div`
@@ -66,16 +66,16 @@ const MoviesWrapper = styled.div`
   }
 
   ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px ${colors.gray};
+    box-shadow: inset 0 0 5px ${COLORS.gray};
     border-radius: ${SPACING.sm};
   }
 
   ::-webkit-scrollbar-thumb {
-    background: ${colors.gray};
+    background: ${COLORS.gray};
     border-radius: ${SPACING.sm};
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: ${colors.grayTransparent};
+    background: ${COLORS.grayTransparent};
   }
 `;

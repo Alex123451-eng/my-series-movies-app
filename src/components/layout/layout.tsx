@@ -9,7 +9,7 @@ import { ReactComponent as EnterLogo } from "./img/enter-logo.svg";
 
 import { useUser } from "../../features/user/useUser";
 
-import { colors, FONT_SIZES, SPACING } from "../../constants/constants";
+import { COLORS, FONT_SIZES, SPACING } from "../../constants/constants";
 import { firebaseAuth } from "../../firebase/firebaseAuth";
 
 export const Layout = () => {
@@ -64,7 +64,7 @@ export const Layout = () => {
           ) : (
             <CustomLink to="/login">
               <EnterLogoWrapper>
-                <EnterLogo fill={colors.white} />
+                <EnterLogo fill={COLORS.white} />
               </EnterLogoWrapper>
             </CustomLink>
           )}
@@ -116,7 +116,7 @@ const EnterLogoWrapper = styled.div`
 
 const SearchWord = styled.div`
   cursor: pointer;
-  color: ${colors.whiteTransparent};
+  color: ${COLORS.whiteTransparent};
   padding-right: ${SPACING.md};
   text-decoration: none;
   font-size: ${FONT_SIZES.lg};
@@ -128,7 +128,7 @@ const UserMailLogOutWrapper = styled.div`
 
 const UserEmail = styled.div`
   cursor: pointer;
-  color: ${colors.white};
+  color: ${COLORS.white};
 `;
 
 const LogOut = styled.div`
@@ -140,13 +140,13 @@ const LogOut = styled.div`
 const Button = styled.button`
   font-family: "nunito-regular", sans-serif;
   cursor: pointer;
-  border: 1px solid ${colors.gray};
+  border: 1px solid ${COLORS.gray};
   border-radius: ${SPACING.sm};
-  background: ${colors.white};
+  background: ${COLORS.white};
   padding: ${SPACING.sm} 0;
   width: 100%;
 
   &:hover {
-    background: ${colors.whiteActive};
+    background: ${COLORS.whiteActive};
   }
 `;

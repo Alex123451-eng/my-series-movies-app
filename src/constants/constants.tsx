@@ -12,7 +12,7 @@ export const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
-export const colors = {
+export const COLORS = {
   transparent: "transparent",
   white: "rgba(255, 255, 255, 1)",
   whiteActive: "rgba(235, 235, 235, 1)",

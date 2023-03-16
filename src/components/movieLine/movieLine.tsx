@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { MovieLink } from "../movieLink/movieLink";
 
-import { colors, FONT_SIZES, SPACING } from "../../constants/constants";
+import { COLORS, FONT_SIZES, SPACING } from "../../constants/constants";
 
 export const MovieLine = ({
   id,
@@ -43,7 +43,7 @@ const Wrapper = styled.div`
   cursor: pointer;
 
   &:hover {
-    background: ${colors.whiteActive};
+    background: ${COLORS.whiteActive};
   }
 `;
 
@@ -57,7 +57,7 @@ const TextBlock = styled.div`
 const Title = styled.div`
   font-family: "nunito-regular", sans-serif;
   font-size: ${FONT_SIZES.md};
-  color: ${colors.black};
+  color: ${COLORS.black};
 `;
 
 const Info = styled.div`
@@ -66,11 +66,11 @@ const Info = styled.div`
 `;
 
 const Rating = styled.div`
-  color: ${colors.gray};
+  color: ${COLORS.gray};
   font-weight: 800;
   margin-right: ${SPACING.sm};
 `;
 
 const ReleaseYear = styled.div`
-  color: ${colors.gray};
+  color: ${COLORS.gray};
 `;

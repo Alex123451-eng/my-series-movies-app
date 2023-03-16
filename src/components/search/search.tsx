@@ -6,7 +6,7 @@ import { ReactComponent as Cross } from "./img/close-btn.svg";
 
 import { useMovies } from "../../features/movies/useMovies";
 
-import { colors, FONT_SIZES, SPACING } from "../../constants/constants";
+import { COLORS, FONT_SIZES, SPACING } from "../../constants/constants";
 
 import { IMovie } from "../../types/types";
 
@@ -81,9 +81,9 @@ const SearchComponentWrapper = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: ${colors.blackBackground};
+  background-color: ${COLORS.blackBackground};
   font-size: ${FONT_SIZES.xxl};
-  color: ${colors.white};
+  color: ${COLORS.white};
   font-family: "nunito-regular", sans-serif;
 `;
 
@@ -135,5 +135,5 @@ const NoMatch = styled.div`
   padding-left: ${SPACING.md};
   font-family: "nunito-regular", sans-serif;
   font-size: ${FONT_SIZES.md};
-  color: ${colors.black};
+  color: ${COLORS.black};
 `;
