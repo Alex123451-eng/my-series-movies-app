@@ -14,6 +14,7 @@ import { initEntityWithFirebaseData } from "../firebase/firebaseFirestore";
 
 import { firebaseAuth } from "../firebase/firebaseAuth";
 import { COLORS, FONT_SIZES, SPACING } from "../constants/styles";
+import { ROUTES } from "../constants/routes";
 import {
   FIREBASE_USERS_COLLECTION,
   FIREBASE_USER_MOVIES_DATA_COLLECTION,
@@ -90,7 +91,7 @@ export const AuthPage = () => {
       );
       saveUserMoviesData(userMoviesDataFromFirebase);
 
-      navigate("/private");
+      navigate(ROUTES.private);
     } catch (err) {
       alert(err);
     }

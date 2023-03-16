@@ -11,6 +11,7 @@ import { useUser } from "../../features/user/useUser";
 
 import { firebaseAuth } from "../../firebase/firebaseAuth";
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
+import { ROUTES } from "../../constants/routes";
 
 export const Layout = () => {
   const [isSearchShown, setIsSearchShown] = useState(false);
@@ -38,7 +39,7 @@ export const Layout = () => {
       password: "",
     });
 
-    navigate("/");
+    navigate(ROUTES.main);
   };
 
   return (
@@ -46,9 +47,9 @@ export const Layout = () => {
       <Header>
         <HeaderNavBlock>
           <Img src="./img/components/layout/site-logo.png" alt="site-logo" />
-          <CustomLink to="/">Main</CustomLink>
-          <CustomLink to="/history">Movie history</CustomLink>
-          {user.id && <CustomLink to="/private">Your page</CustomLink>}
+          <CustomLink to={ROUTES.main}>Main</CustomLink>
+          <CustomLink to={ROUTES.history}>Movie history</CustomLink>
+          {user.id && <CustomLink to={ROUTES.private}>Your page</CustomLink>}
         </HeaderNavBlock>
         <HeaderSearchBlock>
           <SearchWord onClick={onSearchClick}>Search</SearchWord>
@@ -62,7 +63,7 @@ export const Layout = () => {
               <UserEmail onClick={onUserEmailClick}>{user.email}</UserEmail>
             </UserMailLogOutWrapper>
           ) : (
-            <CustomLink to="/login">
+            <CustomLink to={ROUTES.login}>
               <EnterLogoWrapper>
                 <EnterLogo fill={COLORS.white} />
               </EnterLogoWrapper>
