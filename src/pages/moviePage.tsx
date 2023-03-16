@@ -11,13 +11,13 @@ import {
   addDataToFirebase,
   initEntityWithFirebaseData,
 } from "../firebase/firebaseFirestore";
+import { calculateRating } from "../utils/calculateRating";
 
 import {
   colors,
   fontSizes,
   spacing,
   firebaseUserMoviesDataCollection,
-  firebaseMoviesCollection,
 } from "../constants/constants";
 
 import { IMovie } from "../types/types";
@@ -42,7 +42,7 @@ export const MoviePage = () => {
     colors.transparent,
   ].fill(colors.white, 0, currUserRating);
 
-  const movie = movies.movies.find((movie) => movie.id === id);
+  const movie = movies.movies.find((movie) => movie.id === id) as IMovie;
 
   const onStarClick = async (e: any) => {
     const number = e.target.dataset.number;
@@ -66,57 +66,20 @@ export const MoviePage = () => {
         updatedUserMoviesData.id
       );
 
-      calculateRating();
+      calculateRating(id as string, movie, saveMovies);
 
       saveUserMoviesData(userMoviesDataFromFirebase);
     }
-  };
-
-  const calculateRating = async () => {
-    let estimateCount = 0;
-    let estimateSum = 0;
-
-    const reratedMovie = await initEntityWithFirebaseData(
-      firebaseMoviesCollection,
-      id
-    );
-
-    const allUserMoviesData = await initEntityWithFirebaseData(
-      firebaseUserMoviesDataCollection
-    );
-
-    for (let userData of allUserMoviesData) {
-      const movieData = Object.entries(userData.rating).find(
-        ([ratedMovieId]) => ratedMovieId === id
-      );
-      if (movieData) {
-        // todo понять, почему он тут пишет ошибку на унарный плюс
-        estimateSum += Number(movieData[1]);
-        estimateCount++;
-      }
-    }
-
-    const rating = estimateSum / estimateCount;
-
-    const updatedMovie: IMovie = {
-      ...reratedMovie,
-      rating,
-    };
-
-    await addDataToFirebase(updatedMovie, firebaseMoviesCollection);
-
-    const movies = await initEntityWithFirebaseData(firebaseMoviesCollection);
-    saveMovies(movies);
   };
 
   // todo понять как сделать так, чтобы данные всегда точно были,
   // чтобы убрать знаки вопроса
   return (
     <Wrapper>
-      <Title>{movie?.title}</Title>
+      <Title>{movie.title}</Title>
       <MovieInfo>
         <PosterRating>
-          <MoviePoster src={movie?.img} alt="movie poster" />
+          <MoviePoster src={movie.img} alt="movie poster" />
           {user.id && (
             <StarBlock onClick={onStarClick}>
               <div data-number="1">
@@ -139,11 +102,11 @@ export const MoviePage = () => {
         </PosterRating>
         <MovieText>
           Rating
-          <Rating>{movie?.rating}</Rating>
+          <Rating>{movie.rating}</Rating>
           Release year
-          <ReleaseYear>{movie?.releaseYear}</ReleaseYear>
+          <ReleaseYear>{movie.releaseYear}</ReleaseYear>
           Description
-          <Description>{movie?.description}</Description>
+          <Description>{movie.description}</Description>
         </MovieText>
       </MovieInfo>
     </Wrapper>

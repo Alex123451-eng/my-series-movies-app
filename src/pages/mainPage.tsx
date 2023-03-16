@@ -12,23 +12,23 @@ import { spacing, firebaseMoviesCollection } from "../constants/constants";
 
 import { IMovie } from "../types/types";
 
-import { createMockData } from "../utils/createMockData";
-import { addDataToFirebase } from "../firebase/firebaseFirestore";
-const mockMoviesData = createMockData();
-console.log("mockMoviesData ", mockMoviesData);
-for (let i = 0; i < mockMoviesData.length; i++) {
-  addDataToFirebase(mockMoviesData[i], firebaseMoviesCollection);
-}
+// import { createMockData } from "../utils/createMockData";
+// import { addDataToFirebase } from "../firebase/firebaseFirestore";
+// const mockMoviesData = createMockData();
+// console.log("mockMoviesData ", mockMoviesData);
+// for (let i = 0; i < mockMoviesData.length; i++) {
+//   addDataToFirebase(mockMoviesData[i], firebaseMoviesCollection);
+// }
 
 export const MainPage = () => {
-  // todo понять как не подгружать фильмы каждый раз на главной странице (если они уже есть в redux)?
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { saveMovies, movies } = useMovies();
 
   console.log("movies ", movies);
 
   const getMovies = async () => {
+    setIsLoading(true);
     const movies = await initEntityWithFirebaseData(firebaseMoviesCollection);
     saveMovies(movies);
     setIsLoading(false);
@@ -36,7 +36,9 @@ export const MainPage = () => {
 
   // todo понять почему он у меня подчеркивает массив зависимостей
   useEffect(() => {
-    getMovies();
+    if (!movies.movies.length) {
+      getMovies();
+    }
   }, []);
 
   return (

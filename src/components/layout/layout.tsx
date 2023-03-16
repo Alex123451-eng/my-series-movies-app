@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 import styled from "styled-components";
 import { signOut } from "firebase/auth";
 
@@ -17,6 +17,7 @@ export const Layout = () => {
   const [isLogOutShown, setIsLogOutShown] = useState(false);
 
   const { saveUser, user } = useUser();
+  const navigate = useNavigate();
 
   const onSearchClick = () => {
     setIsSearchShown(true);
@@ -36,6 +37,8 @@ export const Layout = () => {
       email: "",
       password: "",
     });
+
+    navigate("/");
   };
 
   return (
@@ -45,7 +48,7 @@ export const Layout = () => {
           <Img src="./img/components/layout/site-logo.png" alt="site-logo" />
           <CustomLink to="/">Main</CustomLink>
           <CustomLink to="/history">Movie history</CustomLink>
-          <CustomLink to="/private">Your page</CustomLink>
+          {user.id && <CustomLink to="/private">Your page</CustomLink>}
         </HeaderNavBlock>
         <HeaderSearchBlock>
           <SearchWord onClick={onSearchClick}>Search</SearchWord>
