@@ -90,7 +90,6 @@ export const AuthPage = () => {
         firebaseUserMoviesDataCollection,
         id
       );
-      console.log("userMoviesDataFromFirebase ", userMoviesDataFromFirebase);
       saveUserMoviesData(userMoviesDataFromFirebase);
 
       navigate("/private");

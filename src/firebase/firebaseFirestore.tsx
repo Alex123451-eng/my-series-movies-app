@@ -1,10 +1,4 @@
-import {
-  doc,
-  setDoc,
-  collection,
-  getDocs,
-  deleteDoc,
-} from "firebase/firestore";
+import { doc, setDoc, collection, getDocs } from "firebase/firestore";
 
 import { db } from "./firebaseInit";
 
@@ -18,31 +12,29 @@ export const addDataToFirebase = async (
     if (data.id) {
       await setDoc(doc(db, firebaseCollection, data.id), data);
     }
-  } catch (e) {
-    console.error("Error adding document: ", e);
+  } catch (err) {
+    console.error("Error adding document: ", err);
   }
-};
-
-export const deleteFirebaseData = async (
-  docId: string,
-  firebaseCollection: string
-) => {
-  await deleteDoc(doc(db, firebaseCollection, docId));
 };
 
 export const initEntityWithFirebaseData = async (
   firebaseCollection: string,
   id?: string
 ) => {
-  const initialArray: any[] = [];
-  const querySnapshot = await getDocs(collection(db, firebaseCollection));
-  querySnapshot.forEach((doc) => {
-    initialArray.push(doc.data());
-  });
+  // todo починить any
+  try {
+    const initialArray: any[] = [];
+    const querySnapshot = await getDocs(collection(db, firebaseCollection));
+    querySnapshot.forEach((doc) => {
+      initialArray.push(doc.data());
+    });
 
-  if (id) {
-    return initialArray.find((entity) => entity.id === id);
+    if (id) {
+      return initialArray.find((entity) => entity.id === id);
+    }
+
+    return initialArray;
+  } catch (err) {
+    console.log("Initialization went wrong: ", err);
   }
-
-  return initialArray;
 };

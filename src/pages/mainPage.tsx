@@ -48,14 +48,12 @@ export const MainPage = () => {
         <ContentWrapper>
           {movies.movies.length ? (
             movies.movies.map((movie: IMovie) => {
-              const { id, title, description, img, releaseYear, rating } =
-                movie;
+              const { id, title, img, releaseYear, rating } = movie;
               return (
                 <MovieLink key={id} id={id}>
                   <MovieCard
                     id={id}
                     title={title}
-                    description={description}
                     img={img}
                     releaseYear={releaseYear}
                     rating={rating}

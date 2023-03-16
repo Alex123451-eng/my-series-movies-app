@@ -1,55 +1,69 @@
-import { useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { useMovies } from "../features/movies/useMovies";
-import { useUser } from "../features/user/useUser";
 import { ReactComponent as Star } from "./img/moviePage/star.svg";
 
-import { colors, fontSizes, spacing } from "../constants/constants";
+import { useUserMoviesData } from "../features/userMoviesData/useUserMoviesData";
+import { useUser } from "../features/user/useUser";
+import { useMovies } from "../features/movies/useMovies";
+
+import {
+  addDataToFirebase,
+  initEntityWithFirebaseData,
+} from "../firebase/firebaseFirestore";
+
+import {
+  colors,
+  fontSizes,
+  spacing,
+  firebaseUserMoviesDataCollection,
+} from "../constants/constants";
 
 export const MoviePage = () => {
+  const { saveUserMoviesData, userMoviesData } = useUserMoviesData();
   const { movies } = useMovies();
-  const { id } = useParams();
-  const movie = movies.movies.find((movie) => movie.id === id);
-
-  // console.log("movie ", movie);
-
-  let currUserRating = 0;
-
-  if (movie) {
-    currUserRating = 1;
-    if (currUserRating !== 5 && currUserRating !== 0) {
-      currUserRating++;
-    }
-  }
-
-  const [starsColors, setStarColors] = useState(
-    [
-      colors.transparent,
-      colors.transparent,
-      colors.transparent,
-      colors.transparent,
-      colors.transparent,
-    ].fill(colors.white, 0, currUserRating)
-  );
-
   const { user } = useUser();
 
-  const onStarClick = (e: any) => {
+  const { id } = useParams();
+
+  const movieData = Object.entries(userMoviesData.rating).find(
+    ([ratedMovieId]) => ratedMovieId === id
+  );
+  const currUserRating = movieData?.[1] || 0;
+
+  const starsColors = [
+    colors.transparent,
+    colors.transparent,
+    colors.transparent,
+    colors.transparent,
+    colors.transparent,
+  ].fill(colors.white, 0, currUserRating);
+
+  const movie = movies.movies.find((movie) => movie.id === id);
+
+  const onStarClick = async (e: any) => {
     const number = e.target.dataset.number;
 
     if (number) {
-      const newStarsColors = [...starsColors];
+      const updatedUserMoviesData = {
+        ...userMoviesData,
+        rating: {
+          ...userMoviesData.rating,
+          [id as string]: number,
+        },
+      };
 
-      newStarsColors.fill(colors.transparent);
+      await addDataToFirebase(
+        updatedUserMoviesData,
+        firebaseUserMoviesDataCollection
+      );
 
-      for (let i = 0; i <= number; i++) {
-        newStarsColors[i] = colors.white;
-      }
+      const userMoviesDataFromFirebase = await initEntityWithFirebaseData(
+        firebaseUserMoviesDataCollection,
+        updatedUserMoviesData.id
+      );
 
-      setStarColors(newStarsColors);
-      // saveMovieRating(id);
+      saveUserMoviesData(userMoviesDataFromFirebase);
     }
   };
 
@@ -63,19 +77,19 @@ export const MoviePage = () => {
           <MoviePoster src={movie?.img} alt="movie poster" />
           {user.id && (
             <StarBlock onClick={onStarClick}>
-              <div data-number="0">
+              <div data-number="1">
                 <Star fill={starsColors[0]} stroke={colors.white} />
               </div>
-              <div data-number="1">
+              <div data-number="2">
                 <Star fill={starsColors[1]} stroke={colors.white} />
               </div>
-              <div data-number="2">
+              <div data-number="3">
                 <Star fill={starsColors[2]} stroke={colors.white} />
               </div>
-              <div data-number="3">
+              <div data-number="4">
                 <Star fill={starsColors[3]} stroke={colors.white} />
               </div>
-              <div data-number="4">
+              <div data-number="5">
                 <Star fill={starsColors[4]} stroke={colors.white} />
               </div>
             </StarBlock>

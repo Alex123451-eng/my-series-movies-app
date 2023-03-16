@@ -15,21 +15,17 @@ import {
   firebaseUserMoviesDataCollection,
 } from "../../constants/constants";
 
-import { IUser } from "../../types/types";
-
 // todo вынести это в дженерик или интерфейс?
 // todo понять правильно ли по синтаксису, что типы пропсов перечисляются через ";"?
 export const MovieCard = ({
   id,
   title,
-  description,
   img,
   releaseYear,
   rating,
 }: {
   id: string;
   title: string;
-  description: string;
   img: string;
   releaseYear: number;
   rating: number;
@@ -46,7 +42,7 @@ export const MovieCard = ({
 
     if (isMovieWatched) {
       const watchedMovies = userMoviesData.watchedMovies.filter(
-        (localId) => localId !== id
+        (watchedMovieId) => watchedMovieId !== id
       );
 
       updatedUserMoviesData = {

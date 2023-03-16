@@ -16,8 +16,7 @@ export const Search = ({ setIsSearchShown }: { setIsSearchShown: any }) => {
 
   const { movies } = useMovies();
 
-  // todo починить any
-  const onChangeTitleInput = (e: any) => {
+  const onChangeTitleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setTitleInputValue(value);
   };

@@ -1,3 +1,4 @@
+// todo понять, надо ли писать предопределенные константы ВОТ_ТАК
 export const firebaseMoviesCollection = "movies";
 export const firebaseUsersCollection = "users";
 export const firebaseUserMoviesDataCollection = "users-movies-data";

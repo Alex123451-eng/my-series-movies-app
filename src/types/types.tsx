@@ -17,19 +17,6 @@ export interface IUserMoviesData {
   watchedMovies: string[];
 }
 
-// все для текущего пользователя
-const IUserFilmData = {
-  currUserRating: {
-    id: "currUserRating",
-    // id: "currUserRating",
-    // id: "currUserRating",
-    // id: "currUserRating",
-  }, // id фильма: оценка текущего пользователя
-  watchedMovies: ["id", "id", "id"], // массив айдишних просмотренных фильмов для текущего юзера
-};
-
-// на беке сделать отдельную коллекцию под это
-
 export interface IUser {
   id: string;
   email: string;
