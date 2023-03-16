@@ -9,7 +9,7 @@ import { ReactComponent as EnterLogo } from "./img/enter-logo.svg";
 
 import { useUser } from "../../features/user/useUser";
 
-import { colors, fontSizes, spacing } from "../../constants/constants";
+import { colors, FONT_SIZES, spacing } from "../../constants/constants";
 import { firebaseAuth } from "../../firebase/firebaseAuth";
 
 export const Layout = () => {
@@ -107,7 +107,7 @@ const Img = styled.img`
 const HeaderSearchBlock = styled.div`
   display: flex;
   align-items: center;
-  font-size: ${fontSizes.lg};
+  font-size: ${FONT_SIZES.lg};
 `;
 
 const EnterLogoWrapper = styled.div`
@@ -119,7 +119,7 @@ const SearchWord = styled.div`
   color: ${colors.whiteTransparent};
   padding-right: ${spacing.md};
   text-decoration: none;
-  font-size: ${fontSizes.lg};
+  font-size: ${FONT_SIZES.lg};
 `;
 
 const UserMailLogOutWrapper = styled.div`

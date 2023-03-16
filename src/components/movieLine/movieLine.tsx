@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { MovieLink } from "../movieLink/movieLink";
 
-import { colors, fontSizes, spacing } from "../../constants/constants";
+import { colors, FONT_SIZES, spacing } from "../../constants/constants";
 
 export const MovieLine = ({
   id,
@@ -56,13 +56,13 @@ const TextBlock = styled.div`
 
 const Title = styled.div`
   font-family: "nunito-regular", sans-serif;
-  font-size: ${fontSizes.md};
+  font-size: ${FONT_SIZES.md};
   color: ${colors.black};
 `;
 
 const Info = styled.div`
   display: flex;
-  font-size: ${fontSizes.md};
+  font-size: ${FONT_SIZES.md};
 `;
 
 const Rating = styled.div`

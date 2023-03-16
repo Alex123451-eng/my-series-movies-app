@@ -1,7 +1,7 @@
 import { Link, useMatch } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-import { colors, fontSizes, spacing } from "../../constants/constants";
+import { colors, FONT_SIZES, spacing } from "../../constants/constants";
 
 import { ICustomLink } from "../../types/types";
 
@@ -33,7 +33,7 @@ const StyledLink = styled(Link)<ICustomLink>`
     match ? `${colors.white}` : `${colors.whiteTransparent}`};
   padding-right: ${spacing.md};
   text-decoration: none;
-  font-size: ${fontSizes.lg};
+  font-size: ${FONT_SIZES.lg};
 
   span > &:last-child {
     padding-right: 0;

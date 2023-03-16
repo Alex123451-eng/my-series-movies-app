@@ -25,7 +25,7 @@ export const colors = {
   blackTransparent: "rgba(7, 5, 14, 0.5)",
 };
 
-export const fontSizes = {
+export const FONT_SIZES = {
   sm: "8px",
   md: "16px",
   lg: "24px",

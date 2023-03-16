@@ -10,7 +10,7 @@ import {
 
 import {
   colors,
-  fontSizes,
+  FONT_SIZES,
   spacing,
   firebaseUserMoviesDataCollection,
 } from "../../constants/constants";
@@ -117,7 +117,7 @@ const Check = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: ${fontSizes.lg};
+  font-size: ${FONT_SIZES.lg};
   pointer-events: none;
 `;
 

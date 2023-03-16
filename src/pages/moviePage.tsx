@@ -15,7 +15,7 @@ import { calculateGeneralRating } from "../utils/calculateGeneralRating";
 
 import {
   colors,
-  fontSizes,
+  FONT_SIZES,
   spacing,
   firebaseUserMoviesDataCollection,
 } from "../constants/constants";
@@ -118,7 +118,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: ${fontSizes.xxl};
+  font-size: ${FONT_SIZES.xxl};
   text-align: center;
 `;
 

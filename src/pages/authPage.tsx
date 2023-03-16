@@ -15,7 +15,7 @@ import { initEntityWithFirebaseData } from "../firebase/firebaseFirestore";
 import { firebaseAuth } from "../firebase/firebaseAuth";
 import {
   colors,
-  fontSizes,
+  FONT_SIZES,
   spacing,
   firebaseUsersCollection,
   firebaseUserMoviesDataCollection,
@@ -170,7 +170,7 @@ const InnerWrapper = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: ${fontSizes.lg};
+  font-size: ${FONT_SIZES.lg};
   text-align: center;
 `;
 
@@ -184,7 +184,7 @@ const InputBlock = styled.div`
 const inputStyles = css`
   padding-left: ${spacing.md};
   margin-left: ${spacing.md};
-  font-size: ${fontSizes.md};
+  font-size: ${FONT_SIZES.md};
   border: 1px solid ${colors.gray};
   border-radius: ${spacing.sm};
   height: 35px;

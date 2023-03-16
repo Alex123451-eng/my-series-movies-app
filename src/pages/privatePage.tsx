@@ -6,7 +6,7 @@ import { MovieLink } from "../components/movieLink/movieLink";
 import { useMovies } from "../features/movies/useMovies";
 import { useUserMoviesData } from "../features/userMoviesData/useUserMoviesData";
 
-import { fontSizes, spacing, colors } from "../constants/constants";
+import { FONT_SIZES, spacing, colors } from "../constants/constants";
 
 import { IMovie } from "../types/types";
 
@@ -46,7 +46,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: ${fontSizes.lg};
+  font-size: ${FONT_SIZES.lg};
   font-weight: 800;
   margin-bottom: ${spacing.lg};
   color: ${colors.white};
