@@ -14,7 +14,7 @@ const userMoviesDataSlice = createSlice({
   initialState,
   reducers: {
     setUserMoviesData(state, action) {
-      console.log("action.payload ", action.payload);
+      // console.log("action.payload ", action.payload);
       // todo понять, почему не работает
       // state = action.payload;
       const { id, rating, watchedMovies } = action.payload;

@@ -12,13 +12,13 @@ import { spacing, firebaseMoviesCollection } from "../constants/constants";
 
 import { IMovie } from "../types/types";
 
-// import { createMockData } from "../utils/createMockData";
-// import { addDataToFirebase } from "../firebase/firebaseFirestore";
-// const mockMoviesData = createMockData();
-// console.log("mockMoviesData ", mockMoviesData);
-// for (let i = 0; i < mockMoviesData.length; i++) {
-//   addDataToFirebase(mockMoviesData[i], firebaseMoviesCollection);
-// }
+import { createMockData } from "../utils/createMockData";
+import { addDataToFirebase } from "../firebase/firebaseFirestore";
+const mockMoviesData = createMockData();
+console.log("mockMoviesData ", mockMoviesData);
+for (let i = 0; i < mockMoviesData.length; i++) {
+  addDataToFirebase(mockMoviesData[i], firebaseMoviesCollection);
+}
 
 export const MainPage = () => {
   // todo понять как не подгружать фильмы каждый раз на главной странице (если они уже есть в redux)?

@@ -17,11 +17,14 @@ import {
   fontSizes,
   spacing,
   firebaseUserMoviesDataCollection,
+  firebaseMoviesCollection,
 } from "../constants/constants";
+
+import { IMovie } from "../types/types";
 
 export const MoviePage = () => {
   const { saveUserMoviesData, userMoviesData } = useUserMoviesData();
-  const { movies } = useMovies();
+  const { movies, saveMovies } = useMovies();
   const { user } = useUser();
 
   const { id } = useParams();
@@ -63,8 +66,47 @@ export const MoviePage = () => {
         updatedUserMoviesData.id
       );
 
+      calculateRating();
+
       saveUserMoviesData(userMoviesDataFromFirebase);
     }
+  };
+
+  const calculateRating = async () => {
+    let estimateCount = 0;
+    let estimateSum = 0;
+
+    const reratedMovie = await initEntityWithFirebaseData(
+      firebaseMoviesCollection,
+      id
+    );
+
+    const allUserMoviesData = await initEntityWithFirebaseData(
+      firebaseUserMoviesDataCollection
+    );
+
+    for (let userData of allUserMoviesData) {
+      const movieData = Object.entries(userData.rating).find(
+        ([ratedMovieId]) => ratedMovieId === id
+      );
+      if (movieData) {
+        // todo понять, почему он тут пишет ошибку на унарный плюс
+        estimateSum += Number(movieData[1]);
+        estimateCount++;
+      }
+    }
+
+    const rating = estimateSum / estimateCount;
+
+    const updatedMovie: IMovie = {
+      ...reratedMovie,
+      rating,
+    };
+
+    await addDataToFirebase(updatedMovie, firebaseMoviesCollection);
+
+    const movies = await initEntityWithFirebaseData(firebaseMoviesCollection);
+    saveMovies(movies);
   };
 
   // todo понять как сделать так, чтобы данные всегда точно были,
