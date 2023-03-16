@@ -17,7 +17,7 @@ import { COLORS, FONT_SIZES, SPACING } from "../constants/styles";
 import {
   FIREBASE_USERS_COLLECTION,
   FIREBASE_USER_MOVIES_DATA_COLLECTION,
-} from "../constants/constants";
+} from "../constants/firebase";
 
 export const AuthPage = () => {
   const [email, setEmail] = useState("");

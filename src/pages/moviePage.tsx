@@ -14,7 +14,7 @@ import {
 import { calculateGeneralRating } from "../utils/calculateGeneralRating";
 
 import { COLORS, FONT_SIZES, SPACING } from "../constants/styles";
-import { FIREBASE_USER_MOVIES_DATA_COLLECTION } from "../constants/constants";
+import { FIREBASE_USER_MOVIES_DATA_COLLECTION } from "../constants/firebase";
 
 import { IMovie } from "../types/types";
 

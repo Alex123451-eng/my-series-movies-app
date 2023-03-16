@@ -9,7 +9,7 @@ import {
 import {
   FIREBASE_MOVIES_COLLECTION,
   FIREBASE_USER_MOVIES_DATA_COLLECTION,
-} from "../../constants/constants";
+} from "../../constants/firebase";
 
 import { IMovie } from "../../types/types";
 
