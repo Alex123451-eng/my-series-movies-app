@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import { MovieLine } from "../movieLine/movieLine";
-import { ReactComponent as Cross } from "./img/close-btn.svg";
+import { ReactComponent as Cross } from "../../img/components/search/close-btn.svg";
 
 import { useMovies } from "../../features/movies/useMovies";
 
@@ -67,10 +67,10 @@ export const Search = ({ setIsSearchShown }: { setIsSearchShown: any }) => {
             <NoMatch>No match</NoMatch>
           )}
         </MoviesList>
+        <BtnClose>
+          <Cross fill="white" onClick={closeSearchComponent} />
+        </BtnClose>
       </InnerWrapper>
-      <BtnClose>
-        <Cross fill="white" onClick={closeSearchComponent} />
-      </BtnClose>
     </SearchComponentWrapper>
   );
 };
@@ -88,8 +88,17 @@ const SearchComponentWrapper = styled.div`
 `;
 
 const InnerWrapper = styled.div`
+  position: relative;
   width: 40%;
   margin: ${SPACING.xxxl} auto 0;
+
+  @media (max-width: 1024px) {
+    width: 70%;
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 `;
 
 const Title = styled.div`
@@ -113,8 +122,8 @@ const SearchInput = styled.input`
 const BtnClose = styled.div`
   display: flex;
   position: absolute;
-  top: ${SPACING.xl};
-  right: ${SPACING.xl};
+  top: 6px;
+  right: 0;
   width: 30px;
   height: 30px;
   cursor: pointer;

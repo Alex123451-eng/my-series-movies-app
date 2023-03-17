@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { ReactComponent as Star } from "./img/moviePage/star.svg";
+import { ReactComponent as Star } from "../img/pages/moviePage/star.svg";
 
 import { useUserMoviesData } from "../features/userMoviesData/useUserMoviesData";
 import { useUser } from "../features/user/useUser";
@@ -123,6 +123,11 @@ const MoviePoster = styled.img`
 
 const PosterRating = styled.div`
   position: relative;
+
+  @media (max-width: 1200px) {
+    align-self: center;
+    margin-bottom: ${SPACING.xl};
+  }
 `;
 
 const StarBlock = styled.div`
@@ -143,6 +148,10 @@ const StarBlock = styled.div`
 
 const MovieInfo = styled.div`
   display: flex;
+
+  @media (max-width: 1200px) {
+    flex-direction: column;
+  }
 `;
 
 const MovieText = styled.div`
@@ -150,6 +159,10 @@ const MovieText = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-left: ${SPACING.lg};
+
+  @media (max-width: 1200px) {
+    margin-left: 0;
+  }
 `;
 
 const Rating = styled.div`

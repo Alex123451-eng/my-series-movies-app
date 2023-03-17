@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { signOut } from "firebase/auth";
 
 import { CustomLink } from "../customLink/customLink";
 import { Search } from "../search/search";
+import { MobileMenu } from "../mobileMenu/mobileMenu";
 import { ReactComponent as EnterLogo } from "./img/enter-logo.svg";
 
 import { useUser } from "../../features/user/useUser";
@@ -16,6 +17,7 @@ import { ROUTES } from "../../constants/routes";
 export const Layout = () => {
   const [isSearchShown, setIsSearchShown] = useState(false);
   const [isLogOutShown, setIsLogOutShown] = useState(false);
+  const [isMobileMenuShown, setIsMobileMenuShown] = useState(false);
 
   const { saveUser, user } = useUser();
   const navigate = useNavigate();
@@ -42,6 +44,10 @@ export const Layout = () => {
     navigate(ROUTES.main);
   };
 
+  const onBurderClick = () => {
+    setIsMobileMenuShown(!isMobileMenuShown);
+  };
+
   return (
     <BaseWrapper>
       <Header>
@@ -53,6 +59,7 @@ export const Layout = () => {
         </HeaderNavBlock>
         <HeaderSearchBlock>
           <SearchWord onClick={onSearchClick}>Search</SearchWord>
+          <Burger onClick={onBurderClick} />
           {user.id ? (
             <UserMailLogOutWrapper>
               {isLogOutShown && (
@@ -71,6 +78,16 @@ export const Layout = () => {
           )}
         </HeaderSearchBlock>
       </Header>
+      {isMobileMenuShown && (
+        <MobileHeader>
+          <MobileMenu
+            setIsMobileMenuShown={setIsMobileMenuShown}
+            onUserEmailClick={onUserEmailClick}
+            isLogOutShown={isLogOutShown}
+            onLogoutBtnClick={onLogoutBtnClick}
+          />
+        </MobileHeader>
+      )}
       <main>
         <Outlet />
         {/* todo понять нормально ли дочернему компоненту передавать функцию, которая стейт меняет */}
@@ -82,20 +99,38 @@ export const Layout = () => {
   );
 };
 
+// border: 1px solid red;
 const BaseWrapper = styled.div`
   width: 70%;
   margin: ${SPACING.xxxl} auto 0;
   font-family: "nunito-regular", sans-serif;
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 `;
 
+// border: 1px solid green;
 const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: ${SPACING.xxxl};
+
+  @media (max-width: 1200px) {
+    & a,
+    span {
+      display: none;
+    }
+  }
 `;
 
-const HeaderNavBlock = styled.span`
+const MobileHeader = styled.header`
+  position: relative;
+  z-index: 2;
+`;
+
+const HeaderNavBlock = styled.div`
   display: flex;
   align-items: center;
 `;
@@ -118,16 +153,46 @@ const EnterLogoWrapper = styled.div`
 const SearchWord = styled.div`
   cursor: pointer;
   color: ${COLORS.whiteTransparent};
-  padding-right: ${SPACING.md};
+  margin-right: ${SPACING.md};
   text-decoration: none;
   font-size: ${FONT_SIZES.lg};
+`;
+
+const burderPseudoStyles = css`
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 2px;
+  background: ${COLORS.white};
+`;
+
+const Burger = styled.div`
+  display: none;
+  position: relative;
+  width: 25px;
+  height: 2px;
+  background: ${COLORS.white};
+
+  &::before {
+    ${burderPseudoStyles}
+    top: 7px;
+  }
+
+  &::after {
+    ${burderPseudoStyles}
+    bottom: 7px;
+  }
+
+  @media (max-width: 1200px) {
+    display: block;
+  }
 `;
 
 const UserMailLogOutWrapper = styled.div`
   position: relative;
 `;
 
-const UserEmail = styled.div`
+const UserEmail = styled.span`
   cursor: pointer;
   color: ${COLORS.white};
 `;

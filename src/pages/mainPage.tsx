@@ -78,4 +78,8 @@ const ContentWrapper = styled.div`
   grid-template-columns: repeat(auto-fit, 153px);
   grid-gap: ${SPACING.lg};
   justify-content: space-between;
+
+  @media (max-width: 768px) {
+    justify-content: space-evenly;
+  }
 `;
