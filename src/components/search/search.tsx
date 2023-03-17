@@ -7,6 +7,7 @@ import { ReactComponent as Cross } from "../../img/components/search/close-btn.s
 import { useMovies } from "../../features/movies/useMovies";
 
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
+import { MEDIA } from "../../constants/media";
 
 import { IMovie } from "../../types/types";
 
@@ -92,11 +93,11 @@ const InnerWrapper = styled.div`
   width: 40%;
   margin: ${SPACING.xxxl} auto 0;
 
-  @media (max-width: 1024px) {
+  @media ${MEDIA.tablet} {
     width: 70%;
   }
 
-  @media (max-width: 768px) {
+  @media ${MEDIA.mobile} {
     width: 90%;
   }
 `;

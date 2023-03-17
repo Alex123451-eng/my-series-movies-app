@@ -11,6 +11,7 @@ import { initEntityWithFirebaseData } from "../firebase/firebaseFirestore";
 
 import { COLORS, SPACING } from "../constants/styles";
 import { FIREBASE_MOVIES_COLLECTION } from "../constants/firebase";
+import { MEDIA } from "../constants/media";
 
 import { IMovie } from "../types/types";
 
@@ -77,7 +78,7 @@ const ContentWrapper = styled.div`
   grid-gap: ${SPACING.lg};
   justify-content: space-between;
 
-  @media (max-width: 768px) {
+  @media ${MEDIA.mobile} {
     justify-content: space-evenly;
   }
 `;

@@ -15,6 +15,7 @@ import { calculateGeneralRating } from "../utils/calculateGeneralRating";
 
 import { COLORS, FONT_SIZES, SPACING } from "../constants/styles";
 import { FIREBASE_USER_MOVIES_DATA_COLLECTION } from "../constants/firebase";
+import { MEDIA } from "../constants/media";
 
 import { IMovie } from "../types/types";
 
@@ -124,7 +125,7 @@ const MoviePoster = styled.img`
 const PosterRating = styled.div`
   position: relative;
 
-  @media (max-width: 1200px) {
+  @media ${MEDIA.laptop} {
     align-self: center;
     margin-bottom: ${SPACING.xl};
   }
@@ -149,7 +150,7 @@ const StarBlock = styled.div`
 const MovieInfo = styled.div`
   display: flex;
 
-  @media (max-width: 1200px) {
+  @media ${MEDIA.laptop} {
     flex-direction: column;
   }
 `;
@@ -160,7 +161,7 @@ const MovieText = styled.div`
   justify-content: center;
   margin-left: ${SPACING.lg};
 
-  @media (max-width: 1200px) {
+  @media ${MEDIA.laptop} {
     margin-left: 0;
   }
 `;

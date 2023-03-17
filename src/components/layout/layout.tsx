@@ -6,13 +6,14 @@ import { signOut } from "firebase/auth";
 import { CustomLink } from "../customLink/customLink";
 import { Search } from "../search/search";
 import { MobileMenu } from "../mobileMenu/mobileMenu";
-import { ReactComponent as EnterLogo } from "./img/enter-logo.svg";
+import { ReactComponent as EnterLogo } from "../../img/components/layout/enter-logo.svg";
 
 import { useUser } from "../../features/user/useUser";
 
 import { firebaseAuth } from "../../firebase/firebaseAuth";
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 import { ROUTES } from "../../constants/routes";
+import { MEDIA } from "../../constants/media";
 
 export const Layout = () => {
   const [isSearchShown, setIsSearchShown] = useState(false);
@@ -105,7 +106,7 @@ const BaseWrapper = styled.div`
   margin: ${SPACING.xxxl} auto 0;
   font-family: "nunito-regular", sans-serif;
 
-  @media (max-width: 768px) {
+  @media ${MEDIA.mobile} {
     width: 90%;
   }
 `;
@@ -117,7 +118,7 @@ const Header = styled.header`
   justify-content: space-between;
   margin-bottom: ${SPACING.xxxl};
 
-  @media (max-width: 1200px) {
+  @media ${MEDIA.laptop} {
     & a,
     span {
       display: none;
@@ -183,7 +184,7 @@ const Burger = styled.div`
     bottom: 7px;
   }
 
-  @media (max-width: 1200px) {
+  @media ${MEDIA.laptop} {
     display: block;
   }
 `;
