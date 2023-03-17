@@ -1,4 +1,7 @@
 export const COLORS = {
+  cyan: "rgba(20, 208, 228, 1)",
+  bluePurple: "rgba(71, 94, 221, 1)",
+  pink: "rgba(174, 32, 253, 1)",
   transparent: "transparent",
   white: "rgba(255, 255, 255, 1)",
   whiteActive: "rgba(235, 235, 235, 1)",

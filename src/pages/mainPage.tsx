@@ -3,12 +3,13 @@ import styled from "styled-components";
 
 import { MovieCard } from "../components/movieCard/movieCard";
 import { MovieLink } from "../components/movieLink/movieLink";
+import { Loader } from "../components/loader/loader";
 
 import { useMovies } from "../features/movies/useMovies";
 
 import { initEntityWithFirebaseData } from "../firebase/firebaseFirestore";
 
-import { SPACING } from "../constants/styles";
+import { COLORS, SPACING } from "../constants/styles";
 import { FIREBASE_MOVIES_COLLECTION } from "../constants/firebase";
 
 import { IMovie } from "../types/types";
@@ -25,8 +26,6 @@ export const MainPage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { saveMovies, movies } = useMovies();
-
-  console.log("movies ", movies);
 
   const getMovies = async () => {
     setIsLoading(true);
@@ -45,8 +44,7 @@ export const MainPage = () => {
   return (
     <>
       {isLoading ? (
-        // todo поменять потом на нормальный загрузчик
-        <div style={{ color: "white" }}>The data is still loading...</div>
+        <Loader />
       ) : (
         <ContentWrapper>
           {movies.movies.length ? (
@@ -65,7 +63,7 @@ export const MainPage = () => {
               );
             })
           ) : (
-            <div style={{ color: "white" }}>No movies...</div>
+            <NoMovies>No movies...</NoMovies>
           )}
         </ContentWrapper>
       )}
@@ -82,4 +80,8 @@ const ContentWrapper = styled.div`
   @media (max-width: 768px) {
     justify-content: space-evenly;
   }
+`;
+
+const NoMovies = styled.div`
+  color: ${COLORS.white};
 `;
