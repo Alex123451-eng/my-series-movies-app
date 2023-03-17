@@ -10,17 +10,15 @@ export const MovieLine = ({
   img,
   releaseYear,
   rating,
-  onClick,
 }: {
   id: string;
   title: string;
   img: string;
   releaseYear: number;
   rating: number;
-  onClick: () => void;
 }) => {
   return (
-    <MovieLink id={id} onClick={onClick}>
+    <MovieLink id={id}>
       <Wrapper>
         <img src={img} alt="movie preview" />
         <TextBlock>

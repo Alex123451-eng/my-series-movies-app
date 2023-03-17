@@ -19,6 +19,7 @@ import {
   FIREBASE_USERS_COLLECTION,
   FIREBASE_USER_MOVIES_DATA_COLLECTION,
 } from "../constants/firebase";
+import { MEDIA } from "../constants/media";
 
 export const AuthPage = () => {
   const [email, setEmail] = useState("");
@@ -155,10 +156,8 @@ const ImgWrapper = styled.div`
 
 const Wrapper = styled.div`
   padding: ${SPACING.md} 0;
-  width: 40%;
-  min-width: 540px;
+  max-width: 540px;
   margin: 0 auto;
-  height: 465px;
   background: ${COLORS.white};
   border-radius: ${SPACING.sm};
 `;
@@ -178,6 +177,10 @@ const InputBlock = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media ${MEDIA.mobile} {
+    flex-direction: column;
+  }
 `;
 
 const inputStyles = css`
@@ -191,6 +194,10 @@ const inputStyles = css`
   &:focus {
     outline: none;
   }
+
+  @media ${MEDIA.mobile} {
+    margin-left: 0;
+  }
 `;
 
 const EmailInput = styled.input`
@@ -203,6 +210,12 @@ const PasswordInput = styled.input`
 const ButtonsBlock = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media ${MEDIA.mobile} {
+    align-items: center;
+    flex-direction: column;
+    height: 88px;
+  }
 `;
 
 const Button = styled.button`

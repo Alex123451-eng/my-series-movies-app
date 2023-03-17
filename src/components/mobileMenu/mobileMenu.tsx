@@ -51,13 +51,13 @@ export const MobileMenu = ({
             <UserEmail onClick={onUserEmailClick}>{user.email}</UserEmail>
           </UserMailLogOutWrapper>
         ) : (
-          <CustomLink to={ROUTES.login}>
-            <EnterLogoWrapper data-close={true}>Login</EnterLogoWrapper>
+          <CustomLink data-close={true} to={ROUTES.login}>
+            Login
           </CustomLink>
         )}
       </Nav>
-      <BtnClose>
-        <Cross data-close={true} fill="white" />
+      <BtnClose data-close={true}>
+        <Cross fill="white" />
       </BtnClose>
     </Wrapper>
   );
@@ -73,7 +73,6 @@ const Wrapper = styled.div`
   font-size: ${FONT_SIZES.lg};
 `;
 
-// border: 1px solid blue;
 const Nav = styled.nav`
   display: flex;
   flex-direction: column;
@@ -92,6 +91,10 @@ const BtnClose = styled.div`
   width: 30px;
   height: 30px;
   cursor: pointer;
+
+  svg {
+    pointer-events: none;
+  }
 `;
 
 const UserMailLogOutWrapper = styled.div`
@@ -121,8 +124,4 @@ const Button = styled.button`
   &:hover {
     background: ${COLORS.whiteActive};
   }
-`;
-
-const EnterLogoWrapper = styled.div`
-  color: white;
 `;

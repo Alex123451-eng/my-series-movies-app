@@ -115,6 +115,10 @@ const Wrapper = styled.div`
 const Title = styled.div`
   font-size: ${FONT_SIZES.xxl};
   text-align: center;
+
+  @media ${MEDIA.laptop} {
+    margin-bottom: ${SPACING.lg};
+  }
 `;
 
 const MoviePoster = styled.img`

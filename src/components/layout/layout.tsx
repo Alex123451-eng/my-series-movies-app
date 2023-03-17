@@ -60,7 +60,9 @@ export const Layout = () => {
         </HeaderNavBlock>
         <HeaderSearchBlock>
           <SearchWord onClick={onSearchClick}>Search</SearchWord>
-          <Burger onClick={onBurderClick} />
+          <BurgerWrapper onClick={onBurderClick}>
+            <Burger />
+          </BurgerWrapper>
           {user.id ? (
             <UserMailLogOutWrapper>
               {isLogOutShown && (
@@ -167,9 +169,16 @@ const burderPseudoStyles = css`
   background: ${COLORS.white};
 `;
 
+const BurgerWrapper = styled.div`
+  cursor: pointer;
+  height: 20px;
+`;
+
 const Burger = styled.div`
   display: none;
   position: relative;
+  top: 50%;
+  transform: translateY(-50%);
   width: 25px;
   height: 2px;
   background: ${COLORS.white};
@@ -202,6 +211,10 @@ const LogOut = styled.div`
   position: absolute;
   top: 35px;
   width: 100%;
+
+  @media ${MEDIA.laptop} {
+    display: none;
+  }
 `;
 
 const Button = styled.button`

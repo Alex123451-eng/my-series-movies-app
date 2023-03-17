@@ -48,28 +48,27 @@ export const Search = ({ setIsSearchShown }: { setIsSearchShown: any }) => {
         />
         <MoviesList>
           {filteredMovies.length ? (
-            // todo починить этот onClick, он уходит до самого низа, не знаю
-            // как вызывать его сразу тут
             filteredMovies.map((movie: IMovie) => {
               const { id, title, img, releaseYear, rating } = movie;
               return (
-                <MovieLine
-                  key={id}
-                  id={id}
-                  title={title}
-                  img={img}
-                  releaseYear={releaseYear}
-                  rating={rating}
-                  onClick={closeSearchComponent}
-                />
+                <div onClick={closeSearchComponent}>
+                  <MovieLine
+                    key={id}
+                    id={id}
+                    title={title}
+                    img={img}
+                    releaseYear={releaseYear}
+                    rating={rating}
+                  />
+                </div>
               );
             })
           ) : (
             <NoMatch>No match</NoMatch>
           )}
         </MoviesList>
-        <BtnClose>
-          <Cross fill="white" onClick={closeSearchComponent} />
+        <BtnClose onClick={closeSearchComponent}>
+          <Cross fill="white" />
         </BtnClose>
       </InnerWrapper>
     </SearchComponentWrapper>
@@ -128,6 +127,10 @@ const BtnClose = styled.div`
   width: 30px;
   height: 30px;
   cursor: pointer;
+
+  svg {
+    pointer-events: none;
+  }
 `;
 
 const MoviesList = styled.div`
