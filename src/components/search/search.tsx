@@ -6,6 +6,8 @@ import { ReactComponent as Cross } from "../../img/components/search/close-btn.s
 
 import { useMovies } from "../../features/movies/useMovies";
 
+import { showBodyScroll } from "../../utils/bodyScroll";
+
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 import { MEDIA } from "../../constants/media";
 
@@ -25,6 +27,7 @@ export const Search = ({ setIsSearchShown }: { setIsSearchShown: any }) => {
   // todo понять, ничего, что я в другом стиле немного назвал метод, обычно я называю
   // штуки с префикса on...
   const closeSearchComponent = () => {
+    showBodyScroll();
     setIsSearchShown(false);
   };
 

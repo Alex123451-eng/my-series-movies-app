@@ -5,6 +5,8 @@ import { ReactComponent as Cross } from "../../img/components/mobileMenu/close-b
 
 import { useUser } from "../../features/user/useUser";
 
+import { showBodyScroll } from "../../utils/bodyScroll";
+
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 import { ROUTES } from "../../constants/routes";
 
@@ -23,6 +25,7 @@ export const MobileMenu = ({
 
   const closeMobileMenu = (e: any) => {
     if (e.target.dataset.close) {
+      showBodyScroll();
       setIsMobileMenuShown(false);
     }
   };

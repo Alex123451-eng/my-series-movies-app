@@ -10,6 +10,8 @@ import { ReactComponent as EnterLogo } from "../../img/components/layout/enter-l
 
 import { useUser } from "../../features/user/useUser";
 
+import { hideBodyScroll } from "../../utils/bodyScroll";
+
 import { firebaseAuth } from "../../firebase/firebaseAuth";
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 import { ROUTES } from "../../constants/routes";
@@ -24,6 +26,7 @@ export const Layout = () => {
   const navigate = useNavigate();
 
   const onSearchClick = () => {
+    hideBodyScroll();
     setIsSearchShown(true);
   };
 
@@ -46,6 +49,7 @@ export const Layout = () => {
   };
 
   const onBurderClick = () => {
+    hideBodyScroll();
     setIsMobileMenuShown(!isMobileMenuShown);
   };
 
