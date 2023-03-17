@@ -6,11 +6,14 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
+import { ToastContainer } from "../toastify/toastify";
+
 import { useUser } from "../features/user/useUser";
 import { useUserMoviesData } from "../features/userMoviesData/useUserMoviesData";
 
 import { addDataToFirebase } from "../firebase/firebaseFirestore";
 import { initEntityWithFirebaseData } from "../firebase/firebaseFirestore";
+import { notifyError } from "../toastify/toastify";
 
 import { firebaseAuth } from "../firebase/firebaseAuth";
 import { COLORS, FONT_SIZES, SPACING } from "../constants/styles";
@@ -93,8 +96,9 @@ export const AuthPage = () => {
       saveUserMoviesData(userMoviesDataFromFirebase);
 
       navigate(ROUTES.private);
-    } catch (err) {
-      alert(err);
+      // todo починить any
+    } catch (err: any) {
+      notifyError(`${err.name}: ${err.code}`);
     }
   };
 
@@ -144,6 +148,7 @@ export const AuthPage = () => {
           />
         </ImgWrapper>
       </InnerWrapper>
+      <ToastContainer />
     </Wrapper>
   );
 };
