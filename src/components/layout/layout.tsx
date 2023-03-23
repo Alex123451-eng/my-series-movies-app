@@ -97,8 +97,6 @@ export const Layout = () => {
       )}
       <main>
         <Outlet />
-        {/* todo понять нормально ли дочернему компоненту передавать функцию, которая стейт меняет */}
-        {/* обычно вроде передают хэндлеры всякие */}
         {isSearchShown && <Search setIsSearchShown={setIsSearchShown} />}
       </main>
       <footer>2023</footer>

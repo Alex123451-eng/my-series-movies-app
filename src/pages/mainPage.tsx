@@ -35,7 +35,6 @@ export const MainPage = () => {
     setIsLoading(false);
   };
 
-  // todo понять почему он у меня подчеркивает массив зависимостей
   useEffect(() => {
     if (!movies.movies.length) {
       getMovies();

@@ -55,7 +55,6 @@ export const AuthPage = () => {
 
         id = userCredential.user.uid;
 
-        // todo понять почему у меня на поле isAuth не ругается ts
         const newUser = {
           id,
           email,

@@ -10,8 +10,6 @@ import {
 
 import { IMovie } from "../types/types";
 
-// todo понять, ничего что я написал тут movies (внизу тоже movies написано)
-// не будет в какой-то момент конфликта?
 export const calculateGeneralRating = async (
   id: string,
   movie: IMovie,
@@ -29,7 +27,6 @@ export const calculateGeneralRating = async (
       ([ratedMovieId]) => ratedMovieId === id
     );
     if (movieData) {
-      // todo понять, почему он тут пишет ошибку на унарный плюс
       estimateSum += Number(movieData[1]);
       estimateCount++;
     }

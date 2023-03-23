@@ -24,8 +24,6 @@ export const Search = ({ setIsSearchShown }: { setIsSearchShown: any }) => {
     setTitleInputValue(value);
   };
 
-  // todo понять, ничего, что я в другом стиле немного назвал метод, обычно я называю
-  // штуки с префикса on...
   const closeSearchComponent = () => {
     showBodyScroll();
     setIsSearchShown(false);

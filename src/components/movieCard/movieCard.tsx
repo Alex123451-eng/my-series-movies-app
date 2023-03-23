@@ -11,8 +11,6 @@ import {
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 import { FIREBASE_USER_MOVIES_DATA_COLLECTION } from "../../constants/firebase";
 
-// todo вынести это в дженерик или интерфейс?
-// todo понять правильно ли по синтаксису, что типы пропсов перечисляются через ";"?
 export const MovieCard = ({
   id,
   title,
