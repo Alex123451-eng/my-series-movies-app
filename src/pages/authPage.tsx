@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 import {
@@ -28,6 +28,10 @@ export const AuthPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const textInput: any = useRef();
+
+  textInput.current?.focus();
+
   const navigate = useNavigate();
   const { saveUser } = useUser();
   const { saveUserMoviesData } = useUserMoviesData();
@@ -38,6 +42,10 @@ export const AuthPage = () => {
       ? setEmail(target.value)
       : setPassword(target.value);
   };
+
+  useEffect(() => {
+    textInput.current?.focus();
+  }, []);
 
   // todo починить any
   const handleAuth = async (e: any) => {
@@ -118,6 +126,7 @@ export const AuthPage = () => {
             name="email"
             value={email}
             onChange={onChangeInput}
+            // ref={textInput}
           />
         </InputBlock>
         <InputBlock>
@@ -129,6 +138,7 @@ export const AuthPage = () => {
             name="password"
             value={password}
             onChange={onChangeInput}
+            ref={textInput}
           />
         </InputBlock>
 

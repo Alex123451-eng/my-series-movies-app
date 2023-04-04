@@ -18,11 +18,7 @@ export const CustomLink = ({
     end: to.length === 1,
   });
   return (
-    <StyledLink
-      to={to}
-      match={match}
-      {...props} // не очень понимаю как это должно работать
-    >
+    <StyledLink to={to} match={match} {...props}>
       {children}
     </StyledLink>
   );
