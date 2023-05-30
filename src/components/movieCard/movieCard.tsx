@@ -11,18 +11,14 @@ import {
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 import { FIREBASE_USER_MOVIES_DATA_COLLECTION } from "../../constants/firebase";
 
-export const MovieCard = ({
+import { IMovie } from "../../types/types";
+
+export const MovieCard: React.FC<IMovie> = ({
   id,
   title,
   img,
   releaseYear,
   rating,
-}: {
-  id: string;
-  title: string;
-  img: string;
-  releaseYear: number;
-  rating: number;
 }) => {
   const { user } = useUser();
   const { saveUserMoviesData, userMoviesData } = useUserMoviesData();

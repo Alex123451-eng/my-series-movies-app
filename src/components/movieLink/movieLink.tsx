@@ -1,15 +1,9 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-// todo починить any
-export const MovieLink = ({
-  children,
-  id,
-}: {
-  // todo починить any
-  children: any;
-  id: string;
-}) => {
+import { IMovieLink } from "../../types/types";
+
+export const MovieLink: React.FC<IMovieLink> = ({ children, id }) => {
   return <StyledMovieLink to={`/${id}`}>{children}</StyledMovieLink>;
 };
 

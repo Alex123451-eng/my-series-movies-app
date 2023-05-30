@@ -10,16 +10,13 @@ import { showBodyScroll } from "../../utils/bodyScroll";
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 import { ROUTES } from "../../constants/routes";
 
-export const MobileMenu = ({
+import { IMobileMenu } from "../../types/types";
+
+export const MobileMenu: React.FC<IMobileMenu> = ({
   setIsMobileMenuShown,
   onUserEmailClick,
   isLogOutShown,
   onLogoutBtnClick,
-}: {
-  setIsMobileMenuShown: any;
-  onUserEmailClick: any;
-  isLogOutShown: any;
-  onLogoutBtnClick: any;
 }) => {
   const { user } = useUser();
 

@@ -3,15 +3,12 @@ import styled from "styled-components";
 
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 
-import { ICustomLink } from "../../types/types";
+import { IStyledCustomLink, ICustomLink } from "../../types/types";
 
-export const CustomLink = ({
+export const CustomLink: React.FC<ICustomLink> = ({
   children,
   to,
   ...props
-}: {
-  children: any;
-  to: string;
 }) => {
   const match = useMatch({
     path: to,
@@ -24,7 +21,7 @@ export const CustomLink = ({
   );
 };
 
-const StyledLink = styled(Link)<ICustomLink>`
+const StyledLink = styled(Link)<IStyledCustomLink>`
   color: ${({ match }) =>
     match ? `${COLORS.white}` : `${COLORS.whiteTransparent}`};
   padding-right: ${SPACING.md};

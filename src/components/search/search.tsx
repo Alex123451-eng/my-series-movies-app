@@ -11,10 +11,9 @@ import { showBodyScroll } from "../../utils/bodyScroll";
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 import { MEDIA } from "../../constants/media";
 
-import { IMovie } from "../../types/types";
+import { IMovie, ISearch } from "../../types/types";
 
-// todo починить any
-export const Search = ({ setIsSearchShown }: { setIsSearchShown: any }) => {
+export const Search: React.FC<ISearch> = ({ setIsSearchShown }) => {
   const [titleInputValue, setTitleInputValue] = useState("");
 
   const { movies } = useMovies();

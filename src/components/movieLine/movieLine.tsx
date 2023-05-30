@@ -4,18 +4,14 @@ import { MovieLink } from "../movieLink/movieLink";
 
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 
-export const MovieLine = ({
+import { IMovie } from "../../types/types";
+
+export const MovieLine: React.FC<IMovie> = ({
   id,
   title,
   img,
   releaseYear,
   rating,
-}: {
-  id: string;
-  title: string;
-  img: string;
-  releaseYear: number;
-  rating: number;
 }) => {
   return (
     <MovieLink id={id}>
