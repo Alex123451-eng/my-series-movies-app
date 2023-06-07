@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import styled, { css } from "styled-components";
 import { signOut } from "firebase/auth";
@@ -9,13 +9,24 @@ import { MobileMenu } from "../mobileMenu/mobileMenu";
 import { ReactComponent as EnterLogo } from "../../img/components/layout/enter-logo.svg";
 
 import { useUser } from "../../features/user/useUser";
+import { useTheme } from "../../features/theme/useTheme";
 
-import { hideBodyScroll } from "../../utils/bodyScroll";
+import {
+  hideBodyScroll,
+  changeBodyColorToBlack,
+  changeBodyColorToWhite,
+} from "../../utils/bodyScroll";
 
 import { firebaseAuth } from "../../firebase/firebaseAuth";
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 import { ROUTES } from "../../constants/routes";
 import { MEDIA } from "../../constants/media";
+
+import {
+  IStyledUserEmail,
+  IStyledSearchWord,
+  IStyledThemeBtnWrapper,
+} from "../../types/types";
 
 export const Layout = () => {
   const [isSearchShown, setIsSearchShown] = useState(false);
@@ -23,6 +34,9 @@ export const Layout = () => {
   const [isMobileMenuShown, setIsMobileMenuShown] = useState(false);
 
   const { saveUser, user } = useUser();
+  const { saveTheme, theme } = useTheme();
+
+  console.log("theme", theme);
   const navigate = useNavigate();
 
   const onSearchClick = () => {
@@ -53,17 +67,35 @@ export const Layout = () => {
     setIsMobileMenuShown(!isMobileMenuShown);
   };
 
+  const toggleTheme = () => {
+    saveTheme();
+  };
+
+  useEffect(() => {
+    if (theme.isDarkTheme) changeBodyColorToBlack();
+    else changeBodyColorToWhite();
+  }, [theme.isDarkTheme]);
+
   return (
     <BaseWrapper>
       <Header>
         <HeaderNavBlock>
-          <Img src="./img/components/layout/site-logo.png" alt="site-logo" />
+          <Img
+            src={`${
+              theme.isDarkTheme
+                ? "./img/components/layout/site-logo.png"
+                : "./img/components/layout/site-logo-white-theme.png"
+            }`}
+            alt="site-logo"
+          />
           <CustomLink to={ROUTES.main}>Main</CustomLink>
           <CustomLink to={ROUTES.history}>Movie history</CustomLink>
           {user.id && <CustomLink to={ROUTES.private}>Your page</CustomLink>}
         </HeaderNavBlock>
         <HeaderSearchBlock>
-          <SearchWord onClick={onSearchClick}>Search</SearchWord>
+          <SearchWord isDarkTheme={theme.isDarkTheme} onClick={onSearchClick}>
+            Search
+          </SearchWord>
           <BurgerWrapper onClick={onBurderClick}>
             <Burger />
           </BurgerWrapper>
@@ -74,7 +106,12 @@ export const Layout = () => {
                   <Button onClick={onLogoutBtnClick}>Log out</Button>
                 </LogOut>
               )}
-              <UserEmail onClick={onUserEmailClick}>{user.email}</UserEmail>
+              <UserEmail
+                isDarkTheme={theme.isDarkTheme}
+                onClick={onUserEmailClick}
+              >
+                {user.email}
+              </UserEmail>
             </UserMailLogOutWrapper>
           ) : (
             <CustomLink to={ROUTES.login}>
@@ -83,6 +120,13 @@ export const Layout = () => {
               </EnterLogoWrapper>
             </CustomLink>
           )}
+          <ThemeBtnWrapper isDarkTheme={theme.isDarkTheme}>
+            <img
+              src={`./img/components/btn-theme/dark-theme.svg`}
+              alt="Swtich theme"
+              onClick={toggleTheme}
+            />
+          </ThemeBtnWrapper>
         </HeaderSearchBlock>
       </Header>
       {isMobileMenuShown && (
@@ -99,7 +143,7 @@ export const Layout = () => {
         <Outlet />
         {isSearchShown && <Search setIsSearchShown={setIsSearchShown} />}
       </main>
-      <footer>2023</footer>
+      {/* <footer>2023</footer> */}
     </BaseWrapper>
   );
 };
@@ -155,9 +199,10 @@ const EnterLogoWrapper = styled.div`
   margin-bottom: -${SPACING.sm};
 `;
 
-const SearchWord = styled.div`
+const SearchWord = styled.div<IStyledSearchWord>`
   cursor: pointer;
-  color: ${COLORS.whiteTransparent};
+  color: ${({ isDarkTheme }) =>
+    isDarkTheme ? COLORS.whiteTransparent : COLORS.blackTransparent};
   margin-right: ${SPACING.md};
   text-decoration: none;
   font-size: ${FONT_SIZES.lg};
@@ -204,9 +249,9 @@ const UserMailLogOutWrapper = styled.div`
   position: relative;
 `;
 
-const UserEmail = styled.span`
+const UserEmail = styled.span<IStyledUserEmail>`
   cursor: pointer;
-  color: ${COLORS.white};
+  color: ${({ isDarkTheme }) => (isDarkTheme ? COLORS.white : COLORS.black)};
 `;
 
 const LogOut = styled.div`
@@ -230,5 +275,18 @@ const Button = styled.button`
 
   &:hover {
     background: ${COLORS.whiteActive};
+  }
+`;
+
+const ThemeBtnWrapper = styled.div<IStyledThemeBtnWrapper>`
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  margin-left: ${SPACING.md};
+
+  img {
+    width: 100%;
+    height: 100%;
+    filter: ${({ isDarkTheme }) => (isDarkTheme ? "invert(1)" : "none")};
   }
 `;

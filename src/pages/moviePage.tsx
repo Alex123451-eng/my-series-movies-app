@@ -6,6 +6,7 @@ import { ReactComponent as Star } from "../img/pages/moviePage/star.svg";
 import { useUserMoviesData } from "../features/userMoviesData/useUserMoviesData";
 import { useUser } from "../features/user/useUser";
 import { useMovies } from "../features/movies/useMovies";
+import { useTheme } from "../features/theme/useTheme";
 
 import {
   addDataToFirebase,
@@ -17,12 +18,13 @@ import { COLORS, FONT_SIZES, SPACING } from "../constants/styles";
 import { FIREBASE_USER_MOVIES_DATA_COLLECTION } from "../constants/firebase";
 import { MEDIA } from "../constants/media";
 
-import { IMovie } from "../types/types";
+import { IMovie, IStyledWrapper } from "../types/types";
 
 export const MoviePage = () => {
   const { saveUserMoviesData, userMoviesData } = useUserMoviesData();
   const { movies, saveMovies } = useMovies();
   const { user } = useUser();
+  const { theme } = useTheme();
 
   const { id } = useParams();
 
@@ -31,13 +33,28 @@ export const MoviePage = () => {
   );
   const currUserRating = movieData?.[1] || 0;
 
+  const colorsToFill = theme.isDarkTheme ? COLORS.white : COLORS.black;
+
   const starsColors = [
     COLORS.transparent,
     COLORS.transparent,
     COLORS.transparent,
     COLORS.transparent,
     COLORS.transparent,
-  ].fill(COLORS.white, 0, currUserRating);
+  ].fill(colorsToFill, 0, currUserRating);
+
+  const starsArray: any = [];
+
+  for (let i = 0; i < 5; i++) {
+    starsArray.push(
+      <div data-number={i + 1}>
+        <Star
+          fill={starsColors[i]}
+          stroke={theme.isDarkTheme ? COLORS.white : COLORS.black}
+        />
+      </div>
+    );
+  }
 
   const movie = movies.movies.find((movie) => movie.id === id) as IMovie;
 
@@ -70,30 +87,12 @@ export const MoviePage = () => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper isDarkTheme={theme.isDarkTheme}>
       <Title>{movie.title}</Title>
       <MovieInfo>
         <PosterRating>
           <MoviePoster src={movie.img} alt="movie poster" />
-          {user.id && (
-            <StarBlock onClick={onStarClick}>
-              <div data-number="1">
-                <Star fill={starsColors[0]} stroke={COLORS.white} />
-              </div>
-              <div data-number="2">
-                <Star fill={starsColors[1]} stroke={COLORS.white} />
-              </div>
-              <div data-number="3">
-                <Star fill={starsColors[2]} stroke={COLORS.white} />
-              </div>
-              <div data-number="4">
-                <Star fill={starsColors[3]} stroke={COLORS.white} />
-              </div>
-              <div data-number="5">
-                <Star fill={starsColors[4]} stroke={COLORS.white} />
-              </div>
-            </StarBlock>
-          )}
+          {user.id && <StarBlock onClick={onStarClick}>{starsArray}</StarBlock>}
         </PosterRating>
         <MovieText>
           Rating
@@ -108,8 +107,8 @@ export const MoviePage = () => {
   );
 };
 
-const Wrapper = styled.div`
-  color: ${COLORS.white};
+const Wrapper = styled.div<IStyledWrapper>`
+  color: ${({ isDarkTheme }) => (isDarkTheme ? COLORS.white : COLORS.black)};
 `;
 
 const Title = styled.div`

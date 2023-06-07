@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import { useUser } from "../../features/user/useUser";
 import { useUserMoviesData } from "../../features/userMoviesData/useUserMoviesData";
+import { useTheme } from "../../features/theme/useTheme";
 
 import {
   addDataToFirebase,
@@ -11,7 +12,7 @@ import {
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 import { FIREBASE_USER_MOVIES_DATA_COLLECTION } from "../../constants/firebase";
 
-import { IMovie } from "../../types/types";
+import { IMovie, IStyledMovieTitle } from "../../types/types";
 
 export const MovieCard: React.FC<IMovie> = ({
   id,
@@ -22,6 +23,7 @@ export const MovieCard: React.FC<IMovie> = ({
 }) => {
   const { user } = useUser();
   const { saveUserMoviesData, userMoviesData } = useUserMoviesData();
+  const { theme } = useTheme();
 
   const isMovieWatched = userMoviesData.watchedMovies.includes(id);
 
@@ -73,7 +75,7 @@ export const MovieCard: React.FC<IMovie> = ({
         </CheckWrapper>
       )}
       <MovieImg src={img} alt="movie poster" />
-      <MovieTitle>{title}</MovieTitle>
+      <MovieTitle isDarkTheme={theme.isDarkTheme}>{title}</MovieTitle>
     </MovieCardWrapper>
   );
 };
@@ -114,7 +116,7 @@ const Check = styled.div`
 const InfoPreview = styled.div`
   position: absolute;
   width: 100%;
-  height: 90%;
+  height: 88%;
   opacity: 0;
   flex-direction: column;
   align-items: start;
@@ -123,6 +125,7 @@ const InfoPreview = styled.div`
   justify-content: center;
   background-color: ${COLORS.blackTransparent};
   transition: 0.3s;
+  border-radius: ${SPACING.sm};
 
   ${MovieCardWrapper}: hover & {
     opacity: 1;
@@ -133,6 +136,7 @@ const MovieImg = styled.img`
   border-radius: ${SPACING.sm};
 `;
 
-const MovieTitle = styled.div`
+const MovieTitle = styled.div<IStyledMovieTitle>`
   padding-top: ${SPACING.sm};
+  color: ${({ isDarkTheme }) => (isDarkTheme ? COLORS.white : COLORS.black)};
 `;

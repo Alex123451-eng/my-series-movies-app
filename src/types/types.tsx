@@ -26,6 +26,7 @@ export interface IUser {
 // todo починить any
 export interface IStyledCustomLink {
   match: any;
+  isDarkTheme: boolean;
 }
 export interface ICustomLink {
   children: string | React.ReactElement;
@@ -49,4 +50,24 @@ export interface IMovieLink {
 
 export interface ISearch {
   setIsSearchShown: boolVoidFunc;
+}
+
+export interface IStyledUserEmail {
+  isDarkTheme: boolean;
+}
+
+export interface IStyledSearchWord {
+  isDarkTheme: boolean;
+}
+
+export interface IStyledMovieTitle {
+  isDarkTheme: boolean;
+}
+
+export interface IStyledThemeBtnWrapper {
+  isDarkTheme: boolean;
+}
+
+export interface IStyledWrapper {
+  isDarkTheme: boolean;
 }
