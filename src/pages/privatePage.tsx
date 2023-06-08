@@ -5,14 +5,16 @@ import { MovieLink } from "../components/movieLink/movieLink";
 
 import { useMovies } from "../features/movies/useMovies";
 import { useUserMoviesData } from "../features/userMoviesData/useUserMoviesData";
+import { useTheme } from "../features/theme/useTheme";
 
 import { FONT_SIZES, SPACING, COLORS } from "../constants/styles";
 
-import { IMovie } from "../types/types";
+import { IMovie, IStyledIsDarkTheme } from "../types/types";
 
 export const PrivatePage = () => {
   const { watchedMovies } = useUserMoviesData().userMoviesData;
   const { movies } = useMovies();
+  const { theme } = useTheme();
 
   const filteredMovies = movies.movies.filter((movie) =>
     watchedMovies.includes(movie.id)
@@ -20,7 +22,7 @@ export const PrivatePage = () => {
 
   return (
     <Wrapper>
-      <Title>Watched movies</Title>
+      <Title isDarkTheme={theme.isDarkTheme}>Watched movies</Title>
       <MoviesWrapper>
         {filteredMovies.map((movie: IMovie) => {
           const { id, title, img, releaseYear, rating } = movie;
@@ -45,11 +47,11 @@ const Wrapper = styled.div`
   height: 500px;
 `;
 
-const Title = styled.div`
+const Title = styled.div<IStyledIsDarkTheme>`
   font-size: ${FONT_SIZES.lg};
   font-weight: 800;
   margin-bottom: ${SPACING.lg};
-  color: ${COLORS.white};
+  color: ${({ isDarkTheme }) => (isDarkTheme ? COLORS.white : COLORS.black)};
 `;
 
 const MoviesWrapper = styled.div`

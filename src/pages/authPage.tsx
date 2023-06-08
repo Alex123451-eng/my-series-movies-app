@@ -10,6 +10,7 @@ import { ToastContainer } from "../toastify/toastify";
 
 import { useUser } from "../features/user/useUser";
 import { useUserMoviesData } from "../features/userMoviesData/useUserMoviesData";
+import { useTheme } from "../features/theme/useTheme";
 
 import { addDataToFirebase } from "../firebase/firebaseFirestore";
 import { initEntityWithFirebaseData } from "../firebase/firebaseFirestore";
@@ -24,6 +25,8 @@ import {
 } from "../constants/firebase";
 import { MEDIA } from "../constants/media";
 
+import { IStyledIsDarkTheme } from "../types/types";
+
 export const AuthPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,6 +38,7 @@ export const AuthPage = () => {
   const navigate = useNavigate();
   const { saveUser } = useUser();
   const { saveUserMoviesData } = useUserMoviesData();
+  const { theme } = useTheme();
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = e;
@@ -110,7 +114,7 @@ export const AuthPage = () => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper isDarkTheme={theme.isDarkTheme}>
       <InnerWrapper>
         <Title>
           <div> Welcome to the Alexis Movies!</div>
@@ -168,12 +172,14 @@ const ImgWrapper = styled.div`
   justify-content: center;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<IStyledIsDarkTheme>`
   padding: ${SPACING.md} 0;
   max-width: 540px;
   margin: 0 auto;
-  background: ${COLORS.white};
+  background: ${({ isDarkTheme }) =>
+    isDarkTheme ? COLORS.white : COLORS.blackBackground};
   border-radius: ${SPACING.sm};
+  color: ${({ isDarkTheme }) => (isDarkTheme ? COLORS.black : COLORS.white)};
 `;
 
 const InnerWrapper = styled.div`

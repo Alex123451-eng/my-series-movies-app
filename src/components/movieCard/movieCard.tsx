@@ -12,7 +12,7 @@ import {
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 import { FIREBASE_USER_MOVIES_DATA_COLLECTION } from "../../constants/firebase";
 
-import { IMovie, IStyledMovieTitle } from "../../types/types";
+import { IMovie, IStyledIsDarkTheme } from "../../types/types";
 
 export const MovieCard: React.FC<IMovie> = ({
   id,
@@ -136,7 +136,7 @@ const MovieImg = styled.img`
   border-radius: ${SPACING.sm};
 `;
 
-const MovieTitle = styled.div<IStyledMovieTitle>`
+const MovieTitle = styled.div<IStyledIsDarkTheme>`
   padding-top: ${SPACING.sm};
   color: ${({ isDarkTheme }) => (isDarkTheme ? COLORS.white : COLORS.black)};
 `;

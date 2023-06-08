@@ -4,13 +4,14 @@ import { CustomLink } from "../customLink/customLink";
 import { ReactComponent as Cross } from "../../img/components/mobileMenu/close-btn.svg";
 
 import { useUser } from "../../features/user/useUser";
+import { useTheme } from "../../features/theme/useTheme";
 
 import { showBodyScroll } from "../../utils/bodyScroll";
 
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 import { ROUTES } from "../../constants/routes";
 
-import { IMobileMenu } from "../../types/types";
+import { IMobileMenu, IStyledIsDarkTheme } from "../../types/types";
 
 export const MobileMenu: React.FC<IMobileMenu> = ({
   setIsMobileMenuShown,
@@ -19,6 +20,7 @@ export const MobileMenu: React.FC<IMobileMenu> = ({
   onLogoutBtnClick,
 }) => {
   const { user } = useUser();
+  const { theme } = useTheme();
 
   const closeMobileMenu = (e: any) => {
     if (e.target.dataset.close) {
@@ -28,7 +30,7 @@ export const MobileMenu: React.FC<IMobileMenu> = ({
   };
 
   return (
-    <Wrapper onClick={closeMobileMenu}>
+    <Wrapper isDarkTheme={theme.isDarkTheme} onClick={closeMobileMenu}>
       <Nav>
         <CustomLink data-close={true} to={ROUTES.main}>
           Main
@@ -57,19 +59,20 @@ export const MobileMenu: React.FC<IMobileMenu> = ({
         )}
       </Nav>
       <BtnClose data-close={true}>
-        <Cross fill="white" />
+        <Cross fill={theme.isDarkTheme ? COLORS.white : COLORS.black} />
       </BtnClose>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<IStyledIsDarkTheme>`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: ${COLORS.blackBackground};
+  background-color: ${({ isDarkTheme }) =>
+    isDarkTheme ? COLORS.blackBackground : COLORS.whiteBackground};
   font-size: ${FONT_SIZES.lg};
 `;
 

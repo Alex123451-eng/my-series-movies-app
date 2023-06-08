@@ -22,11 +22,7 @@ import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 import { ROUTES } from "../../constants/routes";
 import { MEDIA } from "../../constants/media";
 
-import {
-  IStyledUserEmail,
-  IStyledSearchWord,
-  IStyledThemeBtnWrapper,
-} from "../../types/types";
+import { IStyledIsDarkTheme } from "../../types/types";
 
 export const Layout = () => {
   const [isSearchShown, setIsSearchShown] = useState(false);
@@ -97,13 +93,18 @@ export const Layout = () => {
             Search
           </SearchWord>
           <BurgerWrapper onClick={onBurderClick}>
-            <Burger />
+            <Burger isDarkTheme={theme.isDarkTheme} />
           </BurgerWrapper>
           {user.id ? (
             <UserMailLogOutWrapper>
               {isLogOutShown && (
                 <LogOut>
-                  <Button onClick={onLogoutBtnClick}>Log out</Button>
+                  <Button
+                    isDarkTheme={theme.isDarkTheme}
+                    onClick={onLogoutBtnClick}
+                  >
+                    Log out
+                  </Button>
                 </LogOut>
               )}
               <UserEmail
@@ -116,7 +117,9 @@ export const Layout = () => {
           ) : (
             <CustomLink to={ROUTES.login}>
               <EnterLogoWrapper>
-                <EnterLogo fill={COLORS.white} />
+                <EnterLogo
+                  fill={theme.isDarkTheme ? COLORS.white : COLORS.black}
+                />
               </EnterLogoWrapper>
             </CustomLink>
           )}
@@ -199,7 +202,7 @@ const EnterLogoWrapper = styled.div`
   margin-bottom: -${SPACING.sm};
 `;
 
-const SearchWord = styled.div<IStyledSearchWord>`
+const SearchWord = styled.div<IStyledIsDarkTheme>`
   cursor: pointer;
   color: ${({ isDarkTheme }) =>
     isDarkTheme ? COLORS.whiteTransparent : COLORS.blackTransparent};
@@ -208,12 +211,13 @@ const SearchWord = styled.div<IStyledSearchWord>`
   font-size: ${FONT_SIZES.lg};
 `;
 
-const burderPseudoStyles = css`
+const burderPseudoStyles = css<IStyledIsDarkTheme>`
   content: "";
   position: absolute;
   width: 25px;
   height: 2px;
-  background: ${COLORS.white};
+  background: ${({ isDarkTheme }) =>
+    isDarkTheme ? COLORS.white : COLORS.black};
 `;
 
 const BurgerWrapper = styled.div`
@@ -221,14 +225,15 @@ const BurgerWrapper = styled.div`
   height: 20px;
 `;
 
-const Burger = styled.div`
+const Burger = styled.div<IStyledIsDarkTheme>`
   display: none;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
   width: 25px;
   height: 2px;
-  background: ${COLORS.white};
+  background: ${({ isDarkTheme }) =>
+    isDarkTheme ? COLORS.white : COLORS.black};
 
   &::before {
     ${burderPseudoStyles}
@@ -249,7 +254,7 @@ const UserMailLogOutWrapper = styled.div`
   position: relative;
 `;
 
-const UserEmail = styled.span<IStyledUserEmail>`
+const UserEmail = styled.span<IStyledIsDarkTheme>`
   cursor: pointer;
   color: ${({ isDarkTheme }) => (isDarkTheme ? COLORS.white : COLORS.black)};
 `;
@@ -264,21 +269,24 @@ const LogOut = styled.div`
   }
 `;
 
-const Button = styled.button`
+const Button = styled.button<IStyledIsDarkTheme>`
   font-family: "nunito-regular", sans-serif;
   cursor: pointer;
   border: 1px solid ${COLORS.gray};
   border-radius: ${SPACING.sm};
-  background: ${COLORS.white};
+  background: ${({ isDarkTheme }) =>
+    isDarkTheme ? COLORS.white : COLORS.black};
+  color: ${({ isDarkTheme }) => (isDarkTheme ? COLORS.black : COLORS.white)};
   padding: ${SPACING.sm} 0;
   width: 100%;
 
   &:hover {
-    background: ${COLORS.whiteActive};
+    background: ${({ isDarkTheme }) =>
+      isDarkTheme ? COLORS.whiteActive : COLORS.blackActive};
   }
 `;
 
-const ThemeBtnWrapper = styled.div<IStyledThemeBtnWrapper>`
+const ThemeBtnWrapper = styled.div<IStyledIsDarkTheme>`
   width: 35px;
   height: 35px;
   cursor: pointer;

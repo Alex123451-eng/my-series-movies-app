@@ -52,22 +52,6 @@ export interface ISearch {
   setIsSearchShown: boolVoidFunc;
 }
 
-export interface IStyledUserEmail {
-  isDarkTheme: boolean;
-}
-
-export interface IStyledSearchWord {
-  isDarkTheme: boolean;
-}
-
-export interface IStyledMovieTitle {
-  isDarkTheme: boolean;
-}
-
-export interface IStyledThemeBtnWrapper {
-  isDarkTheme: boolean;
-}
-
-export interface IStyledWrapper {
+export interface IStyledIsDarkTheme {
   isDarkTheme: boolean;
 }

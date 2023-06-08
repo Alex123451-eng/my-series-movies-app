@@ -5,18 +5,20 @@ import { MovieLine } from "../movieLine/movieLine";
 import { ReactComponent as Cross } from "../../img/components/search/close-btn.svg";
 
 import { useMovies } from "../../features/movies/useMovies";
+import { useTheme } from "../../features/theme/useTheme";
 
 import { showBodyScroll } from "../../utils/bodyScroll";
 
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 import { MEDIA } from "../../constants/media";
 
-import { IMovie, ISearch } from "../../types/types";
+import { IMovie, ISearch, IStyledIsDarkTheme } from "../../types/types";
 
 export const Search: React.FC<ISearch> = ({ setIsSearchShown }) => {
   const [titleInputValue, setTitleInputValue] = useState("");
 
   const { movies } = useMovies();
+  const { theme } = useTheme();
 
   const onChangeTitleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -36,8 +38,10 @@ export const Search: React.FC<ISearch> = ({ setIsSearchShown }) => {
         .includes(titleInputValue.toLocaleLowerCase())
     );
 
+  console.log("theme.isDarkTheme ", theme.isDarkTheme);
+
   return (
-    <SearchComponentWrapper>
+    <SearchComponentWrapper isDarkTheme={theme.isDarkTheme}>
       <InnerWrapper>
         <Title>Search</Title>
         <SearchInput
@@ -46,7 +50,7 @@ export const Search: React.FC<ISearch> = ({ setIsSearchShown }) => {
           value={titleInputValue}
           onChange={onChangeTitleInput}
         />
-        <MoviesList>
+        <MoviesList isDarkTheme={theme.isDarkTheme}>
           {filteredMovies.length ? (
             filteredMovies.map((movie: IMovie) => {
               const { id, title, img, releaseYear, rating } = movie;
@@ -64,24 +68,25 @@ export const Search: React.FC<ISearch> = ({ setIsSearchShown }) => {
               );
             })
           ) : (
-            <NoMatch>No match</NoMatch>
+            <NoMatch isDarkTheme={theme.isDarkTheme}>No match</NoMatch>
           )}
         </MoviesList>
         <BtnClose onClick={closeSearchComponent}>
-          <Cross fill="white" />
+          <Cross fill={theme.isDarkTheme ? COLORS.white : COLORS.black} />
         </BtnClose>
       </InnerWrapper>
     </SearchComponentWrapper>
   );
 };
 
-const SearchComponentWrapper = styled.div`
+const SearchComponentWrapper = styled.div<IStyledIsDarkTheme>`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: ${COLORS.blackBackground};
+  background-color: ${({ isDarkTheme }) =>
+    isDarkTheme ? COLORS.blackBackground : COLORS.whiteBackground};
   font-size: ${FONT_SIZES.xxl};
   color: ${COLORS.white};
   font-family: "nunito-regular", sans-serif;
@@ -112,6 +117,7 @@ const SearchInput = styled.input`
   font-size: ${FONT_SIZES.md};
   font-family: "nunito-regular", sans-serif;
   border-radius: ${SPACING.sm};
+  border: 1px solid;
   height: 40px;
 
   &:focus {
@@ -133,8 +139,9 @@ const BtnClose = styled.div`
   }
 `;
 
-const MoviesList = styled.div`
-  background: #ffffff;
+const MoviesList = styled.div<IStyledIsDarkTheme>`
+  background: ${({ isDarkTheme }) =>
+    isDarkTheme ? COLORS.white : COLORS.blackBackground};
   padding: ${SPACING.sm} 0;
   margin-top: ${SPACING.sm};
   width: 100%;
@@ -144,9 +151,9 @@ const MoviesList = styled.div`
   overflow: hidden;
 `;
 
-const NoMatch = styled.div`
+const NoMatch = styled.div<IStyledIsDarkTheme>`
   padding-left: ${SPACING.md};
   font-family: "nunito-regular", sans-serif;
   font-size: ${FONT_SIZES.md};
-  color: ${COLORS.black};
+  color: ${({ isDarkTheme }) => (isDarkTheme ? COLORS.black : COLORS.white)};
 `;

@@ -18,7 +18,7 @@ import { COLORS, FONT_SIZES, SPACING } from "../constants/styles";
 import { FIREBASE_USER_MOVIES_DATA_COLLECTION } from "../constants/firebase";
 import { MEDIA } from "../constants/media";
 
-import { IMovie, IStyledWrapper } from "../types/types";
+import { IMovie, IStyledIsDarkTheme } from "../types/types";
 
 export const MoviePage = () => {
   const { saveUserMoviesData, userMoviesData } = useUserMoviesData();
@@ -107,7 +107,7 @@ export const MoviePage = () => {
   );
 };
 
-const Wrapper = styled.div<IStyledWrapper>`
+const Wrapper = styled.div<IStyledIsDarkTheme>`
   color: ${({ isDarkTheme }) => (isDarkTheme ? COLORS.white : COLORS.black)};
 `;
 

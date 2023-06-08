@@ -2,9 +2,11 @@ import styled from "styled-components";
 
 import { MovieLink } from "../movieLink/movieLink";
 
+import { useTheme } from "../../features/theme/useTheme";
+
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 
-import { IMovie } from "../../types/types";
+import { IMovie, IStyledIsDarkTheme } from "../../types/types";
 
 export const MovieLine: React.FC<IMovie> = ({
   id,
@@ -13,12 +15,14 @@ export const MovieLine: React.FC<IMovie> = ({
   releaseYear,
   rating,
 }) => {
+  const { theme } = useTheme();
+
   return (
     <MovieLink id={id}>
-      <Wrapper>
+      <Wrapper isDarkTheme={theme.isDarkTheme}>
         <img src={img} alt="movie preview" />
         <TextBlock>
-          <Title>{title}</Title>
+          <Title isDarkTheme={theme.isDarkTheme}>{title}</Title>
           <Info>
             <Rating>{rating}</Rating>
             <ReleaseYear>{releaseYear}</ReleaseYear>
@@ -29,7 +33,7 @@ export const MovieLine: React.FC<IMovie> = ({
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<IStyledIsDarkTheme>`
   display: flex;
   padding: ${SPACING.sm} ${SPACING.md};
   width: 100%;
@@ -37,7 +41,8 @@ const Wrapper = styled.div`
   cursor: pointer;
 
   &:hover {
-    background: ${COLORS.whiteActive};
+    background: ${({ isDarkTheme }) =>
+      isDarkTheme ? COLORS.whiteActive : COLORS.blackActive};
   }
 `;
 
@@ -48,10 +53,10 @@ const TextBlock = styled.div`
   margin-left: ${SPACING.md};
 `;
 
-const Title = styled.div`
+const Title = styled.div<IStyledIsDarkTheme>`
   font-family: "nunito-regular", sans-serif;
   font-size: ${FONT_SIZES.md};
-  color: ${COLORS.black};
+  color: ${({ isDarkTheme }) => (isDarkTheme ? COLORS.black : COLORS.white)};
 `;
 
 const Info = styled.div`
