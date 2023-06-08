@@ -51,7 +51,6 @@ export const AuthPage = () => {
     textInput.current?.focus();
   }, []);
 
-  // todo починить any
   const handleAuth = async (e: any) => {
     const { name } = e.target;
 
@@ -107,7 +106,6 @@ export const AuthPage = () => {
       saveUserMoviesData(userMoviesDataFromFirebase);
 
       navigate(ROUTES.private);
-      // todo починить any
     } catch (err: any) {
       notifyError(`${err.name}: ${err.code}`);
     }

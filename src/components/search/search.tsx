@@ -7,7 +7,7 @@ import { ReactComponent as Cross } from "../../img/components/search/close-btn.s
 import { useMovies } from "../../features/movies/useMovies";
 import { useTheme } from "../../features/theme/useTheme";
 
-import { showBodyScroll } from "../../utils/bodyScroll";
+import { showBodyScroll } from "../../utils/body";
 
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
 import { MEDIA } from "../../constants/media";

@@ -15,7 +15,7 @@ import {
   hideBodyScroll,
   changeBodyColorToBlack,
   changeBodyColorToWhite,
-} from "../../utils/bodyScroll";
+} from "../../utils/body";
 
 import { firebaseAuth } from "../../firebase/firebaseAuth";
 import { COLORS, FONT_SIZES, SPACING } from "../../constants/styles";
