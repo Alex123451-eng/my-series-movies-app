@@ -3,10 +3,10 @@ export const FIREBASE_USERS_COLLECTION = "users";
 export const FIREBASE_USER_MOVIES_DATA_COLLECTION = "users-movies-data";
 
 export const FIREBASE_CONFIG = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  apiKey: "AIzaSyBTSOLdAXSdu17Hcxn__yvS0gfmPh2WbSo",
+  authDomain: "alexis-movie-series.firebaseapp.com",
+  projectId: "alexis-movie-series",
+  storageBucket: "alexis-movie-series.appspot.com",
+  messagingSenderId: "505626038016",
+  appId: "1:505626038016:web:f04f7cafbdbe4832c0ede5",
 };

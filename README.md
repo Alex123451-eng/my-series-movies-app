@@ -1,3 +1,5 @@
+# Alexis Movies
+
 ## Описание
 
 Приложение является библиотекой фильмов.  
@@ -12,18 +14,23 @@
    ![img](./public/img/readme/main-page.png)
 2. История фильмов
    Информационная страница посвященная истории кинематографа
+   ![img](./public/img/readme/history-page.png)
 3. Поиск
    Страница поиска
+   ![img](./public/img/readme/search-page.png)
 4. Логин
    Страница, на которой можно зарегистрироваться и войти в систему
+   ![img](./public/img/readme/login-page.png)
 5. Личная страница
    Страница с любимыми фильмами
+   ![img](./public/img/readme/private-page.png)
 6. Страница фильма
    У каждого фильма есть страница с информацией о нем
+   ![img](./public/img/readme/movie-page.png)
 
 ## Фукнциональность
 
-1. Регистрация
+1. Регистрация  
    Присутствует функционал:
 
 - Проверки "силы" пароля (sigh up)
@@ -56,3 +63,39 @@ npm start
 3. Firebase (NoSQL database)
 4. TypeScript
 5. React Router (v6)
+
+## Структура проекта
+
+```
+project
+├── README.md
+├── node_modules
+├── package.json
+├── .gitignore
+├── public
+└── src
+    ├── app
+    └── components
+        ├── customLink
+        ├── layout
+        ├── loader
+        ├── mobileMenu
+        ├── movieCard
+        ├── movieLine
+        ├── movieLink
+        └── search
+    ├── constants
+    ├── features
+    ├── firebase
+    ├── fonts
+    ├── img
+    └── pages
+        ├── authPage
+        ├── cinemaHistoryPage
+        ├── mainPage
+        ├── moviePage
+        └── privatePage
+    ├── toastify
+    ├── types
+    └── utils
+```

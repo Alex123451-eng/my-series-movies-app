@@ -31,6 +31,7 @@ export const AuthPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // todo возможно убрать useRef
   const textInput: any = useRef();
 
   textInput.current?.focus();
@@ -140,7 +141,7 @@ export const AuthPage = () => {
             name="password"
             value={password}
             onChange={onChangeInput}
-            ref={textInput}
+            // ref={textInput}
           />
         </InputBlock>
 
