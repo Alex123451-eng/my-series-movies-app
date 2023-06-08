@@ -47,10 +47,20 @@ export const MobileMenu: React.FC<IMobileMenu> = ({
           <UserMailLogOutWrapper>
             {isLogOutShown && (
               <LogOut>
-                <Button onClick={onLogoutBtnClick}>Log out</Button>
+                <Button
+                  isDarkTheme={theme.isDarkTheme}
+                  onClick={onLogoutBtnClick}
+                >
+                  Log out
+                </Button>
               </LogOut>
             )}
-            <UserEmail onClick={onUserEmailClick}>{user.email}</UserEmail>
+            <UserEmail
+              isDarkTheme={theme.isDarkTheme}
+              onClick={onUserEmailClick}
+            >
+              {user.email}
+            </UserEmail>
           </UserMailLogOutWrapper>
         ) : (
           <CustomLink data-close={true} to={ROUTES.login}>
@@ -104,9 +114,9 @@ const UserMailLogOutWrapper = styled.div`
   position: relative;
 `;
 
-const UserEmail = styled.span`
+const UserEmail = styled.span<IStyledIsDarkTheme>`
   cursor: pointer;
-  color: ${COLORS.white};
+  color: ${({ isDarkTheme }) => (isDarkTheme ? COLORS.white : COLORS.black)};
 `;
 
 const LogOut = styled.div`
@@ -115,16 +125,19 @@ const LogOut = styled.div`
   width: 100%;
 `;
 
-const Button = styled.button`
+const Button = styled.button<IStyledIsDarkTheme>`
   font-family: "nunito-regular", sans-serif;
   cursor: pointer;
   border: 1px solid ${COLORS.gray};
   border-radius: ${SPACING.sm};
-  background: ${COLORS.white};
+  background: ${({ isDarkTheme }) =>
+    isDarkTheme ? COLORS.white : COLORS.black};
+  color: ${({ isDarkTheme }) => (isDarkTheme ? COLORS.black : COLORS.white)};
   padding: ${SPACING.sm} 0;
   width: 100%;
 
   &:hover {
-    background: ${COLORS.whiteActive};
+    background: ${({ isDarkTheme }) =>
+      isDarkTheme ? COLORS.whiteActive : COLORS.blackActive};
   }
 `;

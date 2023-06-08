@@ -43,7 +43,7 @@ export const Search: React.FC<ISearch> = ({ setIsSearchShown }) => {
   return (
     <SearchComponentWrapper isDarkTheme={theme.isDarkTheme}>
       <InnerWrapper>
-        <Title>Search</Title>
+        <Title isDarkTheme={theme.isDarkTheme}>Search</Title>
         <SearchInput
           type="text"
           placeholder="Films, tv series"
@@ -106,9 +106,10 @@ const InnerWrapper = styled.div`
   }
 `;
 
-const Title = styled.div`
+const Title = styled.div<IStyledIsDarkTheme>`
   font-family: "nunito-extra-bold", sans-serif;
   font-weight: 800;
+  color: ${({ isDarkTheme }) => (isDarkTheme ? COLORS.white : COLORS.black)};
 `;
 
 const SearchInput = styled.input`
